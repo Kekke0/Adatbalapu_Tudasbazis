@@ -1,2 +1,20 @@
 <p>heló</p>
+
+<table>
+    <thead>
+      <tr>           
+       <th>Név</th>
+       <th>ID</th>
+       <th>Email</th>
+       <th>Szakterület</th>
+       <th>Intézet</th>
+       <th>Tudományos fokozat</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let sor of lektorok">           
+        <td *ngFor="let mezo of sor">{{mezo}}</td>
+      </tr>
+    </tbody>
+  </table>
 <router-outlet></router-outlet>
