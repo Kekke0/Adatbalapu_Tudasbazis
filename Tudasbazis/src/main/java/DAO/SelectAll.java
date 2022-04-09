@@ -13,28 +13,20 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class SelectAll {
+public class SelectAll extends ConnectionProtocol {
     private ResultSet rs;
     private Statement stmt;
-    private OracleDataSource ods;
     private final String user="EN", pass="1234";
 
-    public SelectAll(){
-        try{
-            ods= new OracleDataSource();
-            Class.forName("oracle.jdbc.OracleDriver");
-            ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
-        } catch (Exception e) {
-            System.out.println("Csatlakozási hiba");
-            e.printStackTrace();
-        }
+    public SelectAll() {
+        super();
     }
 
     public ArrayList<Felhasznalo> Felhasznall(){
         ArrayList<Felhasznalo> felh=new ArrayList<Felhasznalo>();
         try{
-            Connection conn =ods.getConnection(user,pass);
-            stmt=conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            Start();
+            stmt=super.getConn().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
             String sql="select * from felhasznalo";
             rs= stmt.executeQuery(sql);
             while (rs.next()){
@@ -42,6 +34,7 @@ public class SelectAll {
                 felh.add(a);
                 //System.out.println(a);
             }
+            Stop();
         }catch (Exception e){
             System.out.println("Lekérdezési hiba");
             e.printStackTrace();
@@ -52,8 +45,8 @@ public class SelectAll {
     public ArrayList<Admin> Adminall(){
         ArrayList<Admin> ret=new ArrayList<Admin>();
         try{
-            Connection conn =ods.getConnection(user,pass);
-            stmt=conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            Start();
+            stmt=super.getConn().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
             String sql="select * from admin";
             rs= stmt.executeQuery(sql);
             while (rs.next()){
@@ -61,6 +54,7 @@ public class SelectAll {
                 ret.add(a);
                 //System.out.println(a);
             }
+            Stop();
         }catch (Exception e){
             System.out.println("Lekérdezési hiba");
             e.printStackTrace();
@@ -72,8 +66,8 @@ public class SelectAll {
     public ArrayList<Lektor> Lektorall(){
         ArrayList<Lektor> ret=new ArrayList<Lektor>();
         try{
-            Connection conn =ods.getConnection(user,pass);
-            stmt=conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            Start();
+            stmt=super.getConn().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
             String sql="select * from Lektor";
             rs= stmt.executeQuery(sql);
             while (rs.next()){
@@ -81,6 +75,7 @@ public class SelectAll {
                 ret.add(a);
                 //System.out.println(a);
             }
+            Stop();
         }catch (Exception e){
             e.printStackTrace();
             System.out.println("Lekérdezési hiba");
@@ -91,8 +86,8 @@ public class SelectAll {
     public ArrayList<Nyelvtudas> Nyelvall(){
         ArrayList<Nyelvtudas> ret=new ArrayList<Nyelvtudas>();
         try{
-            Connection conn =ods.getConnection(user,pass);
-            stmt=conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            Start();
+            stmt=super.getConn().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
             String sql="select * from Nyelvtudas";
             rs= stmt.executeQuery(sql);
             while (rs.next()){
@@ -101,6 +96,7 @@ public class SelectAll {
                 ret.add(a);
                 //System.out.println(a);
             }
+            Stop();
         }catch (Exception e){
             System.out.println("Lekérdezési hiba");
             e.printStackTrace();
@@ -111,8 +107,8 @@ public class SelectAll {
     public ArrayList<Ban> Banall(){
         ArrayList<Ban> ret=new ArrayList<Ban>();
         try{
-            Connection conn =ods.getConnection(user,pass);
-            stmt=conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            Start();
+            stmt=super.getConn().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
             String sql="select * from Ban";
             rs= stmt.executeQuery(sql);
             while (rs.next()){
@@ -120,6 +116,7 @@ public class SelectAll {
                 ret.add(a);
                 //System.out.println(a);
             }
+            Stop();
         }catch (Exception e){
             e.printStackTrace();
             System.out.println("Lekérdezési hiba");
@@ -129,8 +126,8 @@ public class SelectAll {
     public ArrayList<Cikk> Cikkall(){
         ArrayList<Cikk> ret=new ArrayList<Cikk>();
         try{
-            Connection conn =ods.getConnection(user,pass);
-            stmt=conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            Start();
+            stmt=super.getConn().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
             String sql="select * from Cikk";
             rs= stmt.executeQuery(sql);
             while (rs.next()){
@@ -138,6 +135,7 @@ public class SelectAll {
                 ret.add(a);
                 //System.out.println(a);
             }
+            Stop();
         }catch (Exception e){
             e.printStackTrace();
             System.out.println("Lekérdezési hiba");
@@ -148,8 +146,8 @@ public class SelectAll {
     public ArrayList<Kategoria> Katall() {
         ArrayList<Kategoria> ret = new ArrayList<Kategoria>();
         try {
-            Connection conn = ods.getConnection(user, pass);
-            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            Start();
+            stmt = super.getConn().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             String sql = "select * from Kategoria";
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
@@ -157,6 +155,7 @@ public class SelectAll {
                 ret.add(a);
                 //System.out.println(a);
             }
+            Stop();
         } catch (Exception e) {
             System.out.println("Lekérdezési hiba");
             e.printStackTrace();
@@ -166,8 +165,8 @@ public class SelectAll {
     public ArrayList<Modositas> Modall() {
         ArrayList<Modositas> ret = new ArrayList<Modositas>();
         try {
-            Connection conn = ods.getConnection(user, pass);
-            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            Start();
+            stmt = super.getConn().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             String sql = "select * from Modositas";
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
@@ -175,6 +174,7 @@ public class SelectAll {
                 ret.add(a);
                 //System.out.println(a);
             }
+            Stop();
         } catch (Exception e) {
             System.out.println("Lekérdezési hiba");
             e.printStackTrace();
@@ -184,8 +184,8 @@ public class SelectAll {
     public ArrayList<Hiba> Hibaall(){
         ArrayList<Hiba> ret=new ArrayList<Hiba>();
         try{
-            Connection conn =ods.getConnection(user,pass);
-            stmt=conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            Start();
+            stmt=super.getConn().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
             String sql="select * from Hiba";
             rs= stmt.executeQuery(sql);
             while (rs.next()){
@@ -193,6 +193,7 @@ public class SelectAll {
                 ret.add(a);
                 //System.out.println(a);
             }
+            Stop();
         }catch (Exception e){
             e.printStackTrace();
             System.out.println("Lekérdezési hiba");
@@ -202,8 +203,8 @@ public class SelectAll {
     public ArrayList<Javitas> Javitall(){
         ArrayList<Javitas> ret=new ArrayList<Javitas>();
         try{
-            Connection conn =ods.getConnection(user,pass);
-            stmt=conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            Start();
+            stmt=super.getConn().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
             String sql="select * from Javitas";
             rs= stmt.executeQuery(sql);
             while (rs.next()){
@@ -211,6 +212,7 @@ public class SelectAll {
                 ret.add(a);
                 //System.out.println(a);
             }
+            Stop();
         }catch (Exception e){
             e.printStackTrace();
             System.out.println("Lekérdezési hiba");
