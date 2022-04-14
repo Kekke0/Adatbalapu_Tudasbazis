@@ -8,9 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.security.auth.login.AccountException;
@@ -49,8 +47,8 @@ public class TudasbazisApplication {
 	}
 
 	@PostMapping("/felhasznalo")
-	public String  Bejelentkezes(String Nev, String Pass){
-		return Nev+" Bocsi de most nem tudsz bejelentkezni";
+	public ResponseEntity<String>  Bejelentkezes(@RequestBody String Nev){
+		return new ResponseEntity<String>(new Gson().toJson(Nev + "eredmény"), HttpStatus.ACCEPTED);
 	}
 
 	@PostMapping(value = "/Bejelentkezes")

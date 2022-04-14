@@ -1,5 +1,5 @@
 import { Component, Injectable, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -13,12 +13,23 @@ import { environment } from 'src/environments/environment';
 })
 export class AppComponent implements OnInit{
   title = 'adatb-fe';
-  lektorok = []; 
+  lektorok = [];
+  nev = "placeholder";
+  pw = "ph";
 
-constructor(private http: HttpClient){}
+  
+  constructor(private http: HttpClient){}
 
   getLektorok() {
     return this.http.get<any>(environment.API_URL + "/api/Lektor");
+  }
+
+  postBejelentkezes(){
+    let body = JSON.stringify({ 'Nev': this.nev, 'Pass': this.pw });
+    body = "bádi";
+    this.http.post<any>(environment.API_URL + "/felhasznalo", body).subscribe(data => {
+      console.log(data);
+  })
   }
 
   showLektorok() {
@@ -31,7 +42,7 @@ constructor(private http: HttpClient){}
   }
 
   ngOnInit(): void {
-    this.showLektorok();
-    
+    //this.showLektorok();
+    this.postBejelentkezes();
   }
 }
