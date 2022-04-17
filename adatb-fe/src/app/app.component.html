@@ -1,20 +1,15 @@
-<p>heló</p>
-
-<table>
-    <thead>
-      <tr>           
-       <th>Név</th>
-       <th>ID</th>
-       <th>Email</th>
-       <th>Szakterület</th>
-       <th>Intézet</th>
-       <th>Tudományos fokozat</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let sor of lektorok">           
-        <td *ngFor="let mezo of sor">{{mezo}}</td>
-      </tr>
-    </tbody>
-  </table>
+<mat-toolbar color="primary">
+  <div>Tudásbázis</div>
+  <div fxFlex fxLayout fxLayoutAlign="flex-end">
+    <ul fxLayout fxLayoutGap="20px" class="navigation-items">
+      <li><a routerLink="/home">Kezdőlap</a></li>
+      <li><a routerLink="/content">Tartalom</a></li>
+      <li><a routerLink="/random-article">Lap találomra</a></li>
+      <li><a routerLink="/recent-changes">Friss változtatások</a></li>
+      <li><a routerLink="/contact">Kapcsolat</a></li>
+      <li><a routerLink="/log-in">Bejelentkezés</a></li>
+      <li><a routerLink="/registration">Regisztráció</a></li>
+    </ul>
+  </div>
+</mat-toolbar>
 <router-outlet></router-outlet>

@@ -12,37 +12,17 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AppComponent implements OnInit{
-  title = 'adatb-fe';
-  lektorok = [];
-  nev = "placeholder";
-  pw = "ph";
 
-  
   constructor(private http: HttpClient){}
 
-  getLektorok() {
-    return this.http.get<any>(environment.API_URL + "/api/Lektor");
-  }
-
-  postBejelentkezes(){
-    let body = JSON.stringify({ 'Nev': this.nev, 'Pass': this.pw });
-    body = "bádi";
-    this.http.post<any>(environment.API_URL + "/felhasznalo", body).subscribe(data => {
+  postRegisztracio(){
+    let body = {Nev: "valami nev ANGULARBOL", Email: "ANGULARemil@gmail.com", jelszo: "jelszoertek" };
+    this.http.post<any>(environment.API_URL + "/Reg", body).subscribe(data => {
       console.log(data);
   })
   }
 
-  showLektorok() {
-    this.getLektorok()
-      .subscribe((data: any) => {
-        this.lektorok = data
-        console.log(this.lektorok)
-      });
-      
-  }
-
   ngOnInit(): void {
-    //this.showLektorok();
-    this.postBejelentkezes();
+    //this.postBejelentkezes();
   }
 }
