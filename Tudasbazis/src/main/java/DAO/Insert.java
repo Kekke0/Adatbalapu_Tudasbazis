@@ -19,7 +19,7 @@ public class Insert extends ConnectionProtocol{
         return rs;
     }
 
-    public Boolean FelhaszID(Felhasznalo uj) throws Exception{
+    public Boolean Felhasz(Felhasznalo uj) throws Exception{
         Start();
         PreparedStatement stmt=super.getConn().prepareStatement("Insert into FELHASZNALO (ID,NEV,JELSZO,EMAIL) values (?,?,?,?)");
         stmt.setString(1,uj.getID());

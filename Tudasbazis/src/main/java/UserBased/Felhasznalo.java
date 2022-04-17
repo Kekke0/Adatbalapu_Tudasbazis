@@ -1,16 +1,42 @@
 package UserBased;
 
+import DAO.Find;
+import DAO.SelectAll;
+
+import java.util.ArrayList;
+
 public class Felhasznalo {
     private String ID;
     private String Nev;
     private String Email;
     private String jelszo;
+    private static int CID=0;
+
+    public Felhasznalo( String nev, String email, String jelszo) {
+        ID="U"+getCID();
+        Nev = nev;
+        Email = email;
+        this.jelszo = jelszo;
+    }
 
     public Felhasznalo(String ID, String nev, String email, String jelszo) {
         this.ID = ID;
         Nev = nev;
         Email = email;
         this.jelszo = jelszo;
+    }
+
+    public static int getCID() {
+        if(CID==0){
+            try {
+                CID= new Find().FelhaszCID()+1;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else
+            CID++;
+
+        return CID;
     }
 
     public String getID() {

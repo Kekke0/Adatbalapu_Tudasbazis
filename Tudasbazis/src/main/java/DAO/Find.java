@@ -18,6 +18,22 @@ public class Find extends ConnectionProtocol {
         super();
     }
 
+    public int FelhaszCID() throws Exception{
+        Start();
+        PreparedStatement stmt=super.getConn().prepareStatement("select ID from felhasznalo");
+        rs= stmt.executeQuery();
+        int legnagy=0;
+        while (rs.next()){
+            String[] a = rs.getString(1).split("U");
+            int ertek = Integer.parseInt(a[1]);
+            if (ertek>legnagy){
+                legnagy=ertek;
+            }
+        }
+        Stop();
+        return legnagy;
+    }
+
     public Felhasznalo FelhaszEmail(String email) throws Exception{
         Start();
         PreparedStatement stmt=super.getConn().prepareStatement("select * from felhasznalo where Email = ?");

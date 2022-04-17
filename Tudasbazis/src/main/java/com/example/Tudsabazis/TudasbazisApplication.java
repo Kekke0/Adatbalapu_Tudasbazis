@@ -4,6 +4,8 @@ import DAO.*;
 import Functions.Login;
 import UserBased.Felhasznalo;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -75,9 +77,16 @@ public class TudasbazisApplication {
 	 * @return
 	 */
 	@PostMapping(value = "/Reg")
-	public ResponseEntity<String> Regisztracio (String uj) {
-
-		return new ResponseEntity<String>(String.valueOf(uj),HttpStatus.OK);
+	public ResponseEntity<String> Regisztracio (@RequestBody Map<String,String> uj) {
+		Felhasznalo ujf= new Felhasznalo(uj.get("Nev"),uj.get("Email"), uj.get("jelszo"));
+		try {
+			Boolean a =new Insert().Felhasz(ujf);
+			if(!a) throw new Exception();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>("A létrehozás nem sikerült", HttpStatus.NOT_ACCEPTABLE);
+		}
+		return new ResponseEntity<String>("A létrehozás sikeres volt: \n"+new Gson().toJson(ujf),HttpStatus.OK);
 	}
 
 }
