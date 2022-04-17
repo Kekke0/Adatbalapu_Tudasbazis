@@ -52,12 +52,9 @@ public class TudasbazisApplication {
 	}
 
 	@PostMapping(value = "/Bejelentkezes")
-	public ResponseEntity<String> Bejelentkezes(HttpServletRequest request,
-											 UriComponentsBuilder uriComponentsBuilder) {
-		var Email = request.getParameter("Email");
-		var Pass = request.getParameter("Pass");
+	public ResponseEntity<String> Bejelentkezes(@RequestBody String Email, @RequestBody String Pass) {
 		try{
-			Felhasznalo talalt=new Login(Email,Pass).Logging();
+			Felhasznalo talalt=new Login(Email, Pass).Logging();
 			return new ResponseEntity<String>(new Gson().toJson(talalt), HttpStatus.ACCEPTED);
 		}
 		catch (AccountException e) {
@@ -68,6 +65,16 @@ public class TudasbazisApplication {
 			e.printStackTrace();
 			return new ResponseEntity<String>("Nem várt hiba!", HttpStatus.NOT_ACCEPTABLE);
 		}
+	}
+
+	/**
+	 *
+	 * @param igen:Az új felhasználó
+	 * @return
+	 */
+	@PostMapping(value = "/Reg")
+	public ResponseEntity<String> Regisztracio (@RequestBody Gson igen) {
+		return new ResponseEntity<String>(String.valueOf(igen),HttpStatus.OK);
 	}
 
 }
