@@ -56,9 +56,9 @@ public class TudasbazisApplication {
 	}
 
 	@PostMapping(value = "/Bejelentkezes")
-	public ResponseEntity<String> Bejelentkezes(String Email, String Pass) {
+	public ResponseEntity<String> Bejelentkezes(@RequestBody Map<String,String> data) {
 		try{
-			Felhasznalo talalt=new Login(Email, Pass).Logging();
+			Felhasznalo talalt=new Login(data.get("Email"), data.get("Pass")).Logging();
 			return new ResponseEntity<String>(new Gson().toJson(talalt), HttpStatus.ACCEPTED);
 		}
 		catch (AccountException e) {
