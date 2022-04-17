@@ -3,6 +3,7 @@ package com.example.Tudsabazis;
 import DAO.*;
 import Functions.Login;
 import UserBased.Felhasznalo;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.google.gson.Gson;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,6 +16,7 @@ import javax.security.auth.login.AccountException;
 import javax.servlet.http.HttpServletRequest;
 
 import java.security.InvalidParameterException;
+import java.util.Map;
 
 import static org.springframework.http.ResponseEntity.ok;
 
@@ -47,12 +49,12 @@ public class TudasbazisApplication {
 	}
 
 	@PostMapping("/felhasznalo")
-	public ResponseEntity<String>  Bejelentkezes(@RequestBody String Nev){
+	public ResponseEntity<String>  Bejelentkezes( String Nev){
 		return new ResponseEntity<String>(new Gson().toJson(Nev + "eredmény"), HttpStatus.ACCEPTED);
 	}
 
 	@PostMapping(value = "/Bejelentkezes")
-	public ResponseEntity<String> Bejelentkezes(@RequestBody String Email, @RequestBody String Pass) {
+	public ResponseEntity<String> Bejelentkezes(String Email, String Pass) {
 		try{
 			Felhasznalo talalt=new Login(Email, Pass).Logging();
 			return new ResponseEntity<String>(new Gson().toJson(talalt), HttpStatus.ACCEPTED);
@@ -69,12 +71,13 @@ public class TudasbazisApplication {
 
 	/**
 	 *
-	 * @param igen:Az új felhasználó
+	 * @param uj:Az új felhasználó
 	 * @return
 	 */
 	@PostMapping(value = "/Reg")
-	public ResponseEntity<String> Regisztracio (@RequestBody Gson igen) {
-		return new ResponseEntity<String>(String.valueOf(igen),HttpStatus.OK);
+	public ResponseEntity<String> Regisztracio (String uj) {
+
+		return new ResponseEntity<String>(String.valueOf(uj),HttpStatus.OK);
 	}
 
 }
