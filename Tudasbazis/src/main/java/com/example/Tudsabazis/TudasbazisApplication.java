@@ -47,6 +47,11 @@ public class TudasbazisApplication {
 		return ok().body(new Gson().toJson(a.Felhasznall()));
 	}
 
+	@GetMapping("/Cikk")
+	public ResponseEntity<ArrayList<Cikk>> Cikkabc() {
+		return new ResponseEntity<>(a.ABCikkek(), HttpStatus.OK);
+	}
+
 	@PostMapping("/felhasznalo")
 	public ResponseEntity<String>  Bejelentkezes( String Nev){
 		return new ResponseEntity<String>(new Gson().toJson(Nev + "eredmény"), HttpStatus.ACCEPTED);
@@ -117,5 +122,7 @@ public class TudasbazisApplication {
 		}
 		return new ResponseEntity<>(ujc, HttpStatus.ACCEPTED);
 	}
+
+
 
 }

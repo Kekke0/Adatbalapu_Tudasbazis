@@ -123,12 +123,12 @@ public class SelectAll extends ConnectionProtocol {
         }
         return ret;
     }
-    public ArrayList<Cikk> Cikkall(){
+    public ArrayList<Cikk> ABCikkek(){
         ArrayList<Cikk> ret=new ArrayList<Cikk>();
         try{
             Start();
             stmt=super.getConn().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
-            String sql="select * from Cikk";
+            String sql="select * from Cikk ORDER BY cim";
             rs= stmt.executeQuery(sql);
             while (rs.next()){
                 Cikk a =new Cikk(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9));
