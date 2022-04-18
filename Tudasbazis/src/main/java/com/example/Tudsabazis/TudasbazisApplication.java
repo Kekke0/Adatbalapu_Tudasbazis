@@ -51,18 +51,14 @@ public class TudasbazisApplication {
 	}
 
 	@PostMapping(value = "/Bejelentkezes")
-	public ResponseEntity<String> Bejelentkezes(@RequestBody Map<String,String> data) {
+	public ResponseEntity<Felhasznalo> Bejelentkezes(@RequestBody Map<String,String> data) {
 		try{
 			Felhasznalo talalt=new Login(data.get("Email"), data.get("Pass")).Logging();
-			return new ResponseEntity<String>(new Gson().toJson(talalt), HttpStatus.ACCEPTED);
-		}
-		catch (AccountException e) {
-			e.printStackTrace();
-			return new ResponseEntity<String>("Az email vagy a jelszó nem megfelelő!", HttpStatus.NOT_ACCEPTABLE);
+			return new ResponseEntity<>(talalt, HttpStatus.ACCEPTED);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<String>("Nem várt hiba!", HttpStatus.NOT_ACCEPTABLE);
+			return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
 		}
 	}
 
@@ -79,11 +75,9 @@ public class TudasbazisApplication {
 			if(!a) throw new Exception();
 		} catch (Exception e) {
 			e.printStackTrace();
-			//return new ResponseEntity<String>("A létrehozás nem sikerült", HttpStatus.NOT_ACCEPTABLE);
+			return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
 		}
-
-		return new ResponseEntity<>(ujf, HttpStatus.OK);
-		//return new ResponseEntity<String>("A létrehozás sikeres volt: \n"+new Gson().toJson(ujf),HttpStatus.OK);
+		return new ResponseEntity<>(ujf, HttpStatus.ACCEPTED);
 	}
 
 }
