@@ -3,23 +3,16 @@ package com.example.Tudsabazis;
 import DAO.*;
 import Functions.Login;
 import UserBased.Felhasznalo;
-import com.fasterxml.jackson.annotation.JsonValue;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
+
 
 import javax.security.auth.login.AccountException;
-import javax.servlet.http.HttpServletRequest;
 
-import java.security.InvalidParameterException;
 import java.util.Map;
 
 import static org.springframework.http.ResponseEntity.ok;
