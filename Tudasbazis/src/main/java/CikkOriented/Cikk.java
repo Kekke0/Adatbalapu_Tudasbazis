@@ -1,19 +1,28 @@
 package CikkOriented;
 
+import DAO.Find;
+
+import java.util.List;
+
 public class Cikk {
     private String ID, Cim, Tartalom, Allapot, Nyelv, LektoralasDatuma;
     private String Kategoria, Lektoralta, Szerzo;
+    private static int CID=0;
+    private List<String> Kulcsszo;
 
     public Cikk(String ID) {
         this.ID = ID;
     }
 
-    public Cikk(String ID, String cim, String tartalom, String allapot, String nyelv) {
-        this.ID = ID;
+    public Cikk( String cim, String tartalom, String allapot, String nyelv,String kategoria,String szerzo, List<String> kulcsszo) {
+        this.ID = "C"+getCID();
         Cim = cim;
         Tartalom = tartalom;
         Allapot = allapot;
         Nyelv = nyelv;
+        Kulcsszo=kulcsszo;
+        Kategoria=kategoria;
+        Szerzo=szerzo;
     }
 
     public Cikk(String ID, String cim, String tartalom, String allapot, String nyelv, String szerzo, String kategoria, String lektoralta, String lektoralasDatuma) {
@@ -26,6 +35,23 @@ public class Cikk {
         Kategoria = kategoria;
         Lektoralta = lektoralta;
         Szerzo = szerzo;
+    }
+
+    public static int getCID() {
+        try {
+            CID= new Find().CikkCID()+1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return CID;
+    }
+
+    public void addkulcsszo(String a) {
+        this.Kulcsszo.add(a);
+    }
+
+    public void deletekulcsszo(String a) {
+        this.Kulcsszo.remove(a);
     }
 
     public String getID() {
@@ -113,5 +139,9 @@ public class Cikk {
                 "\n Lektoralta='" + Lektoralta + '\'' +
                 "\n Szerzo='" + Szerzo + '\'' +
                 '}';
+    }
+
+    public List<String> getKulcsszo() {
+        return Kulcsszo;
     }
 }

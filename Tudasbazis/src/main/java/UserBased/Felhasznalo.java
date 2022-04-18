@@ -27,15 +27,11 @@ public class Felhasznalo {
     }
 
     public static int getCID() {
-        if(CID==0){
-            try {
-                CID= new Find().FelhaszCID()+1;
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else
-            CID++;
-
+        try {
+            CID= new Find().FelhaszCID()+1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return CID;
     }
 

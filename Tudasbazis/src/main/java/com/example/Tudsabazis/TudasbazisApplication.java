@@ -1,5 +1,6 @@
 package com.example.Tudsabazis;
 
+import CikkOriented.Cikk;
 import DAO.*;
 import Functions.Login;
 import UserBased.Felhasznalo;
@@ -11,8 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-import javax.security.auth.login.AccountException;
-
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import static org.springframework.http.ResponseEntity.ok;
@@ -64,20 +66,56 @@ public class TudasbazisApplication {
 
 	/**
 	 *
-	 * @param uj:Az új felhasználó
-	 * @return
+	 * @param uj:
+	 *          {
+	 *              "Nev":"neve",
+	 *          	"Email":"Emailcíme"
+	 *          	"jelszo": "jelszava
+	 *          }
 	 */
 	@PostMapping(value = "/Reg")
 	public ResponseEntity<Felhasznalo> Regisztracio (@RequestBody Map<String,String> uj){
 		Felhasznalo ujf= new Felhasznalo(uj.get("Nev"),uj.get("Email"), uj.get("jelszo"));
 		try {
-			Boolean a =new Insert().Felhasz(ujf);
+			Boolean a =new Insert().addFelhasz(ujf);
 			if(!a) throw new Exception();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
 		}
 		return new ResponseEntity<>(ujf, HttpStatus.ACCEPTED);
+	}
+
+	/**
+	 *
+	 * @param uj:
+	 *             {
+	 *             "cim":"Cime",
+	 *             "tartalom":"tartalma",
+	 *             "allapot":"allapota",
+	 *             "nyelv":"nyelve",
+	 *             "kategoria": "Knev",
+	 *             "szerzo":"U..",
+	 *             "kulcsszavak": "k1, k2, k3" <-- Lehet "" is
+	 *             }
+	 */
+	@PostMapping(value = "/Cikkadd")
+	public ResponseEntity<Cikk> Cikkadd (@RequestBody Map<String,String> uj){
+		List<String> kulcsszavak;
+		if (!uj.get("kulcsszavak").equals("")) {
+			String[] kulcsszo = uj.get("kulcsszavak").split(", ");
+			kulcsszavak = new ArrayList<String>(Arrays.asList(kulcsszo));
+		}
+		else kulcsszavak=new ArrayList<String>();
+		Cikk ujc= new Cikk(uj.get("cim"), uj.get("tartalom"), uj.get("allapot"), uj.get("nyelv"), uj.get("kategoria"),uj.get("szerzo"),kulcsszavak);
+		try {
+			Boolean a =new Insert().addCikk(ujc);
+			if(!a) throw new Exception();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
+		}
+		return new ResponseEntity<>(ujc, HttpStatus.ACCEPTED);
 	}
 
 }

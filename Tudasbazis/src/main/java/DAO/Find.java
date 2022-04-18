@@ -64,4 +64,20 @@ public class Find extends ConnectionProtocol {
         Stop();
         return felh;
     }
+
+    public int CikkCID() throws Exception{
+        Start();
+        PreparedStatement stmt=super.getConn().prepareStatement("select ID from cikk");
+        rs= stmt.executeQuery();
+        int legnagy=0;
+        while (rs.next()){
+            String[] a = rs.getString(1).split("C");
+            int ertek = Integer.parseInt(a[1]);
+            if (ertek>legnagy){
+                legnagy=ertek;
+            }
+        }
+        Stop();
+        return legnagy;
+    }
 }
