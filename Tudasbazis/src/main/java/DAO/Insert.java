@@ -31,6 +31,21 @@ public class Insert extends ConnectionProtocol{
         Stop();
         return rs>0;
     }
+    
+    public Boolean addLektor(Lektor uj) throws Exception{
+        Start();
+        PreparedStatement stmt=super.getConn().prepareStatement("Insert into LEKTOR (ID,JELSZO,NEV,EMAIL,SZAKTERULET,INTEZET,TUDOMANYOS_FOKOZAT) values (?,?,?,?,?,?,?)");
+        stmt.setString(1,uj.getID());
+        stmt.setString(3,uj.getJelszo());
+        stmt.setString(2,uj.getNev());
+        stmt.setString(4,uj.getEmail());
+        stmt.setString(5,uj.getSzakterulet());
+        stmt.setString(6,uj.getIntezet());
+        stmt.setString(7,uj.getTudomanyos_fokozat());
+        rs= stmt.executeUpdate();
+        Stop();
+        return rs>0;
+    }
 
     public Boolean addCikk(Cikk ujc) throws Exception {
         Start();
