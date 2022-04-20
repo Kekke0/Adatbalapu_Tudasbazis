@@ -29,15 +29,6 @@ public class TudasbazisApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TudasbazisApplication.class, args);
-//		Felhasznalo a = new Felhasznalo("U001","Kovács Ákos","kova@random.com","jelszavatok");
-//		try {
-//			System.out.println(new Update().FelhaszID(a));
-//		} catch (AccountException e) {
-//			System.out.println("Nem található a felhasználó");
-//			e.printStackTrace();
-//		}catch (Exception e) {
-//			e.printStackTrace();
-//		}
 	}
 
 	@GetMapping("/")
@@ -56,8 +47,26 @@ public class TudasbazisApplication {
 	}
 
 	@GetMapping("/Kat")
-	public ResponseEntity<ArrayList<Kategoria>> Kategory() {
+	public ResponseEntity<ArrayList<Kategoria>> Category() {
 		return new ResponseEntity<>(a.Katall(), HttpStatus.OK);
+	}
+
+	/**
+	 *
+	 * @param keresoszo csak egy kereső szót vagy szó részletet kell átadni
+	 */
+	@PostMapping("/Cikk")
+	public ResponseEntity<ArrayList<Cikk>> Cikkeres(@RequestBody String keresoszo) {
+		ArrayList<Cikk> ret = new ArrayList<>();
+		for (Cikk n : a.ABCikkek()) {
+			if (n.getCim().contains(keresoszo))
+				ret.add(n);
+			else for (String k : n.getKulcsszo()) {
+				if (k.contains(keresoszo))
+					ret.add(n);
+			}
+		}
+		return new ResponseEntity<>(ret, HttpStatus.OK);
 	}
 
 	@PostMapping("/felhasznalo")
