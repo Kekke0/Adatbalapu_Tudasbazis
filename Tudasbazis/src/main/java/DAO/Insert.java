@@ -3,6 +3,8 @@ package DAO;
 import CikkOriented.Cikk;
 import CikkOriented.Kategoria;
 import CikkOriented.Modositas;
+import CikkOriented.Hibakezeles.Hiba;
+import CikkOriented.Hibakezeles.Javitas;
 import UserBased.Admin;
 import UserBased.Ban;
 import UserBased.Felhasznalo;
