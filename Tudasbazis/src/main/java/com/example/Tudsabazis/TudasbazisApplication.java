@@ -1,6 +1,7 @@
 package com.example.Tudsabazis;
 
 import CikkOriented.Cikk;
+import CikkOriented.Kategoria;
 import DAO.*;
 import Functions.Login;
 import UserBased.Felhasznalo;
@@ -50,6 +51,11 @@ public class TudasbazisApplication {
 	@GetMapping("/Cikk")
 	public ResponseEntity<ArrayList<Cikk>> Cikkabc() {
 		return new ResponseEntity<>(a.ABCikkek(), HttpStatus.OK);
+	}
+
+	@GetMapping("/Kat")
+	public ResponseEntity<ArrayList<Kategoria>> Kategory() {
+		return new ResponseEntity<>(a.Katall(), HttpStatus.OK);
 	}
 
 	@PostMapping("/felhasznalo")
