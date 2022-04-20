@@ -46,6 +46,39 @@ public class Insert extends ConnectionProtocol{
         Stop();
         return rs>0;
     }
+    
+     public Boolean addNyelvtudas(Nyelvtudas uj) throws Exception{
+        Start();
+        PreparedStatement stmt=super.getConn().prepareStatement("Insert into NYELVTUDAS (LEKTORID,NYELV,SZINT) values (?,?,?)");
+        stmt.setString(1,uj.getLektorID());
+        stmt.setString(2,uj.getNyelv());
+        stmt.setString(3,uj.getSzint());
+        rs= stmt.executeUpdate();
+        Stop();
+        return rs>0;
+    }
+    
+    public Boolean addAdmin(Admin uj) throws Exception{
+        Start();
+        PreparedStatement stmt=super.getConn().prepareStatement("Insert into ADMIN (ID,NEV,JELSZO,EMAIL) values (?,?,?,?)");
+        stmt.setString(1,uj.getID());
+        stmt.setString(2,uj.getNev());
+        stmt.setString(3,uj.getJelszo());
+        stmt.setString(4,uj.getEmail());
+        rs= stmt.executeUpdate();
+        Stop();
+        return rs>0;
+    }
+    
+      public Boolean addKategoria(Kategoria uj) throws Exception{
+        Start();
+        PreparedStatement stmt=super.getConn().prepareStatement("Insert into KATEGORIA (NEV,BOVEBBEN) values (?,?)");
+        stmt.setString(1,uj.getNev());
+        stmt.setString(2,uj.getBovebben());
+        rs= stmt.executeUpdate();
+        Stop();
+        return rs>0;
+    }
 
     public Boolean addCikk(Cikk ujc) throws Exception {
         Start();
@@ -68,6 +101,7 @@ public class Insert extends ConnectionProtocol{
         Stop();
         return rs>0;
     }
+    
     public Boolean addKulcsszo(String CimID,String uj) throws Exception{
         Start();
         PreparedStatement stmt=super.getConn().prepareStatement("Insert into EN.KULCSSZO (CIKKID,SZO) values (?,?)");
@@ -77,5 +111,54 @@ public class Insert extends ConnectionProtocol{
         Stop();
         return rs>0;
     }
-
+    
+     public Boolean addBan(Ban uj) throws Exception{
+        Start();
+        PreparedStatement stmt=super.getConn().prepareStatement("Insert into BAN (FELHASZNALOID,ADMINID,HOSSZ,INDOK,DATE) values (?,?,?,?,?)");
+        stmt.setString(1,uj.getFelhasznaloID());
+        stmt.setString(2,uj.getAdminID());
+        stmt.setString(3,uj.getHossz());
+         stmt.setString(4,uj.getIndok());
+         stmt.setDate(5,uj.getDate());
+        rs= stmt.executeUpdate();
+        Stop();
+        return rs>0;
+    }
+    
+     public Boolean addModositas(Modositas uj) throws Exception{
+        Start();
+        PreparedStatement stmt=super.getConn().prepareStatement("Insert into MODOSITAS (CIKKID,DATUM,LEIRAS) values (?,?,?)");
+        stmt.setString(1,uj.getCikkID());
+        stmt.setDate(2,uj.getDatum());
+        stmt.setString(3,uj.getLeiras());
+        rs= stmt.executeUpdate();
+        Stop();
+        return rs>0;
+    }
+    
+    public Boolean addHiba(Hiba uj) throws Exception{
+        Start();
+        PreparedStatement stmt=super.getConn().prepareStatement("Insert into HIBA (ID,LEIRAS,JAVITVA,JELENTOID,HIBASCIKKID) values (?,?,?,?,?)");
+        stmt.setString(1,uj.getID());
+        stmt.setString(2,uj.getLeiras());
+        stmt.setString(3,uj.getJavitva());
+        stmt.setString(4,uj.getJelentoID());
+        stmt.setString(5,uj.getHibasCikkID());
+        rs= stmt.executeUpdate();
+        Stop();
+        return rs>0;
+    }
+    
+      public Boolean addJavitas(Javitas uj) throws Exception{
+        Start();
+        PreparedStatement stmt=super.getConn().prepareStatement("Insert into JAVITAS (ADMINID,HIBAID,DATE,JEGYZET) values (?,?,?,?)");
+        stmt.setString(1,uj.getAdminID());
+        stmt.setString(2,uj.getHibaId());
+        stmt.setDate(3,uj.getDate());
+        stmt.setString(4,uj.getJegyzet());
+        rs= stmt.executeUpdate();
+        Stop();
+        return rs>0;
+    }
+    
 }
