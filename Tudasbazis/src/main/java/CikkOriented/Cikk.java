@@ -8,6 +8,11 @@ public class Cikk {
     private String ID, Cim, Tartalom, Allapot, Nyelv, LektoralasDatuma;
     private String Kategoria, Lektoralta, Szerzo;
     private static int CID=0;
+
+    public void setKulcsszo(List<String> kulcsszo) {
+        Kulcsszo = kulcsszo;
+    }
+
     private List<String> Kulcsszo;
 
     public Cikk(String ID) {

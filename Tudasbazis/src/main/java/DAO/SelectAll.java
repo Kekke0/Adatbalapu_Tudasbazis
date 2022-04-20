@@ -132,6 +132,7 @@ public class SelectAll extends ConnectionProtocol {
             rs= stmt.executeQuery(sql);
             while (rs.next()){
                 Cikk a =new Cikk(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9));
+                a.setKulcsszo(new Find().Kulcszavak(a.getID()));
                 ret.add(a);
                 //System.out.println(a);
             }

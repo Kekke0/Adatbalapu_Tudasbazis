@@ -34,6 +34,20 @@ public class Find extends ConnectionProtocol {
         return legnagy;
     }
 
+    public ArrayList<String> Kulcszavak(String cikkID) throws Exception{
+        Start();
+        PreparedStatement stmt=super.getConn().prepareStatement("select * from kulcsszo where CIKKID = ?");
+        stmt.setString(1,cikkID);
+        rs= stmt.executeQuery();
+        ArrayList<String> ret=new ArrayList();
+        while (rs.next()){
+            String szo =rs.getString(2);
+            ret.add(szo);
+        }
+        Stop();
+        return ret;
+    }
+
     public Felhasznalo FelhaszEmail(String email) throws Exception{
         Start();
         PreparedStatement stmt=super.getConn().prepareStatement("select * from felhasznalo where Email = ?");
