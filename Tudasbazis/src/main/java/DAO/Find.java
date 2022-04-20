@@ -4,9 +4,11 @@ import UserBased.Admin;
 import UserBased.Felhasznalo;
 import UserBased.Lektor;
 
+import javax.security.auth.login.AccountNotFoundException;
 import java.security.InvalidParameterException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -32,6 +34,37 @@ public class Find extends ConnectionProtocol {
         }
         Stop();
         return legnagy;
+    }
+
+    public Felhasznalo FelhaszID(String ID) throws Exception{
+        Start();
+        PreparedStatement stmt=super.getConn().prepareStatement("select * from felhasznalo where id = ?");
+        stmt.setString(1,ID);
+        rs= stmt.executeQuery();
+        rs.next();
+        Felhasznalo felh =new Felhasznalo(rs.getString(1),rs.getString(2),rs.getString(4),rs.getString(3));
+        Stop();
+        return felh;
+    }
+    public Felhasznalo LektorID(String ID) throws Exception{
+        Start();
+        PreparedStatement stmt=super.getConn().prepareStatement("select * from lektor where id = ?");
+        stmt.setString(1,ID);
+        rs= stmt.executeQuery();
+        rs.next();
+        Lektor felh =new Lektor(rs.getString(1),rs.getString(2),rs.getString(4),rs.getString(3),rs.getString(5),rs.getString(6),rs.getString(7));
+        Stop();
+        return felh;
+    }
+    public Admin AdminID(String ID) throws Exception{
+        Start();
+        PreparedStatement stmt=super.getConn().prepareStatement("select * from admin where id = ?");
+        stmt.setString(1,ID);
+        rs= stmt.executeQuery();
+        rs.next();
+        Admin felh =new Admin(rs.getString(1),rs.getString(2),rs.getString(4),rs.getString(3));
+        Stop();
+        return felh;
     }
 
     public ArrayList<String> Kulcszavak(String cikkID) throws Exception{

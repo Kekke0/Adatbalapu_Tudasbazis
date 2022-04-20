@@ -13,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.security.auth.login.AccountNotFoundException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -59,8 +61,24 @@ public class TudasbazisApplication {
 	}
 
 	@PostMapping("/felhasznalo")
-	public ResponseEntity<String>  Bejelentkezes( String Nev){
-		return new ResponseEntity<String>(new Gson().toJson(Nev + "eredmény"), HttpStatus.ACCEPTED);
+	public ResponseEntity<Felhasznalo>  Bejelentkezes(@RequestBody String ID){
+		Felhasznalo talalt;
+		try{
+			try {
+				talalt=new Find().FelhaszID(ID);
+			} catch (SQLException e1){
+				try {
+					talalt = new Find().LektorID(ID);
+				}catch (SQLException e2){
+					talalt = new Find().AdminID(ID);
+				}
+			}
+			return new ResponseEntity<>(talalt, HttpStatus.ACCEPTED);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
+		}
 	}
 
 	@PostMapping(value = "/Bejelentkezes")
