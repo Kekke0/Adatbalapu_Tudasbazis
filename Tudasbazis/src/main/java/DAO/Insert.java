@@ -1,7 +1,11 @@
 package DAO;
 
 import CikkOriented.Cikk;
+import UserBased.Admin;
+import UserBased.Ban;
 import UserBased.Felhasznalo;
+import UserBased.Lektor;
+import UserBased.Nyelvtudas;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
