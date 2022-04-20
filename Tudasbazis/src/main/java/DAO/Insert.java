@@ -80,7 +80,7 @@ public class Insert extends ConnectionProtocol{
         return rs>0;
     }
 
-    public Boolean addCikk(Cikk ujc) throws Exception {
+    public Boolean addCikk(Cikk uj) throws Exception {
         Start();
         PreparedStatement stmt=super.getConn().prepareStatement("Insert into EN.CIKK (ID,CIM,TARTALOM,ALLAPOT,NYELV,FELHASZNALOID_SZERZO,KATEGORIA,LEKTORALTA,LEKTORALASDATUMA) values (?,?,?,?,?,?,?,?,?)");
         stmt.setString(1, ujc.getID());
