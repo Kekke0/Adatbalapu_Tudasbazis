@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" *ngIf="this.bejelentkezett">
   <div>Tudásbázis</div>
   <div fxFlex fxLayout fxLayoutAlign="flex-end">
     <ul fxLayout fxLayoutGap="20px" class="navigation-items">
@@ -6,9 +6,27 @@
       <li><a routerLink="/content">Tartalom</a></li>
       <li><a routerLink="/random-article">Lap találomra</a></li>
       <li><a routerLink="/recent-changes">Friss változtatások</a></li>
-      <li><a routerLink="/contact">Kapcsolat</a></li>
+      <!-- <li><a routerLink="/contact">Kapcsolat</a></li>-->
+      <li><a routerLink="/account">Saját fiók</a></li> 
+      <!-- <li><a routerLink="/log-in">Bejelentkezés</a></li>
+      <li><a routerLink="/registration">Regisztráció</a></li> -->
+      <li><a (click)="kijelentkezes()">Kijelentkezés</a></li>
+    </ul>
+  </div>
+</mat-toolbar>
+
+<mat-toolbar color="primary" *ngIf="!this.bejelentkezett">
+  <div>Tudásbázis</div>
+  <div fxFlex fxLayout fxLayoutAlign="flex-end">
+    <ul fxLayout fxLayoutGap="20px" class="navigation-items">
+      <li><a routerLink="/home">Kezdőlap</a></li>
+      <li><a routerLink="/content">Tartalom</a></li>
+      <li><a routerLink="/random-article">Lap találomra</a></li>
+      <li><a routerLink="/recent-changes">Friss változtatások</a></li>
+      <!-- <li><a routerLink="/contact">Kapcsolat</a></li> -->
       <li><a routerLink="/log-in">Bejelentkezés</a></li>
       <li><a routerLink="/registration">Regisztráció</a></li>
+      <!-- <li><a routerLink="/registration">Kijelentkezés</a></li> -->
     </ul>
   </div>
 </mat-toolbar>

@@ -1,0 +1,51 @@
+
+<div class="main_component">
+    <mat-form-field appearance="outline">
+        <mat-label for="cim">Cím </mat-label><input matInput type="text" [formControl]="cim" />
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline">
+        <mat-label>Nyelv</mat-label>
+        <mat-select [(value)]="valasztottNyelv">
+            <mat-option *ngFor="let nyelv of nyelvek" [value]="nyelv.value">
+                {{nyelv.value}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Kategória</mat-label>
+        <mat-select [(value)]="valasztottKategoria">
+            <mat-option *ngFor="let kategoria of kategoriak" [value]="kategoria.nev">
+                {{kategoria.nev}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field  appearance="outline">
+        <mat-label>Kulcsszavak</mat-label>
+        <mat-chip-list #chipList>
+          <mat-chip *ngFor="let kulcsszo of kulcsszavak" (removed)="remove(kulcsszo)">
+            {{kulcsszo}}
+            <button matChipRemove>
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip>
+          <input placeholder="Új kulcsszó hozzáadása"
+                 [matChipInputFor]="chipList"
+                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                 [matChipInputAddOnBlur]="addOnBlur"
+                 (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+      </mat-form-field>
+      
+
+    <mat-form-field appearance="outline">
+        <mat-label for="tartalom"> Tartalom </mat-label><textarea matInput type="text" [formControl]="tartalom"></textarea>
+    </mat-form-field>
+
+    <span>
+        <span><button mat-raised-button color="primary" (click)="cikkHozzaadas()">Cikk létrehozása</button></span>
+        <span><button mat-raised-button color="primary" [routerLink]="'/home'">Vissza</button></span>
+    </span>
+</div>

@@ -1,3 +1,7 @@
 <div class="div-flex">
-    <app-article></app-article>
+    <h2>Cikkek</h2>
+    <button *ngIf="bejelentkezett" mat-raised-button color="primary"(click)="cikkHozzaadas()" >Új cikk hozzáadása</button>
+    <div *ngFor="let cikk of cikkek">
+        <app-article [cikk]="cikk"></app-article>
+    </div>
 </div>

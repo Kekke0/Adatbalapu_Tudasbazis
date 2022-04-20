@@ -20,7 +20,15 @@ import { RecentChangesComponent } from './pages/recent-changes/recent-changes.co
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { SearchComponent } from './pages/search/search.component';
 import { ArticleComponent } from './components/article/article.component';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule} from '@angular/material/card';
+import { DialogComponent } from './components/dialog/dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AddArticleComponent } from './components/add-article/add-article.component';
+import { MatSelectModule} from '@angular/material/select';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatIconModule} from '@angular/material/icon';
+import { AccountComponent } from './pages/account/account.component';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +41,10 @@ import {MatCardModule} from '@angular/material/card';
     RecentChangesComponent,
     RegistrationComponent,
     SearchComponent,
-    ArticleComponent
+    ArticleComponent,
+    DialogComponent,
+    AddArticleComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +57,12 @@ import {MatCardModule} from '@angular/material/card';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule,
+    MatInputModule,
+    MatSelectModule,
+    MatChipsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

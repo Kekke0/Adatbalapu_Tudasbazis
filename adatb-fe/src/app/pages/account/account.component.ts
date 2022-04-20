@@ -1,25 +1,23 @@
-import { Component, DoCheck, Input, OnInit } from '@angular/core';
-import { Cikk } from 'src/app/models/cikk';
+import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-article',
-  templateUrl: './article.component.html',
-  styleUrls: ['./article.component.scss']
+  selector: 'app-account',
+  templateUrl: './account.component.html',
+  styleUrls: ['./account.component.scss']
 })
-export class ArticleComponent implements OnInit, DoCheck {
+export class AccountComponent implements OnInit {
 
-  @Input() cikk: any;
-  kulcsszavak: any;
-  isLektor: boolean = false;
   loggedInUser: any = {};
+  isLoggedIn = false;
+  isLektor= false;
+  name = new FormControl(this.loggedInUser.nev);
+  password = new FormControl(this.loggedInUser.jelszo);
 
   constructor(private userService: UserService) { }
 
-  isLoggedIn: boolean = this.userService.isLoggedIn;
-
   ngOnInit(): void {
-    this.kulcsszavak = this.cikk?.kulcsszo[0]?.split(',');
   }
 
   ngDoCheck(): void {
@@ -32,6 +30,9 @@ export class ArticleComponent implements OnInit, DoCheck {
         this.isLektor = true;
       }
     }
+    // console.log(this.loggedInUser)
+    // console.log(this.loggedInUser.nev)
+    // console.log(this.loggedInUser.jelszo)
   }
 
 }

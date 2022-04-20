@@ -6,6 +6,7 @@ export interface Cikk{
     nyelv: string,
     lektoralasdatuma: string,
     kategoria: string,
+    kulcsszo: string[],
     lektoralta: string,
     szerzo: string
 }

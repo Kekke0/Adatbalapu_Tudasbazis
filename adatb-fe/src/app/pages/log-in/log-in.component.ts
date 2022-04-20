@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
+import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { Felhasznalo } from 'src/app/models/felhasznalo';
 import { UserService } from 'src/app/services/user.service';
 import { environment } from 'src/environments/environment';
@@ -16,11 +18,7 @@ export class LogInComponent implements OnInit {
   email = new FormControl('');
   password = new FormControl('');
 
-  loadingSubscription?: Subscription;
-  loadingObservation?: Observable<boolean>;
-  http: any;
-
-  constructor( private userService: UserService) { }
+  constructor( private userService: UserService, public dialog: MatDialog, private router: Router) { }
 
   login(){
     //if(this.email)
@@ -28,8 +26,20 @@ export class LogInComponent implements OnInit {
     let jelszo = this.password.value;
     this.userService.logIn(email, jelszo).subscribe(data =>{
       console.log(data);
+      this.userService.isLoggedIn = true;
+      this.router.navigateByUrl('/home');
+      this.userService.loggedInUser = data;
+    },
+    error =>{
+      console.log(error);
+      this.openDialog();
     })
+  }
 
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogComponent,{
+      data : "Sikertelen bejelentkezés!"
+    });
   }
 
   ngOnInit(): void {
