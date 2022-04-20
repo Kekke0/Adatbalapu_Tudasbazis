@@ -57,7 +57,7 @@ public class Delete extends ConnectionProtocol {
     public Boolean KategoriaNev(String Nev) throws Exception{
         Start();
         PreparedStatement stmt=super.getConn().prepareStatement("delete kategoria where Nev = ?");
-        stmt.setString(1,ID);
+        stmt.setString(1,Nev);
         rs= stmt.executeUpdate();
         Stop();
         return rs>0;
@@ -90,15 +90,31 @@ public class Delete extends ConnectionProtocol {
         return rs>0;
     }
     
-      public Boolean ModositasCikkId(String ID) throws Exception{
+      public Boolean ModositasCikkId(String CikkID) throws Exception{
         Start();
-        PreparedStatement stmt=super.getConn().prepareStatement("delete felhasznalo where ID = ?");
+        PreparedStatement stmt=super.getConn().prepareStatement("delete modositas where CikkID = ?");
         stmt.setString(1,ID);
         rs= stmt.executeUpdate();
         Stop();
         return rs>0;
     }
     
+    public Boolean HibaID(String ID) throws Exception{
+        Start();
+        PreparedStatement stmt=super.getConn().prepareStatement("delete hiba where ID = ?");
+        stmt.setString(1,ID);
+        rs= stmt.executeUpdate();
+        Stop();
+        return rs>0;
+    }
     
+    public Boolean JavitasHibaID(String HibaID) throws Exception{
+        Start();
+        PreparedStatement stmt=super.getConn().prepareStatement("delete javitas where HibaID = ?");
+        stmt.setString(1,HibaID);
+        rs= stmt.executeUpdate();
+        Stop();
+        return rs>0;
+    }
     
 }
