@@ -1,8 +1,8 @@
-import { Location } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { environment } from 'src/environments/environment';
+import { Felhasznalo } from 'src/app/models/felhasznalo';
+import { UserService } from 'src/app/services/user.service';
+
 
 @Component({
   selector: 'app-registration',
@@ -17,17 +17,20 @@ export class RegistrationComponent implements OnInit {
     name: new FormControl('')
   });
 
-  constructor(private location: Location, private http: HttpClient) { }
+
+  constructor(private userService : UserService) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(){
-      let body = {Nev: this.signUpForm.value.name, Email: this.signUpForm.value.email, jelszo: this.signUpForm.value.password };
-
-      this.http.post<any>(environment.API_URL + "/Reg", body).subscribe(data => {
-        console.log(data);
-    })
+    let body = {Nev: this.signUpForm.value.name, Email: this.signUpForm.value.email, jelszo: this.signUpForm.value.password };
+    this.userService.registration(body).subscribe(data =>{
+      let felhasznalo: Felhasznalo = data;
+    },
+    error => {
+      //this.errors = error;
+    });
     
   }
 

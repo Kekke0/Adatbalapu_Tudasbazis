@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { LoginService } from 'src/app/services/login.service';
+import { Felhasznalo } from 'src/app/models/felhasznalo';
+import { UserService } from 'src/app/services/user.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-log-in',
@@ -16,23 +18,18 @@ export class LogInComponent implements OnInit {
 
   loadingSubscription?: Subscription;
   loadingObservation?: Observable<boolean>;
+  http: any;
 
-  constructor(private router: Router, private loginService: LoginService) { }
+  constructor( private userService: UserService) { }
 
   login(){
-    this.loadingObservation = this.loginService.loadingWithObservable(this.email.value, this.password.value);
-    this.loadingSubscription = this.loadingObservation
-      .subscribe(
-        {
-          next: (data: boolean) => {
-            this.router.navigateByUrl('/home');
-          }, error: (error) => {
-            console.error(error);
-          }, complete: () => {
-            console.log('finally');
-          }
-        }
-      );
+    //if(this.email)
+    let email = this.email.value;
+    let jelszo = this.password.value;
+    this.userService.logIn(email, jelszo).subscribe(data =>{
+      console.log(data);
+    })
+
   }
 
   ngOnInit(): void {
