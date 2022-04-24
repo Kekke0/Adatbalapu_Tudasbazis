@@ -51,7 +51,7 @@ public class Insert extends ConnectionProtocol{
         stmt.setString(4,uj.getEmail());
         stmt.setString(5,uj.getSzakterulet());
         stmt.setString(6,uj.getIntezet());
-        stmt.setString(7,uj.getTudomanyos_fokozat());
+        stmt.setString(7,uj.getTudFokozat());
         rs= stmt.executeUpdate();
         Stop();
         return rs>0;
@@ -93,19 +93,19 @@ public class Insert extends ConnectionProtocol{
     public Boolean addCikk(Cikk uj) throws Exception {
         Start();
         PreparedStatement stmt=super.getConn().prepareStatement("Insert into EN.CIKK (ID,CIM,TARTALOM,ALLAPOT,NYELV,FELHASZNALOID_SZERZO,KATEGORIA,LEKTORALTA,LEKTORALASDATUMA) values (?,?,?,?,?,?,?,?,?)");
-        stmt.setString(1, ujc.getID());
-        stmt.setString(2,ujc.getCim());
-        stmt.setString(3, ujc.getTartalom());
-        stmt.setString(4,ujc.getAllapot());
-        stmt.setString(5,ujc.getNyelv());
-        stmt.setString(6,ujc.getSzerzo());
-        stmt.setString(7,ujc.getKategoria());
-        stmt.setString(8,ujc.getLektoralta());
-        stmt.setString(9,ujc.getLektoralasDatuma());
+        stmt.setString(1, uj.getID());
+        stmt.setString(2,uj.getCim());
+        stmt.setString(3, uj.getTartalom());
+        stmt.setString(4,uj.getAllapot());
+        stmt.setString(5,uj.getNyelv());
+        stmt.setString(6,uj.getSzerzo());
+        stmt.setString(7,uj.getKategoria());
+        stmt.setString(8,uj.getLektoralta());
+        stmt.setString(9,uj.getLektoralasDatuma());
         rs= stmt.executeUpdate();
-        if (!ujc.getKulcsszo().isEmpty())
-            for (String n : ujc.getKulcsszo()) {
-                if(!addKulcsszo(ujc.getID(), n))
+        if (!uj.getKulcsszo().isEmpty())
+            for (String n : uj.getKulcsszo()) {
+                if(!addKulcsszo(uj.getID(), n))
                     throw new Exception();
             }
         Stop();
@@ -122,7 +122,7 @@ public class Insert extends ConnectionProtocol{
         return rs>0;
     }
     
-     public Boolean addBan(Ban uj) throws Exception{
+/*     public Boolean addBan(Ban uj) throws Exception{
         Start();
         PreparedStatement stmt=super.getConn().prepareStatement("Insert into BAN (FELHASZNALOID,ADMINID,HOSSZ,INDOK,DATE) values (?,?,?,?,?)");
         stmt.setString(1,uj.getFelhasznaloID());
@@ -163,12 +163,12 @@ public class Insert extends ConnectionProtocol{
         Start();
         PreparedStatement stmt=super.getConn().prepareStatement("Insert into JAVITAS (ADMINID,HIBAID,DATE,JEGYZET) values (?,?,?,?)");
         stmt.setString(1,uj.getAdminID());
-        stmt.setString(2,uj.getHibaId());
+        stmt.setString(2,uj.getHibaID());
         stmt.setDate(3,uj.getDate());
         stmt.setString(4,uj.getJegyzet());
         rs= stmt.executeUpdate();
         Stop();
         return rs>0;
-    }
+    }*/
     
 }
