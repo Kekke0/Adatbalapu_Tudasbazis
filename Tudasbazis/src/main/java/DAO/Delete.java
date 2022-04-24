@@ -102,7 +102,7 @@ public class Delete extends ConnectionProtocol {
       public Boolean ModositasCikkId(String CikkID) throws Exception{
         Start();
         PreparedStatement stmt=super.getConn().prepareStatement("delete modositas where CikkID = ?");
-        stmt.setString(1,ID);
+        stmt.setString(1,CikkID);
         rs= stmt.executeUpdate();
         Stop();
         return rs>0;

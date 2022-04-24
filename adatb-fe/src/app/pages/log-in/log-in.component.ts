@@ -29,6 +29,7 @@ export class LogInComponent implements OnInit {
       this.userService.isLoggedIn = true;
       this.router.navigateByUrl('/home');
       this.userService.loggedInUser = data;
+      console.log(data);
     },
     error =>{
       console.log(error);
