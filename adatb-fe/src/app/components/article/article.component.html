@@ -15,7 +15,8 @@
       </p>
     </mat-card-content>
     <mat-card-actions align="end" *ngIf="isLoggedIn">
-      <button mat-raised-button color="primary">Szerkesztés</button>
+      <button mat-raised-button color="primary">Hiba</button>
+      <button *ngIf="this.cikk.szerzo === this.userId" mat-raised-button color="primary">Szerkesztés</button>
       <button mat-raised-button color="primary">Törlés</button>
       <div *ngIf="isLektor">
         <button mat-raised-button color="primary">Lektorálás</button>

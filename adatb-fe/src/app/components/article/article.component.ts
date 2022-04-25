@@ -13,6 +13,7 @@ export class ArticleComponent implements OnInit, DoCheck {
   kulcsszavak: any;
   isLektor: boolean = false;
   loggedInUser: any = {};
+  userId: string = "";
 
   constructor(private userService: UserService) { }
 
@@ -28,6 +29,8 @@ export class ArticleComponent implements OnInit, DoCheck {
     }
     if(this.loggedInUser !== this.userService.loggedInUser){
       this.loggedInUser = this.userService.loggedInUser;
+      this.userId = this.userService.loggedInUser?.id;
+      console.log(this.cikk.szerzo);
       if(this.loggedInUser?.id.startsWith("L")){
         this.isLektor = true;
       }

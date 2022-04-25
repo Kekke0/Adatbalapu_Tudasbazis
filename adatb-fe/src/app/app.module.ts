@@ -28,6 +28,10 @@ import { MatSelectModule} from '@angular/material/select';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
 import { AccountComponent } from './pages/account/account.component';
+import { UsersComponent } from './pages/users/users.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { CategoriesComponent } from './pages/categories/categories.component';
 
 
 @NgModule({
@@ -44,7 +48,9 @@ import { AccountComponent } from './pages/account/account.component';
     ArticleComponent,
     DialogComponent,
     AddArticleComponent,
-    AccountComponent
+    AccountComponent,
+    UsersComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +68,9 @@ import { AccountComponent } from './pages/account/account.component';
     MatInputModule,
     MatSelectModule,
     MatChipsModule,
-    MatIconModule
+    MatIconModule,
+    MatTableModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

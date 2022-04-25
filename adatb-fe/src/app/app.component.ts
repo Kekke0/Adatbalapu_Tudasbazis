@@ -17,7 +17,10 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit, DoCheck{
   bejelentkezett: boolean = this.userService.isLoggedIn;
-
+  isLoggedIn = false;
+  isAdmin = false;
+  isLektor= false;
+  loggedInUser: any = {};
   constructor(private http: HttpClient, private userService: UserService, private router: Router){}
 
   felhasznalo = this.userService.loggedInUser;
@@ -35,6 +38,18 @@ export class AppComponent implements OnInit, DoCheck{
   ngDoCheck(): void {
     if(this.bejelentkezett !== this.userService.isLoggedIn){
       this.bejelentkezett = this.userService.isLoggedIn;
+    }
+
+    if(this.loggedInUser !== this.userService.loggedInUser){
+      this.loggedInUser = this.userService.loggedInUser;
+      this.isLektor = false;
+      this.isAdmin = false;
+      if(this.loggedInUser?.id.startsWith("L")){
+        this.isLektor = true;
+      }
+      if(this.loggedInUser?.id.startsWith("A")){
+        this.isAdmin = true;
+      }
     }
   }
 

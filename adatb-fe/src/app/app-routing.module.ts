@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddArticleComponent } from './components/add-article/add-article.component';
 import { AccountComponent } from './pages/account/account.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { ContentComponent } from './pages/content/content.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -10,6 +11,7 @@ import { RandomArticleComponent } from './pages/random-article/random-article.co
 import { RecentChangesComponent } from './pages/recent-changes/recent-changes.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { SearchComponent } from './pages/search/search.component';
+import { UsersComponent } from './pages/users/users.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -23,6 +25,8 @@ const routes: Routes = [
   {path:'search', component: SearchComponent},
   {path:'add-article', component: AddArticleComponent},
   {path:'account', component: AccountComponent},
+  {path:'users', component: UsersComponent},
+  {path:'categories', component: CategoriesComponent},
   {path: '**', component: HomeComponent},
 ];
 
