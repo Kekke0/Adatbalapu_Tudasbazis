@@ -61,4 +61,8 @@ export class UserService {
     return this.http.get<any>(environment.API_URL + "/felhasznalo");
   }
 
+  public addKategoria(nev: string, bovebben: string): Observable<any>{
+    let body = {Nev: nev, Bovebben: bovebben };
+    return this.http.post<any>(environment.API_URL + "/addKategoria", body);
+  }
 }

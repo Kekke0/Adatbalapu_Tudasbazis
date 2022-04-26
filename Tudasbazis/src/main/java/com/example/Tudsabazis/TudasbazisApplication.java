@@ -194,6 +194,19 @@ public class TudasbazisApplication {
 		return new ResponseEntity<>(cikk, HttpStatus.OK);
 	}
 
+	@PostMapping(value = "/addKategoria")
+	public ResponseEntity<Kategoria> addKategoria (@RequestBody Map<String,String> uj){
+		Kategoria ujKategoria= new Kategoria(uj.get("Nev"),uj.get("Bovebben"));
+		try {
+			Boolean a =new Insert().addKategoria(ujKategoria);
+			if(!a) throw new Exception();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
+		}
+		return new ResponseEntity<>(ujKategoria, HttpStatus.ACCEPTED);
+	}
+
 
 
 }

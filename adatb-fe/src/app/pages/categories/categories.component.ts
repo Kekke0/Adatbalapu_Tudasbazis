@@ -24,6 +24,11 @@ export class CategoriesComponent implements OnInit {
   }
 
   kategoriaHozzaadas(){
-    
+    this.userService.addKategoria(this.nev.value, this.bovebben.value).subscribe(data =>{
+      this.userService.getCategories().subscribe(data =>{
+        this.dataSource = data;
+        console.log(this.dataSource)
+      });
+    });
   }
 }
