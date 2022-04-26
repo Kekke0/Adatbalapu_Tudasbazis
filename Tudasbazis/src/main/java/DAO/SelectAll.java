@@ -16,7 +16,6 @@ import java.util.ArrayList;
 public class SelectAll extends ConnectionProtocol {
     private ResultSet rs;
     private Statement stmt;
-    private final String user="EN", pass="1234";
 
     public SelectAll() {
         super();
