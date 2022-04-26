@@ -42,6 +42,21 @@ public class TudasbazisApplication {
 		return ok().body(new Gson().toJson(a.Felhasznall()));
 	}
 
+	@GetMapping("/felhasznalo/Bann")
+	public ResponseEntity<String> Baned() {
+		return ok().body(new Gson().toJson(new NonTrivial().Bannum()));
+	}
+
+	@GetMapping("/felhasznalo/Hibajel")
+	public ResponseEntity<String> Hibatjel() {
+		return ok().body(new Gson().toJson(new NonTrivial().Hibajel()));
+	}
+
+	@GetMapping("/felhasznalo/Cikkek")
+	public ResponseEntity<String> Cikketirt() {
+		return ok().body(new Gson().toJson(new NonTrivial().Cikknum()));
+	}
+
 	@GetMapping("/Cikk")
 	public ResponseEntity<ArrayList<Cikk>> Cikkabc() {
 		return new ResponseEntity<>(a.ABCikkek(), HttpStatus.OK);
