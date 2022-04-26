@@ -1,1 +1,36 @@
-<p>categories works!</p>
+<div class="demo-button-container">
+    <h2>Kategóriák</h2><br/>
+</div>
+
+<div class="main_component">
+    <h3>Kategória hozzáadása</h3>
+    <mat-form-field appearance="outline">
+        <mat-label for="cim">Név </mat-label><input matInput type="text" [formControl]="nev" />
+    </mat-form-field><br>
+    <mat-form-field appearance="outline">
+        <mat-label for="cim">Bővebben </mat-label><input matInput type="text" [formControl]="bovebben" />
+    </mat-form-field><br>
+    <span><button mat-raised-button color="primary" (click)="kategoriaHozzaadas()">Kategória létrehozása</button></span>
+</div>
+
+
+
+
+<div class="container">
+    
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+  
+      <ng-container matColumnDef="Nev">
+        <th mat-header-cell *matHeaderCellDef>Név</th>
+        <td mat-cell *matCellDef="let element">{{element.nev}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Bovebben">
+        <th mat-header-cell *matHeaderCellDef>Bővebben</th>
+        <td mat-cell *matCellDef="let element">{{element.bovebben}}</td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>

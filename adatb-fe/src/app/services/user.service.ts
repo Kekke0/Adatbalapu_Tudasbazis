@@ -44,4 +44,21 @@ export class UserService {
   public getCikk(id: any){
     return this.http.post<any>(environment.API_URL + "/getCikk", id);
   }
+
+  public kiHanyszorVoltBannolva(){
+    return this.http.get<any>(environment.API_URL + "/felhasznalo/Bann");
+  }
+
+  public kiHanyszorJelentettHibat(){
+    return this.http.get<any>(environment.API_URL + "/felhasznalo/Hibajel");
+  }
+
+  public kiHanyCikketIrt(){
+    return this.http.get<any>(environment.API_URL + "/felhasznalo/Cikkek");
+  }
+
+  public osszesFelhasznalo(){
+    return this.http.get<any>(environment.API_URL + "/felhasznalo");
+  }
+
 }

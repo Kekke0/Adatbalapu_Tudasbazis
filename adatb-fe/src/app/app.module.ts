@@ -74,7 +74,8 @@ import { EditArticleComponent } from './pages/edit-article/edit-article.componen
     MatChipsModule,
     MatIconModule,
     MatTableModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

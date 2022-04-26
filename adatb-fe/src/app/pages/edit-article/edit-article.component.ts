@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatDialog } from '@angular/material/dialog';
@@ -14,6 +14,8 @@ import { ActivatedRoute, Params, Route } from '@angular/router';
 })
 export class EditArticleComponent implements OnInit {
 
+
+  @Output() change = new EventEmitter<any>();
   cikk: any = {};
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
@@ -38,7 +40,7 @@ export class EditArticleComponent implements OnInit {
 
   constructor(private userService: UserService, public dialog: MatDialog, private route: ActivatedRoute) { }
 
-  cikkHozzaadas(): void{
+  cikkSzerkesztes(): void{
     let cim = this.cim.value;
     let tartalom = this.tartalom.value;
     let nyelv = this.valasztottNyelv;
@@ -52,7 +54,7 @@ export class EditArticleComponent implements OnInit {
     console.log("kulcsszavak: " + kulcsszavak);
     console.log(cim);
 
-    if(szerzo && cim && tartalom && nyelv && kategoria && kulcsszavak){
+    if(this.cikk.id && szerzo && cim && tartalom && nyelv && kategoria && kulcsszavak){
       this.userService.addCikk(cim, tartalom, "kezdeti", nyelv, kategoria, szerzo, kulcsszavak).subscribe(data =>{
         console.log(data.kulcsszo[0].split(','));
 
@@ -77,6 +79,9 @@ export class EditArticleComponent implements OnInit {
         this.userService.getCikk(params['id']).subscribe(data =>{
           console.log(data)
           this.cikk = data;
+          this.valasztottKategoria = this.cikk.valasztottKategoria;
+          this.cim.setValue(this.cikk.cim);
+          this.tartalom.setValue(this.cikk.tartalom);
         });
       }
     );

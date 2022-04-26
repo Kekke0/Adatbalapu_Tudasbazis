@@ -1,39 +1,87 @@
 
 <div class="demo-button-container">
-    <!-- <button mat-raised-button (click)="addData()" class="demo-button">
-      Add data
-    </button>
-    <button
-        mat-raised-button
-        [disabled]="!dataToDisplay.length"
-        (click)="removeData()"
-        class="demo-button">
-      Remove data
-    </button> -->
     <h2>Felhasználók</h2><br/>
-    <p>Bannolt felhasználók száma: </p>
+</div>
+
+<div class="demo-button-container">
+  <p>Ki hány cikket írt</p>
+</div>
+<div class="container">
+  <table mat-table [dataSource]="dataSource4" class="mat-elevation-z8 demo-table">
+
+    <ng-container matColumnDef="nev">
+      <th mat-header-cell *matHeaderCellDef>Név</th>
+      <td mat-cell *matCellDef="let element">{{element.nev}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="count">
+      <th mat-header-cell *matHeaderCellDef>Hány cikket szerzett</th>
+      <td mat-cell *matCellDef="let element">{{element.count}}</td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+  </table>
+</div>
+
+<div class="demo-button-container">
+  <p>Ki hányszor jelentett hibát</p>
+</div>
+<div class="container">
+  <table mat-table [dataSource]="dataSource3" class="mat-elevation-z8 demo-table">
+
+    <ng-container matColumnDef="nev">
+      <th mat-header-cell *matHeaderCellDef>Név</th>
+      <td mat-cell *matCellDef="let element">{{element.nev}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="count">
+      <th mat-header-cell *matHeaderCellDef>Jelentett hibák száma</th>
+      <td mat-cell *matCellDef="let element">{{element.count}}</td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+  </table>
+</div>
+
+<div class="demo-button-container">
+  <p>Melyik felhasználót hányszor bannolták</p>
+</div>
+<div class="container">
+  <table mat-table [dataSource]="dataSource2" class="mat-elevation-z8 demo-table">
+
+    <ng-container matColumnDef="nev">
+      <th mat-header-cell *matHeaderCellDef>Név</th>
+      <td mat-cell *matCellDef="let element">{{element.nev}}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="count">
+      <th mat-header-cell *matHeaderCellDef>Bannolások száma</th>
+      <td mat-cell *matCellDef="let element">{{element.count}}</td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+  </table>
+</div>
+
+<div class="demo-button-container">
+  <p>Felhasználók</p>
 </div>
 <div class="container">
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
-    <!-- Position Column -->
-    <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef>Email cím</th>
-      <td mat-cell *matCellDef="let element">{{element.position}}</td>
-    </ng-container>
-  
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Név</th>
-      <td mat-cell *matCellDef="let element">{{element.name}}</td>
-    </ng-container>
-  
-    <!-- Weight Column -->
-    <!-- <ng-container matColumnDef="weight">
-      <th mat-header-cell *matHeaderCellDef>Bannolva</th>
-      <td mat-cell *matCellDef="let element">{{element.weight}}</td>
-    </ng-container> -->
 
-      <!-- Checkbox Column -->
+    <ng-container matColumnDef="Email">
+      <th mat-header-cell *matHeaderCellDef>Email cím</th>
+      <td mat-cell *matCellDef="let element">{{element.Email}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Nev">
+      <th mat-header-cell *matHeaderCellDef>Név</th>
+      <td mat-cell *matCellDef="let element">{{element.Nev}}</td>
+    </ng-container>
+  
   <ng-container matColumnDef="select">
     <th mat-header-cell *matHeaderCellDef>Bannolva</th>
     <td mat-cell *matCellDef="let row">
@@ -44,12 +92,6 @@
       </mat-checkbox>
     </td>
   </ng-container>
-  
-    <!-- Symbol Column -->
-    <!-- <ng-container matColumnDef="symbol">
-      <th mat-header-cell *matHeaderCellDef>Symbol</th>
-      <td mat-cell *matCellDef="let element">{{element.symbol}}</td>
-    </ng-container> -->
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
