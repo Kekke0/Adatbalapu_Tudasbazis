@@ -1,15 +1,28 @@
 --------------------------------------------------------
---  File created - hétfõ-április-25-2022   
+--  File created - kedd-április-26-2022   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Table ADMIN
 --------------------------------------------------------
 
   CREATE TABLE "ADMIN" 
-   (	"ID" VARCHAR2(10), 
-	"NEV" VARCHAR2(60), 
-	"JELSZO" VARCHAR2(60), 
-	"EMAIL" VARCHAR2(60)
+   (	"ID" VARCHAR2(10 BYTE), 
+	"NEV" VARCHAR2(60 BYTE), 
+	"JELSZO" VARCHAR2(60 BYTE), 
+	"EMAIL" VARCHAR2(60 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table ALLUSERS
+--------------------------------------------------------
+
+  CREATE TABLE "ALLUSERS" 
+   (	"ID" VARCHAR2(10 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
@@ -22,10 +35,10 @@
 --------------------------------------------------------
 
   CREATE TABLE "BAN" 
-   (	"FELHASZNALOID" VARCHAR2(10), 
-	"ADMINID" VARCHAR2(10), 
+   (	"FELHASZNALOID" VARCHAR2(10 BYTE), 
+	"ADMINID" VARCHAR2(10 BYTE), 
 	"Date" DATE, 
-	"INDOK" VARCHAR2(300), 
+	"INDOK" VARCHAR2(300 BYTE), 
 	"HOSSZ" NUMBER
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
@@ -39,14 +52,14 @@
 --------------------------------------------------------
 
   CREATE TABLE "CIKK" 
-   (	"ID" VARCHAR2(10), 
-	"CIM" VARCHAR2(100), 
-	"TARTALOM" VARCHAR2(4000), 
-	"ALLAPOT" VARCHAR2(60), 
-	"NYELV" VARCHAR2(60), 
-	"FELHASZNALOID_SZERZO" VARCHAR2(10), 
-	"KATEGORIA" VARCHAR2(60), 
-	"LEKTORALTA" VARCHAR2(10), 
+   (	"ID" VARCHAR2(10 BYTE), 
+	"CIM" VARCHAR2(100 BYTE), 
+	"TARTALOM" VARCHAR2(4000 BYTE), 
+	"ALLAPOT" VARCHAR2(60 BYTE), 
+	"NYELV" VARCHAR2(60 BYTE), 
+	"FELHASZNALOID_SZERZO" VARCHAR2(10 BYTE), 
+	"KATEGORIA" VARCHAR2(60 BYTE), 
+	"LEKTORALTA" VARCHAR2(10 BYTE), 
 	"LEKTORALASDATUMA" DATE
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
@@ -60,10 +73,10 @@
 --------------------------------------------------------
 
   CREATE TABLE "FELHASZNALO" 
-   (	"ID" VARCHAR2(10), 
-	"NEV" VARCHAR2(60), 
-	"JELSZO" VARCHAR2(60), 
-	"EMAIL" VARCHAR2(60)
+   (	"ID" VARCHAR2(10 BYTE), 
+	"NEV" VARCHAR2(60 BYTE), 
+	"JELSZO" VARCHAR2(60 BYTE), 
+	"EMAIL" VARCHAR2(60 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
@@ -76,11 +89,11 @@
 --------------------------------------------------------
 
   CREATE TABLE "HIBA" 
-   (	"ID" VARCHAR2(10), 
-	"LEIRAS" VARCHAR2(500), 
+   (	"ID" VARCHAR2(10 BYTE), 
+	"LEIRAS" VARCHAR2(500 BYTE), 
 	"JAVITVA" NUMBER, 
-	"JELENTOID" VARCHAR2(10), 
-	"HIBASCIKKID" VARCHAR2(10)
+	"JELENTOID" VARCHAR2(10 BYTE), 
+	"HIBASCIKKID" VARCHAR2(10 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
@@ -93,10 +106,10 @@
 --------------------------------------------------------
 
   CREATE TABLE "JAVITAS" 
-   (	"ADMINID" VARCHAR2(10), 
-	"HIBAID" VARCHAR2(10), 
+   (	"ADMINID" VARCHAR2(10 BYTE), 
+	"HIBAID" VARCHAR2(10 BYTE), 
 	"Date" DATE, 
-	"JEGYZET" VARCHAR2(300)
+	"JEGYZET" VARCHAR2(300 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
@@ -109,8 +122,8 @@
 --------------------------------------------------------
 
   CREATE TABLE "KATEGORIA" 
-   (	"NEV" VARCHAR2(60), 
-	"BOVEBBEN" VARCHAR2(60)
+   (	"NEV" VARCHAR2(60 BYTE), 
+	"BOVEBBEN" VARCHAR2(60 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
@@ -123,8 +136,8 @@
 --------------------------------------------------------
 
   CREATE TABLE "KULCSSZO" 
-   (	"CIKKID" VARCHAR2(60), 
-	"SZO" VARCHAR2(60)
+   (	"CIKKID" VARCHAR2(60 BYTE), 
+	"SZO" VARCHAR2(60 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
@@ -137,13 +150,13 @@
 --------------------------------------------------------
 
   CREATE TABLE "LEKTOR" 
-   (	"ID" VARCHAR2(10), 
-	"NEV" VARCHAR2(60), 
-	"JELSZO" VARCHAR2(60), 
-	"EMAIL" VARCHAR2(60), 
-	"SZAKTERULET" VARCHAR2(60), 
-	"INTEZET" VARCHAR2(60), 
-	"TUDOMANYOS_FOKOZAT" VARCHAR2(60)
+   (	"ID" VARCHAR2(10 BYTE), 
+	"NEV" VARCHAR2(60 BYTE), 
+	"JELSZO" VARCHAR2(60 BYTE), 
+	"EMAIL" VARCHAR2(60 BYTE), 
+	"SZAKTERULET" VARCHAR2(60 BYTE), 
+	"INTEZET" VARCHAR2(60 BYTE), 
+	"TUDOMANYOS_FOKOZAT" VARCHAR2(60 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
@@ -156,8 +169,8 @@
 --------------------------------------------------------
 
   CREATE TABLE "MODOSITAS" 
-   (	"CIKKID" VARCHAR2(60), 
-	"LEIRAS" VARCHAR2(100), 
+   (	"CIKKID" VARCHAR2(60 BYTE), 
+	"LEIRAS" VARCHAR2(100 BYTE), 
 	"DATUM" DATE
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
@@ -171,9 +184,9 @@
 --------------------------------------------------------
 
   CREATE TABLE "NYELVTUDAS" 
-   (	"LEKTORID" VARCHAR2(10), 
-	"NYELV" VARCHAR2(60), 
-	"SZINT" VARCHAR2(60)
+   (	"LEKTORID" VARCHAR2(10 BYTE), 
+	"NYELV" VARCHAR2(60 BYTE), 
+	"SZINT" VARCHAR2(60 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
@@ -188,6 +201,16 @@ Insert into ADMIN (ID,NEV,JELSZO,EMAIL) values ('A111111','admin','admin','nincs
 Insert into ADMIN (ID,NEV,JELSZO,EMAIL) values ('A55555','Klau','jelszó','ja');
 Insert into ADMIN (ID,NEV,JELSZO,EMAIL) values ('A7777','Lela','majd-valami','ezis');
 Insert into ADMIN (ID,NEV,JELSZO,EMAIL) values ('A00001','Bodnar','chad','chad@férfi.com');
+REM INSERTING into ALLUSERS
+SET DEFINE OFF;
+Insert into ALLUSERS (ID) values ('A6969');
+Insert into ALLUSERS (ID) values ('A111111');
+Insert into ALLUSERS (ID) values ('A55555');
+Insert into ALLUSERS (ID) values ('A7777');
+Insert into ALLUSERS (ID) values ('A00001');
+Insert into ALLUSERS (ID) values ('C11');
+
+
 REM INSERTING into BAN
 SET DEFINE OFF;
 Insert into BAN (FELHASZNALOID,ADMINID,"Date",INDOK,HOSSZ) values ('U2','A6969',to_date('21-MÁRC. -05','RR-MON-DD'),'Sértegetés','1');
@@ -501,6 +524,32 @@ Insert into NYELVTUDAS (LEKTORID,NYELV,SZINT) values ('L20','francia','B1');
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS" ;
 --------------------------------------------------------
+--  DDL for Trigger ADMINFROMALL
+--------------------------------------------------------
+
+  CREATE OR REPLACE EDITIONABLE TRIGGER "ADMINFROMALL" 
+BEFORE DELETE
+ON admin
+FOR EACH ROW
+BEGIN
+    DELETE Allusers where :OLD.ID = ID;
+END;
+/
+ALTER TRIGGER "ADMINFROMALL" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger ADMINTOALL
+--------------------------------------------------------
+
+  CREATE OR REPLACE EDITIONABLE TRIGGER "ADMINTOALL" 
+AFTER INSERT
+ON admin
+FOR EACH ROW
+BEGIN
+    INSERT INTO Allusers Values(:NEW.ID);
+END;
+/
+ALTER TRIGGER "ADMINTOALL" ENABLE;
+--------------------------------------------------------
 --  DDL for Package TUDASBAZIS
 --------------------------------------------------------
 
@@ -623,6 +672,11 @@ END TUDASBAZIS;
   ALTER TABLE "HIBA" MODIFY ("HIBASCIKKID" NOT NULL ENABLE);
   ALTER TABLE "HIBA" MODIFY ("JELENTOID" NOT NULL ENABLE);
   ALTER TABLE "HIBA" MODIFY ("ID" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table ALLUSERS
+--------------------------------------------------------
+
+  ALTER TABLE "ALLUSERS" MODIFY ("ID" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table BAN
 --------------------------------------------------------
