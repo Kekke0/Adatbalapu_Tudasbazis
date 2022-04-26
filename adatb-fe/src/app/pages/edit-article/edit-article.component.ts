@@ -1,20 +1,20 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatInput } from '@angular/material/input';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { UserService } from 'src/app/services/user.service';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {MatChipInputEvent} from '@angular/material/chips';
-import { DialogComponent } from '../dialog/dialog.component';
-import { MatDialog } from '@angular/material/dialog';
-
+import { ActivatedRoute, Params, Route } from '@angular/router';
 
 @Component({
-  selector: 'app-add-article',
-  templateUrl: './add-article.component.html',
-  styleUrls: ['./add-article.component.scss']
+  selector: 'app-edit-article',
+  templateUrl: './edit-article.component.html',
+  styleUrls: ['./edit-article.component.scss']
 })
-export class AddArticleComponent implements OnInit {
+export class EditArticleComponent implements OnInit {
 
+  cikk: any = {};
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   kulcsszavak: any = [];
@@ -36,7 +36,7 @@ export class AddArticleComponent implements OnInit {
   ];
   kategoriak: any;
 
-  constructor(private userService: UserService, public dialog: MatDialog) { }
+  constructor(private userService: UserService, public dialog: MatDialog, private route: ActivatedRoute) { }
 
   cikkHozzaadas(): void{
     let cim = this.cim.value;
@@ -57,7 +57,7 @@ export class AddArticleComponent implements OnInit {
         console.log(data.kulcsszo[0].split(','));
 
       },
-      error =>{
+        (      error: any) =>{
         console.log(error);
         this.openDialog("Sikertelen cikklétrehozás!");
       })
@@ -67,9 +67,19 @@ export class AddArticleComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.getCategories().subscribe((data)=>{
+    this.userService.getCategories().subscribe((data: any)=>{
       this.kategoriak = data;
     });
+
+    this.route.params.subscribe(
+      (params: Params) => {
+        console.log(params['id']);
+        this.userService.getCikk(params['id']).subscribe(data =>{
+          console.log(data)
+          this.cikk = data;
+        });
+      }
+    );
   }
 
   openDialog(szoveg : string) {
@@ -97,5 +107,4 @@ export class AddArticleComponent implements OnInit {
       this.kulcsszavak.splice(index, 1);
     }
   }
-
 }

@@ -40,4 +40,8 @@ export class UserService {
   public osszesCikkABC(){
     return this.http.get<any>(environment.API_URL + "/Cikk");
   }
+
+  public getCikk(id: any){
+    return this.http.post<any>(environment.API_URL + "/getCikk", id);
+  }
 }

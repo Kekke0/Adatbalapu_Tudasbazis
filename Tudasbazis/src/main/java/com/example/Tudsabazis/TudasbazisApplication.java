@@ -26,6 +26,7 @@ import static org.springframework.http.ResponseEntity.ok;
 @RestController
 public class TudasbazisApplication {
 	SelectAll a = new SelectAll();
+	Find find = new Find();
 
 	public static void main(String[] args) {
 		SpringApplication.run(TudasbazisApplication.class, args);
@@ -154,6 +155,28 @@ public class TudasbazisApplication {
 			return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
 		}
 		return new ResponseEntity<>(ujc, HttpStatus.ACCEPTED);
+	}
+
+	@PostMapping("/getCikk")
+	public ResponseEntity<Cikk> getCikk(@RequestBody String id) {
+/*		ArrayList<Cikk> ret = new ArrayList<>();
+		for (Cikk n : a.ABCikkek()) {
+			if (n.getCim().contains(keresoszo))
+				ret.add(n);
+			else for (String k : n.getKulcsszo()) {
+				if (k.contains(keresoszo))
+					ret.add(n);
+			}
+		}*/
+		Cikk cikk = null;
+		try{
+			cikk = find.cikkLekeres(id);
+		} catch (Exception e){
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
+		}
+
+		return new ResponseEntity<>(cikk, HttpStatus.OK);
 	}
 
 

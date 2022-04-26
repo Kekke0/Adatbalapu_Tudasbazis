@@ -32,6 +32,8 @@ import { UsersComponent } from './pages/users/users.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { CategoriesComponent } from './pages/categories/categories.component';
+import { MistakeComponent } from './pages/mistake/mistake.component';
+import { EditArticleComponent } from './pages/edit-article/edit-article.component';
 
 
 @NgModule({
@@ -50,7 +52,9 @@ import { CategoriesComponent } from './pages/categories/categories.component';
     AddArticleComponent,
     AccountComponent,
     UsersComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    MistakeComponent,
+    EditArticleComponent
   ],
   imports: [
     BrowserModule,

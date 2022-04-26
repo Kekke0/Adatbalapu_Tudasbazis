@@ -1,5 +1,6 @@
 package DAO;
 
+import CikkOriented.Cikk;
 import UserBased.Admin;
 import UserBased.Felhasznalo;
 import UserBased.Lektor;
@@ -126,5 +127,17 @@ public class Find extends ConnectionProtocol {
         }
         Stop();
         return legnagy;
+    }
+
+    public Cikk cikkLekeres(String ID) throws Exception{
+        Start();
+        PreparedStatement stmt=super.getConn().prepareStatement("select * from cikk where id = ?");
+        stmt.setString(1,ID);
+        rs= stmt.executeQuery();
+        rs.next();
+        Cikk cikk =new Cikk(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
+        Stop();
+        return cikk;
+
     }
 }

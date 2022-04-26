@@ -5,8 +5,10 @@ import { AccountComponent } from './pages/account/account.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { ContentComponent } from './pages/content/content.component';
+import { EditArticleComponent } from './pages/edit-article/edit-article.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LogInComponent } from './pages/log-in/log-in.component';
+import { MistakeComponent } from './pages/mistake/mistake.component';
 import { RandomArticleComponent } from './pages/random-article/random-article.component';
 import { RecentChangesComponent } from './pages/recent-changes/recent-changes.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
@@ -27,6 +29,8 @@ const routes: Routes = [
   {path:'account', component: AccountComponent},
   {path:'users', component: UsersComponent},
   {path:'categories', component: CategoriesComponent},
+  {path:'mistake/:id', component: MistakeComponent},
+  {path:'edit-article/:id', component: EditArticleComponent},
   {path: '**', component: HomeComponent},
 ];
 

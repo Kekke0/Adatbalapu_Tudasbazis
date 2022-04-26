@@ -1,4 +1,5 @@
 import { Component, DoCheck, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Cikk } from 'src/app/models/cikk';
 import { UserService } from 'src/app/services/user.service';
 
@@ -15,7 +16,7 @@ export class ArticleComponent implements OnInit, DoCheck {
   loggedInUser: any = {};
   userId: string = "";
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   isLoggedIn: boolean = this.userService.isLoggedIn;
 
@@ -35,6 +36,22 @@ export class ArticleComponent implements OnInit, DoCheck {
         this.isLektor = true;
       }
     }
+  }
+
+  hibaJelentes(){
+    this.router.navigate(['/mistake', this.cikk.id]);
+  }
+
+  szerkesztes(){
+    this.router.navigate(['/edit-article', this.cikk.id]);
+  }
+
+  torles(){
+
+  }
+
+  lektoralas(){
+
   }
 
 }
