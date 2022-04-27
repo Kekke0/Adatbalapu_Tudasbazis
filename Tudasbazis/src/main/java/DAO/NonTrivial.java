@@ -82,4 +82,72 @@ public class NonTrivial extends ConnectionProtocol{
         }
         return ret;
     }
+
+    public ArrayList<Map<String,String>> Hibajav(){
+        ArrayList<Map<String,String>> ret=new ArrayList<Map<String,String>>();
+        try{
+            Start();
+            stmt=super.getConn().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            String sql="select nev, count(admin.id) from admin inner join javitas on admin.id = javitas.adminid group by admin.nev";
+            rs= stmt.executeQuery(sql);
+            while (rs.next()){
+                Map a = new HashMap();
+                a.put("nev",rs.getString(1));
+                a.put("count",rs.getString(2));
+                ret.add(a);
+                //System.out.println(a);
+            }
+            Stop();
+        }catch (Exception e){
+            System.out.println("Lekérdezési hiba");
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+    public ArrayList<Map<String,String>> Cikkmod(){
+        ArrayList<Map<String,String>> ret=new ArrayList<Map<String,String>>();
+        try{
+            Start();
+            stmt=super.getConn().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            String sql="select cim, count(cikk.id) from cikk inner join modositas on cikk.id = modositas.cikkid group by cikk.cim";
+            rs= stmt.executeQuery(sql);
+            while (rs.next()){
+                Map a = new HashMap();
+                a.put("nev",rs.getString(1));
+                a.put("count",rs.getString(2));
+                ret.add(a);
+                //System.out.println(a);
+            }
+            Stop();
+        }catch (Exception e){
+            System.out.println("Lekérdezési hiba");
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+    public ArrayList<Map<String,String>> Nyelevek(){
+        ArrayList<Map<String,String>> ret=new ArrayList<Map<String,String>>();
+        try{
+            Start();
+            stmt=super.getConn().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            String sql="select nev, count(lektor.id) from lektor inner join nyelvtudas on lektor.id = nyelvtudas.lektorid group by lektor.nev";
+            rs= stmt.executeQuery(sql);
+            while (rs.next()){
+                Map a = new HashMap();
+                a.put("nev",rs.getString(1));
+                a.put("count",rs.getString(2));
+                ret.add(a);
+                //System.out.println(a);
+            }
+            Stop();
+        }catch (Exception e){
+            System.out.println("Lekérdezési hiba");
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+
 }
