@@ -1,15 +1,28 @@
 --------------------------------------------------------
---  File created - kedd-április-26-2022   
+--  File created - szerda-április-27-2022   
 --------------------------------------------------------
+DROP TABLE "ADMIN" cascade constraints;
+DROP TABLE "ALLUSERS" cascade constraints;
+DROP TABLE "BAN" cascade constraints;
+DROP TABLE "CIKK" cascade constraints;
+DROP TABLE "FELHASZNALO" cascade constraints;
+DROP TABLE "HIBA" cascade constraints;
+DROP TABLE "JAVITAS" cascade constraints;
+DROP TABLE "KATEGORIA" cascade constraints;
+DROP TABLE "KULCSSZO" cascade constraints;
+DROP TABLE "LEKTOR" cascade constraints;
+DROP TABLE "MODOSITAS" cascade constraints;
+DROP TABLE "NYELVTUDAS" cascade constraints;
+DROP PACKAGE "TUDASBAZIS";
 --------------------------------------------------------
 --  DDL for Table ADMIN
 --------------------------------------------------------
 
   CREATE TABLE "ADMIN" 
-   (	"ID" VARCHAR2(10 BYTE), 
-	"NEV" VARCHAR2(60 BYTE), 
-	"JELSZO" VARCHAR2(60 BYTE), 
-	"EMAIL" VARCHAR2(60 BYTE)
+   (	"ID" VARCHAR2(10), 
+	"NEV" VARCHAR2(60), 
+	"JELSZO" VARCHAR2(60), 
+	"EMAIL" VARCHAR2(60)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
@@ -22,7 +35,7 @@
 --------------------------------------------------------
 
   CREATE TABLE "ALLUSERS" 
-   (	"ID" VARCHAR2(10 BYTE)
+   (	"ID" VARCHAR2(10)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
@@ -35,10 +48,10 @@
 --------------------------------------------------------
 
   CREATE TABLE "BAN" 
-   (	"FELHASZNALOID" VARCHAR2(10 BYTE), 
-	"ADMINID" VARCHAR2(10 BYTE), 
+   (	"FELHASZNALOID" VARCHAR2(10), 
+	"ADMINID" VARCHAR2(10), 
 	"Date" DATE, 
-	"INDOK" VARCHAR2(300 BYTE), 
+	"INDOK" VARCHAR2(300), 
 	"HOSSZ" NUMBER
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
@@ -52,14 +65,14 @@
 --------------------------------------------------------
 
   CREATE TABLE "CIKK" 
-   (	"ID" VARCHAR2(10 BYTE), 
-	"CIM" VARCHAR2(100 BYTE), 
-	"TARTALOM" VARCHAR2(4000 BYTE), 
-	"ALLAPOT" VARCHAR2(60 BYTE), 
-	"NYELV" VARCHAR2(60 BYTE), 
-	"FELHASZNALOID_SZERZO" VARCHAR2(10 BYTE), 
-	"KATEGORIA" VARCHAR2(60 BYTE), 
-	"LEKTORALTA" VARCHAR2(10 BYTE), 
+   (	"ID" VARCHAR2(10), 
+	"CIM" VARCHAR2(100), 
+	"TARTALOM" VARCHAR2(4000), 
+	"ALLAPOT" VARCHAR2(60), 
+	"NYELV" VARCHAR2(60), 
+	"FELHASZNALOID_SZERZO" VARCHAR2(10), 
+	"KATEGORIA" VARCHAR2(60), 
+	"LEKTORALTA" VARCHAR2(10), 
 	"LEKTORALASDATUMA" DATE
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
@@ -73,10 +86,10 @@
 --------------------------------------------------------
 
   CREATE TABLE "FELHASZNALO" 
-   (	"ID" VARCHAR2(10 BYTE), 
-	"NEV" VARCHAR2(60 BYTE), 
-	"JELSZO" VARCHAR2(60 BYTE), 
-	"EMAIL" VARCHAR2(60 BYTE)
+   (	"ID" VARCHAR2(10), 
+	"NEV" VARCHAR2(60), 
+	"JELSZO" VARCHAR2(60), 
+	"EMAIL" VARCHAR2(60)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
@@ -89,11 +102,11 @@
 --------------------------------------------------------
 
   CREATE TABLE "HIBA" 
-   (	"ID" VARCHAR2(10 BYTE), 
-	"LEIRAS" VARCHAR2(500 BYTE), 
+   (	"ID" VARCHAR2(10), 
+	"LEIRAS" VARCHAR2(500), 
 	"JAVITVA" NUMBER, 
-	"JELENTOID" VARCHAR2(10 BYTE), 
-	"HIBASCIKKID" VARCHAR2(10 BYTE)
+	"JELENTOID" VARCHAR2(10), 
+	"HIBASCIKKID" VARCHAR2(10)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
@@ -106,10 +119,10 @@
 --------------------------------------------------------
 
   CREATE TABLE "JAVITAS" 
-   (	"ADMINID" VARCHAR2(10 BYTE), 
-	"HIBAID" VARCHAR2(10 BYTE), 
+   (	"ADMINID" VARCHAR2(10), 
+	"HIBAID" VARCHAR2(10), 
 	"Date" DATE, 
-	"JEGYZET" VARCHAR2(300 BYTE)
+	"JEGYZET" VARCHAR2(300)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
@@ -122,8 +135,8 @@
 --------------------------------------------------------
 
   CREATE TABLE "KATEGORIA" 
-   (	"NEV" VARCHAR2(60 BYTE), 
-	"BOVEBBEN" VARCHAR2(60 BYTE)
+   (	"NEV" VARCHAR2(60), 
+	"BOVEBBEN" VARCHAR2(60)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
@@ -136,8 +149,8 @@
 --------------------------------------------------------
 
   CREATE TABLE "KULCSSZO" 
-   (	"CIKKID" VARCHAR2(60 BYTE), 
-	"SZO" VARCHAR2(60 BYTE)
+   (	"CIKKID" VARCHAR2(60), 
+	"SZO" VARCHAR2(60)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
@@ -150,13 +163,13 @@
 --------------------------------------------------------
 
   CREATE TABLE "LEKTOR" 
-   (	"ID" VARCHAR2(10 BYTE), 
-	"NEV" VARCHAR2(60 BYTE), 
-	"JELSZO" VARCHAR2(60 BYTE), 
-	"EMAIL" VARCHAR2(60 BYTE), 
-	"SZAKTERULET" VARCHAR2(60 BYTE), 
-	"INTEZET" VARCHAR2(60 BYTE), 
-	"TUDOMANYOS_FOKOZAT" VARCHAR2(60 BYTE)
+   (	"ID" VARCHAR2(10), 
+	"NEV" VARCHAR2(60), 
+	"JELSZO" VARCHAR2(60), 
+	"EMAIL" VARCHAR2(60), 
+	"SZAKTERULET" VARCHAR2(60), 
+	"INTEZET" VARCHAR2(60), 
+	"TUDOMANYOS_FOKOZAT" VARCHAR2(60)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
@@ -169,8 +182,8 @@
 --------------------------------------------------------
 
   CREATE TABLE "MODOSITAS" 
-   (	"CIKKID" VARCHAR2(60 BYTE), 
-	"LEIRAS" VARCHAR2(100 BYTE), 
+   (	"CIKKID" VARCHAR2(60), 
+	"LEIRAS" VARCHAR2(100), 
 	"DATUM" DATE
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
@@ -184,9 +197,9 @@
 --------------------------------------------------------
 
   CREATE TABLE "NYELVTUDAS" 
-   (	"LEKTORID" VARCHAR2(10 BYTE), 
-	"NYELV" VARCHAR2(60 BYTE), 
-	"SZINT" VARCHAR2(60 BYTE)
+   (	"LEKTORID" VARCHAR2(10), 
+	"NYELV" VARCHAR2(60), 
+	"SZINT" VARCHAR2(60)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
@@ -203,14 +216,56 @@ Insert into ADMIN (ID,NEV,JELSZO,EMAIL) values ('A7777','Lela','majd-valami','ez
 Insert into ADMIN (ID,NEV,JELSZO,EMAIL) values ('A00001','Bodnar','chad','chad@férfi.com');
 REM INSERTING into ALLUSERS
 SET DEFINE OFF;
-Insert into ALLUSERS (ID) values ('A6969');
-Insert into ALLUSERS (ID) values ('A111111');
-Insert into ALLUSERS (ID) values ('A55555');
-Insert into ALLUSERS (ID) values ('A7777');
 Insert into ALLUSERS (ID) values ('A00001');
-Insert into ALLUSERS (ID) values ('C11');
-
-
+Insert into ALLUSERS (ID) values ('A111111');
+Insert into ALLUSERS (ID) values ('A55555');
+Insert into ALLUSERS (ID) values ('A6969');
+Insert into ALLUSERS (ID) values ('A7777');
+Insert into ALLUSERS (ID) values ('L1');
+Insert into ALLUSERS (ID) values ('L10');
+Insert into ALLUSERS (ID) values ('L11');
+Insert into ALLUSERS (ID) values ('L12');
+Insert into ALLUSERS (ID) values ('L13');
+Insert into ALLUSERS (ID) values ('L14');
+Insert into ALLUSERS (ID) values ('L15');
+Insert into ALLUSERS (ID) values ('L16');
+Insert into ALLUSERS (ID) values ('L17');
+Insert into ALLUSERS (ID) values ('L18');
+Insert into ALLUSERS (ID) values ('L19');
+Insert into ALLUSERS (ID) values ('L2');
+Insert into ALLUSERS (ID) values ('L20');
+Insert into ALLUSERS (ID) values ('L3');
+Insert into ALLUSERS (ID) values ('L4');
+Insert into ALLUSERS (ID) values ('L5');
+Insert into ALLUSERS (ID) values ('L6');
+Insert into ALLUSERS (ID) values ('L7');
+Insert into ALLUSERS (ID) values ('L8');
+Insert into ALLUSERS (ID) values ('L9');
+Insert into ALLUSERS (ID) values ('U001');
+Insert into ALLUSERS (ID) values ('U002');
+Insert into ALLUSERS (ID) values ('U003');
+Insert into ALLUSERS (ID) values ('U1');
+Insert into ALLUSERS (ID) values ('U10');
+Insert into ALLUSERS (ID) values ('U11');
+Insert into ALLUSERS (ID) values ('U12');
+Insert into ALLUSERS (ID) values ('U13');
+Insert into ALLUSERS (ID) values ('U14');
+Insert into ALLUSERS (ID) values ('U15');
+Insert into ALLUSERS (ID) values ('U16');
+Insert into ALLUSERS (ID) values ('U17');
+Insert into ALLUSERS (ID) values ('U18');
+Insert into ALLUSERS (ID) values ('U19');
+Insert into ALLUSERS (ID) values ('U2');
+Insert into ALLUSERS (ID) values ('U20');
+Insert into ALLUSERS (ID) values ('U21');
+Insert into ALLUSERS (ID) values ('U25');
+Insert into ALLUSERS (ID) values ('U3');
+Insert into ALLUSERS (ID) values ('U4');
+Insert into ALLUSERS (ID) values ('U5');
+Insert into ALLUSERS (ID) values ('U6');
+Insert into ALLUSERS (ID) values ('U7');
+Insert into ALLUSERS (ID) values ('U8');
+Insert into ALLUSERS (ID) values ('U9');
 REM INSERTING into BAN
 SET DEFINE OFF;
 Insert into BAN (FELHASZNALOID,ADMINID,"Date",INDOK,HOSSZ) values ('U2','A6969',to_date('21-MÁRC. -05','RR-MON-DD'),'Sértegetés','1');
@@ -504,6 +559,16 @@ Insert into NYELVTUDAS (LEKTORID,NYELV,SZINT) values ('L20','francia','B1');
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS" ;
 --------------------------------------------------------
+--  DDL for Index ALLUSERS_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "ALLUSERS_PK" ON "ALLUSERS" ("ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
 --  DDL for Index FELHASZNALO_PK
 --------------------------------------------------------
 
@@ -549,6 +614,58 @@ BEGIN
 END;
 /
 ALTER TRIGGER "ADMINTOALL" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger FELHASZNALOFROMALL
+--------------------------------------------------------
+
+  CREATE OR REPLACE EDITIONABLE TRIGGER "FELHASZNALOFROMALL" 
+BEFORE DELETE
+ON Felhasznalo
+FOR EACH ROW
+BEGIN
+    DELETE Allusers where :OLD.ID = ID;
+END;
+/
+ALTER TRIGGER "FELHASZNALOFROMALL" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger FELHASZNALOTOALL
+--------------------------------------------------------
+
+  CREATE OR REPLACE EDITIONABLE TRIGGER "FELHASZNALOTOALL" 
+AFTER INSERT
+ON felhasznalo
+FOR EACH ROW
+BEGIN
+    INSERT INTO Allusers Values(:NEW.ID);
+END;
+/
+ALTER TRIGGER "FELHASZNALOTOALL" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger LEKTORFROMALL
+--------------------------------------------------------
+
+  CREATE OR REPLACE EDITIONABLE TRIGGER "LEKTORFROMALL" 
+BEFORE DELETE
+ON LEKTOR
+FOR EACH ROW
+BEGIN
+    DELETE Allusers where :OLD.ID = ID;
+END;
+/
+ALTER TRIGGER "LEKTORFROMALL" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger LEKTORTOALL
+--------------------------------------------------------
+
+  CREATE OR REPLACE EDITIONABLE TRIGGER "LEKTORTOALL" 
+AFTER INSERT
+ON Lektor
+FOR EACH ROW
+BEGIN
+    INSERT INTO Allusers Values(:NEW.ID);
+END;
+/
+ALTER TRIGGER "LEKTORTOALL" ENABLE;
 --------------------------------------------------------
 --  DDL for Package TUDASBAZIS
 --------------------------------------------------------
@@ -676,6 +793,12 @@ END TUDASBAZIS;
 --  Constraints for Table ALLUSERS
 --------------------------------------------------------
 
+  ALTER TABLE "ALLUSERS" ADD CONSTRAINT "ALLUSERS_PK" PRIMARY KEY ("ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS"  ENABLE;
   ALTER TABLE "ALLUSERS" MODIFY ("ID" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table BAN
@@ -740,10 +863,8 @@ END TUDASBAZIS;
 	  REFERENCES "LEKTOR" ("ID") ON DELETE SET NULL ENABLE;
   ALTER TABLE "CIKK" ADD CONSTRAINT "CIKK_FK2" FOREIGN KEY ("KATEGORIA")
 	  REFERENCES "KATEGORIA" ("NEV") ON DELETE SET NULL ENABLE;
-  ALTER TABLE "CIKK" ADD CONSTRAINT "CIKK_FK3" FOREIGN KEY ("FELHASZNALOID_SZERZO")
-	  REFERENCES "ADMIN" ("ID") ON DELETE CASCADE DISABLE;
-  ALTER TABLE "CIKK" ADD CONSTRAINT "SYS_C0010048" FOREIGN KEY ("FELHASZNALOID_SZERZO")
-	  REFERENCES "FELHASZNALO" ("ID") ON DELETE CASCADE ENABLE;
+  ALTER TABLE "CIKK" ADD CONSTRAINT "CIKK_USER" FOREIGN KEY ("FELHASZNALOID_SZERZO")
+	  REFERENCES "ALLUSERS" ("ID") ON DELETE CASCADE ENABLE;
 --------------------------------------------------------
 --  Ref Constraints for Table HIBA
 --------------------------------------------------------
