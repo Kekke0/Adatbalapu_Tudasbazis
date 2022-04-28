@@ -42,6 +42,20 @@ public class Cikk {
         Szerzo = szerzo;
     }
 
+    public Cikk(String ID, String cim, String tartalom, String allapot, String nyelv, String kategoria,String szerzo, List<String> kulcsszo, String lektoralta, String lektoralasDatuma) {
+        this.ID = ID;
+        Cim = cim;
+        Tartalom = tartalom;
+        Allapot = allapot;
+        Nyelv = nyelv;
+        LektoralasDatuma = lektoralasDatuma;
+        Kategoria = kategoria;
+        Lektoralta = lektoralta;
+        Szerzo = szerzo;
+        Kulcsszo=kulcsszo;
+    }
+
+
     public static int getCID() {
         try {
             CID= new Find().CikkCID()+1;

@@ -84,9 +84,18 @@ public class Delete extends ConnectionProtocol {
     
     public Boolean Kulcsszo(String CimID, String szo) throws Exception{
         Start();
-        PreparedStatement stmt=super.getConn().prepareStatement("delete kulcsszo where CimID = ? and szo = ?");
+        PreparedStatement stmt=super.getConn().prepareStatement("delete kulcsszo where CikkID = ? and szo = ?");
         stmt.setString(1,CimID);
         stmt.setString(2,szo);
+        rs= stmt.executeUpdate();
+        Stop();
+        return rs>0;
+    }
+
+    public Boolean cleanKulcszo(String CikkID) throws Exception{
+        Start();
+        PreparedStatement stmt=super.getConn().prepareStatement("delete kulcsszo where CikkID = ?");
+        stmt.setString(1,CikkID);
         rs= stmt.executeUpdate();
         Stop();
         return rs>0;

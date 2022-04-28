@@ -161,7 +161,16 @@ public class TudasbazisApplication {
 
 	@PostMapping("/getCikk")
 	public ResponseEntity<Cikk> getCikk(@RequestBody String id) {
-		Cikk cikk;
+/*		ArrayList<Cikk> ret = new ArrayList<>();
+		for (Cikk n : a.ABCikkek()) {
+			if (n.getCim().contains(keresoszo))
+				ret.add(n);
+			else for (String k : n.getKulcsszo()) {
+				if (k.contains(keresoszo))
+					ret.add(n);
+			}
+		}*/
+		Cikk cikk = null;
 		try{
 			cikk = find.cikkLekeres(id);
 		} catch (Exception e){
@@ -382,5 +391,71 @@ public class TudasbazisApplication {
 	///////////////////////////////////////////////////////////////////////
 	// Deletek vege
 	///////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////
+	// Update
+	///////////////////////////////////////////////////////////////////////
+
+	/**
+	 *
+	 * @param up
+	 * {
+	 *      "ID":"id",
+	 *      "Nev":"neve",
+	 *      "Email":"Emailcíme",
+	 *      "jelszo": "jelszava"
+	 * }
+	 */
+	@PostMapping(value = "/felhasznalo/upd")
+	public ResponseEntity<Boolean> Felhasznupdate (@RequestBody Map<String,String> up){
+		Felhasznalo Updated=new Felhasznalo(up.get("ID"),up.get("Nev"),up.get("Email"), up.get("jelszo"));
+		try {
+			Boolean a = new Update().FelhaszID(Updated);
+			return new ResponseEntity<>(a, HttpStatus.ACCEPTED);
+		}catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(false, HttpStatus.NOT_ACCEPTABLE);
+		}
+	}
+
+	/**
+	 *
+	 * @param up:
+	 *{
+	 *     "ID": "C30",
+	 *     "cim": "Cime",
+	 *     "tartalom": "tartalma",
+	 *     "allapot": "allapota",
+	 *     "nyelv": "Angol",
+	 *     "kategoria": "Knev",
+	 *     "szerzo": "U2",
+	 *     "kulcsszavak": "k1, k2, k3",
+	 *     "lektor": "L2",
+	 *     "date": "22-JAN.  -20"
+	 * }
+	 */
+	@PostMapping(value = "/Cikk/upd")
+	public ResponseEntity<Boolean> Cikkupdate (@RequestBody Map<String,String> up){
+		List<String> kulcsszavak;
+
+		if (!up.get("kulcsszavak").equals("")) {
+			String[] kulcsszo = up.get("kulcsszavak").split(", ");
+			kulcsszavak = new ArrayList<String>(Arrays.asList(kulcsszo));
+		}
+		else kulcsszavak=new ArrayList<String>();
+
+		Cikk Updated= new Cikk(up.get("ID"),up.get("cim"), up.get("tartalom"), up.get("allapot"), up.get("nyelv"), up.get("kategoria"),up.get("szerzo"),kulcsszavak,up.get("lektor"),up.get("date"));
+
+		try {
+			Boolean a = new Update().UpdateCikk(Updated);
+			return new ResponseEntity<>(a, HttpStatus.ACCEPTED);
+		}catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(false, HttpStatus.NOT_ACCEPTABLE);
+		}
+	}
+	///////////////////////////////////////////////////////////////////////
+	// Update vege
+	///////////////////////////////////////////////////////////////////////
+
 
 }
