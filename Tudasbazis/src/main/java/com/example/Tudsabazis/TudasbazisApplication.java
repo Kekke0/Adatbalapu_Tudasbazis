@@ -161,16 +161,7 @@ public class TudasbazisApplication {
 
 	@PostMapping("/getCikk")
 	public ResponseEntity<Cikk> getCikk(@RequestBody String id) {
-/*		ArrayList<Cikk> ret = new ArrayList<>();
-		for (Cikk n : a.ABCikkek()) {
-			if (n.getCim().contains(keresoszo))
-				ret.add(n);
-			else for (String k : n.getKulcsszo()) {
-				if (k.contains(keresoszo))
-					ret.add(n);
-			}
-		}*/
-		Cikk cikk = null;
+		Cikk cikk;
 		try{
 			cikk = find.cikkLekeres(id);
 		} catch (Exception e){
