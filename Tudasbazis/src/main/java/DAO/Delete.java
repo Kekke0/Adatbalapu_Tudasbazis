@@ -45,10 +45,11 @@ public class Delete extends ConnectionProtocol {
         return rs>0;
     }
     
-    public Boolean NyelvtudasLektorID(String LektorID) throws Exception{
+    public Boolean Nyelvtudas(String LektorID, String nyelv) throws Exception{
         Start();
-        PreparedStatement stmt=super.getConn().prepareStatement("delete nyelvtudas where LektorID = ?");
+        PreparedStatement stmt=super.getConn().prepareStatement("delete nyelvtudas where LektorID = ? and nyelv = ?");
         stmt.setString(1,LektorID);
+        stmt.setString(2,nyelv);
         rs= stmt.executeUpdate();
         Stop();
         return rs>0;
@@ -81,16 +82,17 @@ public class Delete extends ConnectionProtocol {
         return rs>0;
     }
     
-    public Boolean KulcsszoCimID(String CimID) throws Exception{
+    public Boolean Kulcsszo(String CimID, String szo) throws Exception{
         Start();
-        PreparedStatement stmt=super.getConn().prepareStatement("delete kulcsszo where CimID = ?");
+        PreparedStatement stmt=super.getConn().prepareStatement("delete kulcsszo where CimID = ? and szo = ?");
         stmt.setString(1,CimID);
+        stmt.setString(2,szo);
         rs= stmt.executeUpdate();
         Stop();
         return rs>0;
     }
-    
-    public Boolean BanFelhaszID(String FelhasznaloID) throws Exception{
+    //Egy felhasználó minden Bannját törli. (could be usefull)
+    public Boolean AllFelhBan(String FelhasznaloID) throws Exception{
         Start();
         PreparedStatement stmt=super.getConn().prepareStatement("delete ban where FelhasznaloID = ?");
         stmt.setString(1,FelhasznaloID);
@@ -99,10 +101,11 @@ public class Delete extends ConnectionProtocol {
         return rs>0;
     }
     
-      public Boolean ModositasCikkId(String CikkID) throws Exception{
+    public Boolean Modositas(String CikkID, String date) throws Exception{
         Start();
-        PreparedStatement stmt=super.getConn().prepareStatement("delete modositas where CikkID = ?");
+        PreparedStatement stmt=super.getConn().prepareStatement("delete modositas where CikkID = ? and datum");
         stmt.setString(1,CikkID);
+          stmt.setString(2,date);
         rs= stmt.executeUpdate();
         Stop();
         return rs>0;
@@ -117,10 +120,11 @@ public class Delete extends ConnectionProtocol {
         return rs>0;
     }
     
-    public Boolean JavitasHibaID(String HibaID) throws Exception{
+    public Boolean Javitas(String HibaID, String adminID) throws Exception{
         Start();
-        PreparedStatement stmt=super.getConn().prepareStatement("delete javitas where HibaID = ?");
+        PreparedStatement stmt=super.getConn().prepareStatement("delete javitas where HibaID = ? and adminID = ?");
         stmt.setString(1,HibaID);
+        stmt.setString(2,adminID);
         rs= stmt.executeUpdate();
         Stop();
         return rs>0;

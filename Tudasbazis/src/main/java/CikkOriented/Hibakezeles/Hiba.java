@@ -3,14 +3,14 @@ package CikkOriented.Hibakezeles;
 public class Hiba {
     private String ID, Leiras;
     private boolean Javitva;
-    private String JelentoID, Hibakezeles;
+    private String JelentoID, HibasCikkID;
 
-    public Hiba(String ID, String leiras, boolean javitva, String jelentoID, String hibakezeles) {
+    public Hiba(String ID, String leiras, boolean javitva, String jelentoID, String hibasCikkID) {
         this.ID = ID;
         Leiras = leiras;
         Javitva = javitva;
         JelentoID = jelentoID;
-        Hibakezeles = hibakezeles;
+        HibasCikkID = hibasCikkID;
     }
 
     public String getID() {
@@ -29,12 +29,12 @@ public class Hiba {
         Javitva = javitva;
     }
 
-    public String getHibakezeles() {
-        return Hibakezeles;
+    public String getHibasCikkID() {
+        return HibasCikkID;
     }
 
-    public void setHibakezeles(String hibakezeles) {
-        Hibakezeles = hibakezeles;
+    public void setHibasCikkID(String hibasCikkID) {
+        HibasCikkID = hibasCikkID;
     }
 
     public String getLeiras() {
@@ -60,7 +60,7 @@ public class Hiba {
                 ", Leiras='" + Leiras + '\'' +
                 ", Javitva=" + Javitva +
                 ", JelentoID='" + JelentoID + '\'' +
-                ", Hibakezeles='" + Hibakezeles + '\'' +
+                ", Hibakezeles='" + HibasCikkID + '\'' +
                 '}';
     }
 }

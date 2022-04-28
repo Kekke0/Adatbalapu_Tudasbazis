@@ -10,9 +10,10 @@ import UserBased.Ban;
 import UserBased.Felhasznalo;
 import UserBased.Lektor;
 import UserBased.Nyelvtudas;
+import com.sun.jdi.IntegerValue;
 
 
-
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -122,14 +123,14 @@ public class Insert extends ConnectionProtocol{
         return rs>0;
     }
     
-/*     public Boolean addBan(Ban uj) throws Exception{
+     public Boolean addBan(Ban uj) throws Exception{
         Start();
         PreparedStatement stmt=super.getConn().prepareStatement("Insert into BAN (FELHASZNALOID,ADMINID,HOSSZ,INDOK,DATE) values (?,?,?,?,?)");
         stmt.setString(1,uj.getFelhasznaloID());
         stmt.setString(2,uj.getAdminID());
         stmt.setString(3,uj.getHossz());
          stmt.setString(4,uj.getIndok());
-         stmt.setDate(5,uj.getDate());
+         stmt.setDate(5, Date.valueOf(uj.getDate()));
         rs= stmt.executeUpdate();
         Stop();
         return rs>0;
@@ -139,7 +140,7 @@ public class Insert extends ConnectionProtocol{
         Start();
         PreparedStatement stmt=super.getConn().prepareStatement("Insert into MODOSITAS (CIKKID,DATUM,LEIRAS) values (?,?,?)");
         stmt.setString(1,uj.getCikkID());
-        stmt.setDate(2,uj.getDatum());
+        stmt.setDate(2, Date.valueOf(uj.getDatum()));
         stmt.setString(3,uj.getLeiras());
         rs= stmt.executeUpdate();
         Stop();
@@ -151,7 +152,7 @@ public class Insert extends ConnectionProtocol{
         PreparedStatement stmt=super.getConn().prepareStatement("Insert into HIBA (ID,LEIRAS,JAVITVA,JELENTOID,HIBASCIKKID) values (?,?,?,?,?)");
         stmt.setString(1,uj.getID());
         stmt.setString(2,uj.getLeiras());
-        stmt.setString(3,uj.getJavitva());
+        stmt.setString(3, String.valueOf(uj.isJavitva()));
         stmt.setString(4,uj.getJelentoID());
         stmt.setString(5,uj.getHibasCikkID());
         rs= stmt.executeUpdate();
@@ -164,11 +165,11 @@ public class Insert extends ConnectionProtocol{
         PreparedStatement stmt=super.getConn().prepareStatement("Insert into JAVITAS (ADMINID,HIBAID,DATE,JEGYZET) values (?,?,?,?)");
         stmt.setString(1,uj.getAdminID());
         stmt.setString(2,uj.getHibaID());
-        stmt.setDate(3,uj.getDate());
+        stmt.setDate(3, Date.valueOf(uj.getDate()));
         stmt.setString(4,uj.getJegyzet());
         rs= stmt.executeUpdate();
         Stop();
         return rs>0;
-    }*/
+    }
     
 }
