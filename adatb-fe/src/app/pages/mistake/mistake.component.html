@@ -1,1 +1,11 @@
-<p>mistake works!</p>
+<h1 mat-dialog-title>Cikk hiba jelentése</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Hiba leírása</mat-label>
+    <input matInput [(ngModel)]="data.ok">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]>Mégse</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Jelentés</button>
+</div>

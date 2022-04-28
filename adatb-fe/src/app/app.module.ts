@@ -34,6 +34,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { MistakeComponent } from './pages/mistake/mistake.component';
 import { EditArticleComponent } from './pages/edit-article/edit-article.component';
+import { BanComponent } from './components/ban/ban.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { EditArticleComponent } from './pages/edit-article/edit-article.componen
     UsersComponent,
     CategoriesComponent,
     MistakeComponent,
-    EditArticleComponent
+    EditArticleComponent,
+    BanComponent
   ],
   imports: [
     BrowserModule,

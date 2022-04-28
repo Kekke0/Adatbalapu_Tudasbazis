@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>{{data.Nev}} bannolása</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Bannolás oka</mat-label>
+    <input matInput [(ngModel)]="data.indok">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Bannolás hossza</mat-label>
+    <input matInput [(ngModel)]="data.hossz">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]>Mégse</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ban</button>
+</div>

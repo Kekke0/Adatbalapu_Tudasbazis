@@ -83,14 +83,16 @@
     </ng-container>
   
   <ng-container matColumnDef="select">
-    <th mat-header-cell *matHeaderCellDef>Bannolva</th>
-    <td mat-cell *matCellDef="let row">
-      <mat-checkbox (click)="$event.stopPropagation()"
+    <th mat-header-cell *matHeaderCellDef>Ban</th>
+    <td mat-cell *matCellDef="let element">
+      <!-- <mat-checkbox (click)="$event.stopPropagation()"
                     (change)="$event ? selection.toggle(row) : null"
                     [checked]="selection.isSelected(row)"
                     [aria-label]="checkboxLabel(row)">
-      </mat-checkbox>
+      </mat-checkbox> -->
+      <span><button mat-raised-button color="primary" (click)="openDialog(element)">Felhasználó bannolása</button></span>
     </td>
+
   </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

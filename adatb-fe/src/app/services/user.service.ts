@@ -65,4 +65,19 @@ export class UserService {
     let body = {Nev: nev, Bovebben: bovebben };
     return this.http.post<any>(environment.API_URL + "/addKategoria", body);
   }
+////////////////////////////
+  public addBan(felhasznaloId: string, adminId: string, date: string, indok: string, hossz: string): Observable<any>{
+    let body = {felhasznaloId : felhasznaloId, adminID: adminId , date : date, indok: indok,hossz: hossz};
+    return this.http.post<any>(environment.API_URL + "/felhasznalo/Bann", body);
+  }
+
+  public addHiba(leiras: string, javitva: string, jelentoId: string, cikkID:string): Observable<any>{
+    let body = {leiras: leiras, javitva: javitva, jelentoId: jelentoId, cikkID: cikkID};
+    return this.http.post<any>(environment.API_URL + "/Hiba", body);
+  }
+
+  public addJavitas(adminID: string, hibaID: string, date: string, jegyzet: string): Observable<any>{
+    let body = {adminID: adminID, hibaID: hibaID, date: date, jegyzet: jegyzet};
+    return this.http.post<any>(environment.API_URL + "/Hiba/jav", body);
+  }
 }

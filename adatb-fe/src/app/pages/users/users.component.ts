@@ -1,7 +1,9 @@
 import { DataSource, SelectionModel } from '@angular/cdk/collections';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 import { Observable, ReplaySubject } from 'rxjs';
+import { BanComponent } from 'src/app/components/ban/ban.component';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -16,7 +18,7 @@ export class UsersComponent implements OnInit {
   dataSource3: any[] = [];
   dataSource4: any[] = [];
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.userService.osszesFelhasznalo().subscribe(data =>{
@@ -45,5 +47,21 @@ export class UsersComponent implements OnInit {
   }
 
 
-}
+  openDialog(element:any): void {
+    const dialogRef = this.dialog.open(BanComponent, {
+      width: '250px',
+      data: element,
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      //this.animal = result;
+      console.log(result);
+    });
+  }
+
+  ban(element: any){
+    console.log(element);
+  }
+
+}

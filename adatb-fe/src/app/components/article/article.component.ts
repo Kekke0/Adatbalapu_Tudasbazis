@@ -1,6 +1,8 @@
 import { Component, DoCheck, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Cikk } from 'src/app/models/cikk';
+import { MistakeComponent } from 'src/app/pages/mistake/mistake.component';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -16,7 +18,7 @@ export class ArticleComponent implements OnInit, DoCheck {
   loggedInUser: any = {};
   userId: string = "";
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router, public dialog: MatDialog) { }
 
   isLoggedIn: boolean = this.userService.isLoggedIn;
 
@@ -38,8 +40,19 @@ export class ArticleComponent implements OnInit, DoCheck {
     }
   }
 
-  hibaJelentes(){
-    this.router.navigate(['/mistake', this.cikk.id]);
+  hibaJelentes(cikk:any){
+    //this.router.navigate(['/mistake', this.cikk.id]);
+    cikk.ok="";
+    const dialogRef = this.dialog.open(MistakeComponent, {
+      width: '250px',
+      data: cikk,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      //this.animal = result;
+      console.log(result);
+    });
   }
 
   szerkesztes(){
