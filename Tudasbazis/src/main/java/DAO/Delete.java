@@ -92,7 +92,7 @@ public class Delete extends ConnectionProtocol {
         return rs>0;
     }
     //Egy felhasználó minden Bannját törli. (could be usefull)
-    public Boolean AllFelhBan(String FelhasznaloID) throws Exception{
+    public Boolean ClearPast(String FelhasznaloID) throws Exception{
         Start();
         PreparedStatement stmt=super.getConn().prepareStatement("delete ban where FelhasznaloID = ?");
         stmt.setString(1,FelhasznaloID);

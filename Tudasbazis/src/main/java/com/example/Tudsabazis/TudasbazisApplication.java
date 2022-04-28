@@ -7,6 +7,7 @@ import CikkOriented.Kategoria;
 import CikkOriented.Modositas;
 import DAO.*;
 import Functions.Login;
+import Functions.Udelete;
 import UserBased.Ban;
 import UserBased.Felhasznalo;
 import com.google.gson.Gson;
@@ -16,8 +17,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
-import javax.security.auth.login.AccountNotFoundException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -329,6 +328,68 @@ public class TudasbazisApplication {
 	}
 	///////////////////////////////////////////////////////////////////////
 	// Insertek vege
+	///////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////
+	// Deletek
+	///////////////////////////////////////////////////////////////////////
+	@PostMapping(value = "/Cikk/del")
+	public ResponseEntity<Boolean> CikkDel (@RequestBody Map<String,String> del){
+		try {
+			Boolean a =new Delete().CikkID(del.get("ID"));
+			return new ResponseEntity<>(a, HttpStatus.ACCEPTED);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(false, HttpStatus.NOT_ACCEPTABLE);
+		}
+	}
+
+	@PostMapping(value = "/felhasznalo/Nyelvek/del")
+	public ResponseEntity<Boolean> Nyelvdel (@RequestBody Map<String,String> del){
+		try {
+			Boolean a =new Delete().Nyelvtudas(del.get("LektorID"),del.get("nyelv"));
+			return new ResponseEntity<>(a, HttpStatus.ACCEPTED);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(false, HttpStatus.NOT_ACCEPTABLE);
+		}
+	}
+
+	@PostMapping(value = "/Cikk/kulcsszo/del")
+	public ResponseEntity<Boolean> KulcsszoDel (@RequestBody Map<String,String> del){
+		try {
+			Boolean a =new Delete().Kulcsszo(del.get("CikkID"),del.get("szo"));
+			return new ResponseEntity<>(a, HttpStatus.ACCEPTED);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(false, HttpStatus.NOT_ACCEPTABLE);
+		}
+	}
+
+	@PostMapping(value = "/Cikk/Kat/del")
+	public ResponseEntity<Boolean> KategoriaDel (@RequestBody Map<String,String> del){
+		try {
+			Boolean a =new Delete().KategoriaNev(del.get("Kategoria"));
+			return new ResponseEntity<>(a, HttpStatus.ACCEPTED);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(false, HttpStatus.NOT_ACCEPTABLE);
+		}
+	}
+	@PostMapping(value = "/felhasznalo/del")
+	public ResponseEntity<Boolean> Felhaszznalodel (@RequestBody Map<String,String> del){
+		try {
+			Boolean a = new Udelete().Del(del.get("ID"));
+			return new ResponseEntity<>(a, HttpStatus.ACCEPTED);
+		} catch (SecurityException a) {
+			a.printStackTrace();
+			return new ResponseEntity<>(false, HttpStatus.I_AM_A_TEAPOT);
+		}catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(false, HttpStatus.NOT_ACCEPTABLE);
+		}
+	}
+	///////////////////////////////////////////////////////////////////////
+	// Deletek vege
 	///////////////////////////////////////////////////////////////////////
 
 }
