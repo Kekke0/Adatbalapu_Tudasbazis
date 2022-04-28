@@ -1,7 +1,7 @@
 package Functions;
 
 import DAO.Find;
-import UserBased.Felhasznalo;
+import Model.UserBased.Felhasznalo;
 
 import javax.security.auth.login.AccountNotFoundException;
 import java.sql.SQLException;

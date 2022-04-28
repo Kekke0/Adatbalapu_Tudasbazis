@@ -1,4 +1,4 @@
-package CikkOriented;
+package Model.CikkOriented;
 
 public class Modositas {
     private String CikkID, Leiras,Datum;

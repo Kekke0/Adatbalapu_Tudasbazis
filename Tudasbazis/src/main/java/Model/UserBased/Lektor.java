@@ -1,4 +1,4 @@
-package UserBased;
+package Model.UserBased;
 
 import java.util.List;
 

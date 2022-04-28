@@ -1,9 +1,9 @@
-package UserBased;
+package Model.UserBased;
 public class Nyelvtudas {
     private String Szint;
     private String Nyelv;
     private String LektorID;
-    public Nyelvtudas(String szint, String nyelv) {
+    public Nyelvtudas(String Lektorid,String szint, String nyelv) {
         Szint = szint;
         Nyelv = nyelv;
     }

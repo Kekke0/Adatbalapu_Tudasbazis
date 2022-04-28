@@ -1,21 +1,19 @@
 package DAO;
 
-import CikkOriented.Cikk;
-import CikkOriented.Kategoria;
-import CikkOriented.Modositas;
-import CikkOriented.Hibakezeles.Hiba;
-import CikkOriented.Hibakezeles.Javitas;
-import UserBased.Admin;
-import UserBased.Ban;
-import UserBased.Felhasznalo;
-import UserBased.Lektor;
-import UserBased.Nyelvtudas;
-import com.sun.jdi.IntegerValue;
+import Model.CikkOriented.Cikk;
+import Model.CikkOriented.Kategoria;
+import Model.CikkOriented.Modositas;
+import Model.CikkOriented.Hibakezeles.Hiba;
+import Model.CikkOriented.Hibakezeles.Javitas;
+import Model.UserBased.Admin;
+import Model.UserBased.Ban;
+import Model.UserBased.Felhasznalo;
+import Model.UserBased.Lektor;
+import Model.UserBased.Nyelvtudas;
 
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class Insert extends ConnectionProtocol{

@@ -1,15 +1,12 @@
 package DAO;
 
-import CikkOriented.Cikk;
-import UserBased.Admin;
-import UserBased.Felhasznalo;
-import UserBased.Lektor;
+import Model.CikkOriented.Cikk;
+import Model.UserBased.Admin;
+import Model.UserBased.Felhasznalo;
+import Model.UserBased.Lektor;
 
-import javax.security.auth.login.AccountNotFoundException;
-import java.security.InvalidParameterException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -120,6 +117,22 @@ public class Find extends ConnectionProtocol {
         int legnagy=0;
         while (rs.next()){
             String[] a = rs.getString(1).split("C");
+            int ertek = Integer.parseInt(a[1]);
+            if (ertek>legnagy){
+                legnagy=ertek;
+            }
+        }
+        Stop();
+        return legnagy;
+    }
+
+    public int HibaCID() throws Exception{
+        Start();
+        PreparedStatement stmt=super.getConn().prepareStatement("select ID from Hiba");
+        rs= stmt.executeQuery();
+        int legnagy=0;
+        while (rs.next()){
+            String[] a = rs.getString(1).split("H");
             int ertek = Integer.parseInt(a[1]);
             if (ertek>legnagy){
                 legnagy=ertek;

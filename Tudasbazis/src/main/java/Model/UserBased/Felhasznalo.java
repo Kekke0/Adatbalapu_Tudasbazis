@@ -1,9 +1,6 @@
-package UserBased;
+package Model.UserBased;
 
 import DAO.Find;
-import DAO.SelectAll;
-
-import java.util.ArrayList;
 
 public class Felhasznalo {
     private String ID;

@@ -1,4 +1,4 @@
-package UserBased;
+package Model.UserBased;
 
 public class Admin extends Felhasznalo {
     public Admin(String ID, String nev, String email, String jelszo) {

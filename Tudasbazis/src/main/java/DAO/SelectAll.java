@@ -1,14 +1,12 @@
 package DAO;
 
-import CikkOriented.Cikk;
-import CikkOriented.Hibakezeles.Hiba;
-import CikkOriented.Hibakezeles.Javitas;
-import CikkOriented.Kategoria;
-import CikkOriented.Modositas;
-import UserBased.*;
-import oracle.jdbc.pool.OracleDataSource;
+import Model.CikkOriented.Cikk;
+import Model.CikkOriented.Hibakezeles.Hiba;
+import Model.CikkOriented.Hibakezeles.Javitas;
+import Model.CikkOriented.Kategoria;
+import Model.CikkOriented.Modositas;
+import Model.UserBased.*;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -90,8 +88,8 @@ public class SelectAll extends ConnectionProtocol {
             String sql="select * from Nyelvtudas";
             rs= stmt.executeQuery(sql);
             while (rs.next()){
-                Nyelvtudas a =new Nyelvtudas(rs.getString(3),rs.getString(2));
-                a.setLektorID(rs.getString(1));
+                Nyelvtudas a =new Nyelvtudas(rs.getString(1),rs.getString(3),rs.getString(2));
+
                 ret.add(a);
                 //System.out.println(a);
             }

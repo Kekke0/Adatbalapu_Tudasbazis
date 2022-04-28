@@ -1,18 +1,6 @@
 package DAO;
 
-import CikkOriented.Cikk;
-import CikkOriented.Kategoria;
-import CikkOriented.Modositas;
-import CikkOriented.Hibakezeles.Hiba;
-import CikkOriented.Hibakezeles.Javitas;
-import UserBased.Admin;
-import UserBased.Ban;
-import UserBased.Felhasznalo;
-import UserBased.Lektor;
-import UserBased.Nyelvtudas;
-
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class Delete extends ConnectionProtocol {

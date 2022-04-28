@@ -1,4 +1,4 @@
-package CikkOriented.Hibakezeles;
+package Model.CikkOriented.Hibakezeles;
 
 public class Javitas {
     private String AdminID, HibaID, Date, Jegyzet;

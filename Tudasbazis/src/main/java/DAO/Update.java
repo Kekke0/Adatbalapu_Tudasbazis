@@ -1,7 +1,7 @@
 package DAO;
 
-import CikkOriented.Cikk;
-import UserBased.Felhasznalo;
+import Model.CikkOriented.Cikk;
+import Model.UserBased.Felhasznalo;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;

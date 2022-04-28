@@ -1,4 +1,6 @@
-package CikkOriented.Hibakezeles;
+package Model.CikkOriented.Hibakezeles;
+
+import DAO.Find;
 
 public class Hiba {
     private String ID, Leiras;
@@ -7,6 +9,19 @@ public class Hiba {
 
     public Hiba(String ID, String leiras, boolean javitva, String jelentoID, String hibasCikkID) {
         this.ID = ID;
+        Leiras = leiras;
+        Javitva = javitva;
+        JelentoID = jelentoID;
+        HibasCikkID = hibasCikkID;
+    }
+
+    public Hiba(String leiras, boolean javitva, String jelentoID, String hibasCikkID) {
+        try {
+            this.ID = "H"+new Find().HibaCID()+1;
+        } catch (Exception e) {
+            e.printStackTrace();
+            this.ID="H00";
+        }
         Leiras = leiras;
         Javitva = javitva;
         JelentoID = jelentoID;

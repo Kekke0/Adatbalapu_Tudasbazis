@@ -1,4 +1,4 @@
-package CikkOriented;
+package Model.CikkOriented;
 
 import DAO.Find;
 

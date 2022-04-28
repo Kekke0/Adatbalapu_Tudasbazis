@@ -1,4 +1,4 @@
-package UserBased;
+package Model.UserBased;
 
 public class Ban {
     private String FelhasznaloID, AdminID, Date, Indok, Hossz;

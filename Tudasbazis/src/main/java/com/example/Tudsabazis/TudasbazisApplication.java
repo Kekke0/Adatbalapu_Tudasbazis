@@ -1,15 +1,14 @@
 package com.example.Tudsabazis;
 
-import CikkOriented.Cikk;
-import CikkOriented.Hibakezeles.Hiba;
-import CikkOriented.Hibakezeles.Javitas;
-import CikkOriented.Kategoria;
-import CikkOriented.Modositas;
+import Model.CikkOriented.Cikk;
+import Model.CikkOriented.Hibakezeles.Hiba;
+import Model.CikkOriented.Hibakezeles.Javitas;
+import Model.CikkOriented.Kategoria;
+import Model.CikkOriented.Modositas;
 import DAO.*;
 import Functions.Login;
 import Functions.Udelete;
-import UserBased.Ban;
-import UserBased.Felhasznalo;
+import Model.UserBased.*;
 import com.google.gson.Gson;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -161,15 +160,6 @@ public class TudasbazisApplication {
 
 	@PostMapping("/getCikk")
 	public ResponseEntity<Cikk> getCikk(@RequestBody String id) {
-/*		ArrayList<Cikk> ret = new ArrayList<>();
-		for (Cikk n : a.ABCikkek()) {
-			if (n.getCim().contains(keresoszo))
-				ret.add(n);
-			else for (String k : n.getKulcsszo()) {
-				if (k.contains(keresoszo))
-					ret.add(n);
-			}
-		}*/
 		Cikk cikk = null;
 		try{
 			cikk = find.cikkLekeres(id);
@@ -186,6 +176,72 @@ public class TudasbazisApplication {
 	///////////////////////////////////////////////////////////////////////
 	// Insertek
 	///////////////////////////////////////////////////////////////////////
+
+	/**
+	 *
+	 * @param uj
+	 * {
+	 *             "LektorID":"",
+	 *             "szint":"",
+	 *             "nyelv":""
+	 * }
+	 */
+	@PostMapping(value = "/felhasznalo/Nyelvek/add")
+	public ResponseEntity<Boolean> Nyelvadd (@RequestBody Map<String,String> uj){
+		Nyelvtudas nyelv = new Nyelvtudas(uj.get("LektorID"),uj.get("szint"),uj.get("nyelv"));
+		try {
+			Boolean a =new Insert().addNyelvtudas(nyelv);
+			return new ResponseEntity<>(a, HttpStatus.ACCEPTED);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(false, HttpStatus.NOT_ACCEPTABLE);
+		}
+	}
+
+	/**
+	 *
+	 * @param uj { "felhID":""}
+	 */
+	@PostMapping(value = "/Admin")
+	public ResponseEntity<Admin> Rangadd (@RequestBody Map<String,String> uj){
+		Admin uja;
+		try {
+			uja= new Admin (new Find().FelhaszID(uj.get("felhID")));
+			Boolean a =new Insert().addAdmin(uja);
+			if(!a) throw new Exception();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
+		}
+		return new ResponseEntity<>(uja, HttpStatus.ACCEPTED);
+	}
+
+	/**
+	 *
+	 * @param uj {
+	 *            "felhID":"",
+	 *            "intezet":"",
+	 *            "szakterulet":"",
+	 *           "fokozat":""
+	 *           }
+	 */
+	@PostMapping(value = "/Lektor")
+	public ResponseEntity<Lektor> Lektoradd (@RequestBody Map<String,String> uj){
+		Lektor ujl;
+		try {
+			ujl= new Lektor(new Find().FelhaszID(uj.get("felhID")));
+			ujl.setIntezet(uj.get("intezet"));
+			ujl.setSzakterulet(uj.get("szakterulet"));
+			ujl.setTudFokozat(uj.get("fokozat"));
+			Boolean a =new Insert().addLektor(ujl);
+			if(!a) throw new Exception();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
+		}
+		return new ResponseEntity<>(ujl, HttpStatus.ACCEPTED);
+	}
+
 	/**
 	 *NINCS TESZTELVE!
 	 * @param uj:
@@ -202,7 +258,7 @@ public class TudasbazisApplication {
 		Boolean javit = false;
 		if (uj.get("javitva").equals("1")||uj.get("javitva").equals("true"))
 			javit = true;
-		Hiba ujc= new Hiba(uj.get("ID"), uj.get("leiras"), javit, uj.get("jelentoID"), uj.get("cikkID"));
+		Hiba ujc= new Hiba(uj.get("leiras"), javit, uj.get("jelentoID"), uj.get("cikkID"));
 		try {
 			Boolean a =new Insert().addHiba(ujc);
 			if(!a) throw new Exception();
@@ -313,6 +369,8 @@ public class TudasbazisApplication {
 		}
 		return new ResponseEntity<>(ujc, HttpStatus.ACCEPTED);
 	}
+
+
 
 	@PostMapping(value = "/addKategoria")
 	public ResponseEntity<Kategoria> addKategoria (@RequestBody Map<String,String> uj){
