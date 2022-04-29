@@ -34,6 +34,22 @@ public class Find extends ConnectionProtocol {
         return legnagy;
     }
 
+    public int LektorCID() throws Exception{
+        Start();
+        PreparedStatement stmt=super.getConn().prepareStatement("select ID from Lektor");
+        rs= stmt.executeQuery();
+        int legnagy=0;
+        while (rs.next()){
+            String[] a = rs.getString(1).split("L");
+            int ertek = Integer.parseInt(a[1]);
+            if (ertek>legnagy){
+                legnagy=ertek;
+            }
+        }
+        Stop();
+        return legnagy;
+    }
+
     public Felhasznalo FelhaszID(String ID) throws Exception{
         Start();
         PreparedStatement stmt=super.getConn().prepareStatement("select * from felhasznalo where id = ?");
@@ -152,5 +168,26 @@ public class Find extends ConnectionProtocol {
         Stop();
         return cikk;
 
+    }
+
+    public ArrayList<Cikk> usercikkei(String SID) throws Exception{
+        ArrayList<Cikk> ret=new ArrayList<Cikk>();
+        try{
+            Start();
+            PreparedStatement stmt=super.getConn().prepareStatement("select * from cikk where FELHASZNALOID_SZERZO = ?");
+            stmt.setString(1,SID);
+            rs= stmt.executeQuery();
+            while (rs.next()){
+                Cikk a =new Cikk(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9));
+                a.setKulcsszo(new Find().Kulcszavak(a.getID()));
+                ret.add(a);
+                //System.out.println(a);
+            }
+            Stop();
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Lekérdezési hiba");
+        }
+        return ret;
     }
 }

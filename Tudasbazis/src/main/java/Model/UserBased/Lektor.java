@@ -1,5 +1,7 @@
 package Model.UserBased;
 
+import DAO.Find;
+
 import java.util.List;
 
 public class Lektor extends Felhasznalo {
@@ -13,11 +15,16 @@ public class Lektor extends Felhasznalo {
         TudFokozat = tudFokozat;
     }
 
-    public Lektor(String ID, String nev, String email, String jelszo) {
-        super(ID, nev, email, jelszo);
+    public Lektor( String nev, String email, String jelszo, String szakterulet, String intezet, String tudFokozat) {
+        super(nev, email, jelszo);
+        this.setID("L"+getlCID());
+        Szakterulet = szakterulet;
+        Intezet = intezet;
+        TudFokozat = tudFokozat;
     }
     public Lektor(Felhasznalo elod){
-        super(elod.getID(), elod.getNev(), elod.getEmail(), elod.getJelszo());
+        super( elod.getNev(), elod.getEmail(), elod.getJelszo());
+        this.setID("L"+getlCID());
     }
 
     public String getSzakterulet() {
@@ -42,6 +49,16 @@ public class Lektor extends Felhasznalo {
 
     public void setTudFokozat(String tudFokozat) {
         TudFokozat = tudFokozat;
+    }
+
+
+    public int getlCID() {
+        try {
+            return new Find().LektorCID()+1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 
     @Override

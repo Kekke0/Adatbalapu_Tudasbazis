@@ -200,14 +200,27 @@ public class TudasbazisApplication {
 
 	/**
 	 *
-	 * @param uj { "felhID":""}
+	 * @param uj {
+	 *              "felhID":"",
+	 *           	"ujID":""
+	 *           }
 	 */
 	@PostMapping(value = "/Admin")
 	public ResponseEntity<Admin> Rangadd (@RequestBody Map<String,String> uj){
 		Admin uja;
 		try {
 			uja= new Admin (new Find().FelhaszID(uj.get("felhID")));
+			uja.setID(uj.get("ujID"));
 			Boolean a =new Insert().addAdmin(uja);
+
+
+			ArrayList<Cikk> atir = new Find().usercikkei(uj.get("felhID"));
+			for (Cikk n : atir)
+			{
+				n.setSzerzo(uja.getID());
+				new Update().UpdateSzerzo(n);
+			}
+			new Delete().FelhaszID(uj.get("felhID"));
 			if(!a) throw new Exception();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -234,6 +247,14 @@ public class TudasbazisApplication {
 			ujl.setSzakterulet(uj.get("szakterulet"));
 			ujl.setTudFokozat(uj.get("fokozat"));
 			Boolean a =new Insert().addLektor(ujl);
+
+			ArrayList<Cikk> atir = new Find().usercikkei(uj.get("felhID"));
+			for (Cikk n : atir)
+			{
+				n.setSzerzo(ujl.getID());
+				new Update().UpdateSzerzo(n);
+			}
+			new Delete().FelhaszID(uj.get("felhID"));
 			if(!a) throw new Exception();
 		} catch (Exception e) {
 			e.printStackTrace();

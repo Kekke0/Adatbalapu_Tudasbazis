@@ -23,7 +23,7 @@ public class Felhasznalo {
         this.jelszo = jelszo;
     }
 
-    public static int getCID() {
+    public int getCID() {
         try {
             CID= new Find().FelhaszCID()+1;
         } catch (Exception e) {
