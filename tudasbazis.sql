@@ -589,83 +589,29 @@ Insert into NYELVTUDAS (LEKTORID,NYELV,SZINT) values ('L20','francia','B1');
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS" ;
 --------------------------------------------------------
---  DDL for Trigger ADMINFROMALL
+--  Triggers
 --------------------------------------------------------
-
-  CREATE OR REPLACE EDITIONABLE TRIGGER "ADMINFROMALL" 
-BEFORE DELETE
-ON admin
+create or replace TRIGGER CascadeUSERS
+INSTEAD OF DELETE ON ALLUSERS
 FOR EACH ROW
 BEGIN
-    DELETE Allusers where :OLD.ID = ID;
+DELETE CIKK  WHERE FELHASZNALOID_SZERZO= :OLD.ID;
+DELETE felhasznalo WHERE felhasznalo.ID= :OLD.ID;
+DELETE ADMIN WHERE ADMIN.ID= :OLD.ID;
+DELETE LEKTOR WHERE LEKTOR.ID= :OLD.ID;
 END;
-/
-ALTER TRIGGER "ADMINFROMALL" ENABLE;
---------------------------------------------------------
---  DDL for Trigger ADMINTOALL
---------------------------------------------------------
 
-  CREATE OR REPLACE EDITIONABLE TRIGGER "ADMINTOALL" 
-AFTER INSERT
-ON admin
+create or replace TRIGGER SZERZOCHECK
+AFTER INSERT OR UPDATE ON CIKK
 FOR EACH ROW
+DECLARE
+v_count ALLUSERS.ID%TYPE;
 BEGIN
-    INSERT INTO Allusers Values(:NEW.ID);
+SELECT COUNT(ALLUSERS.ID) INTO v_count from ALLUSERS WHERE ALLUSERS.ID = :NEW.FELHASZNALOID_SZERZO;
+IF  v_count = 0 THEN
+RAISE_APPLICATION_ERROR(-20000, 'Nem létezõ felhasználóra hivatkozik');
+END IF;
 END;
-/
-ALTER TRIGGER "ADMINTOALL" ENABLE;
---------------------------------------------------------
---  DDL for Trigger FELHASZNALOFROMALL
---------------------------------------------------------
-
-  CREATE OR REPLACE EDITIONABLE TRIGGER "FELHASZNALOFROMALL" 
-BEFORE DELETE
-ON Felhasznalo
-FOR EACH ROW
-BEGIN
-    DELETE Allusers where :OLD.ID = ID;
-END;
-/
-ALTER TRIGGER "FELHASZNALOFROMALL" ENABLE;
---------------------------------------------------------
---  DDL for Trigger FELHASZNALOTOALL
---------------------------------------------------------
-
-  CREATE OR REPLACE EDITIONABLE TRIGGER "FELHASZNALOTOALL" 
-AFTER INSERT
-ON felhasznalo
-FOR EACH ROW
-BEGIN
-    INSERT INTO Allusers Values(:NEW.ID);
-END;
-/
-ALTER TRIGGER "FELHASZNALOTOALL" ENABLE;
---------------------------------------------------------
---  DDL for Trigger LEKTORFROMALL
---------------------------------------------------------
-
-  CREATE OR REPLACE EDITIONABLE TRIGGER "LEKTORFROMALL" 
-BEFORE DELETE
-ON LEKTOR
-FOR EACH ROW
-BEGIN
-    DELETE Allusers where :OLD.ID = ID;
-END;
-/
-ALTER TRIGGER "LEKTORFROMALL" ENABLE;
---------------------------------------------------------
---  DDL for Trigger LEKTORTOALL
---------------------------------------------------------
-
-  CREATE OR REPLACE EDITIONABLE TRIGGER "LEKTORTOALL" 
-AFTER INSERT
-ON Lektor
-FOR EACH ROW
-BEGIN
-    INSERT INTO Allusers Values(:NEW.ID);
-END;
-/
-ALTER TRIGGER "LEKTORTOALL" ENABLE;
 --------------------------------------------------------
 --  DDL for Package TUDASBAZIS
 --------------------------------------------------------
