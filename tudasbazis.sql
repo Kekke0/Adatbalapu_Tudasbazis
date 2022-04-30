@@ -612,6 +612,18 @@ IF  v_count = 0 THEN
 RAISE_APPLICATION_ERROR(-20000, 'Nem létezõ felhasználóra hivatkozik');
 END IF;
 END;
+
+create or replace TRIGGER Invincible
+BEFORE DELETE ON ADMIN
+FOR EACH ROW
+DECLARE
+v_chosen varchar(10);
+BEGIN
+v_chosen  := 'A6969';
+IF :OLD.ID = v_chosen THEN
+RAISE_APPLICATION_ERROR(-20000, 'Ezt az  accountot nem lehetséges törölni!');
+END IF;
+END;
 --------------------------------------------------------
 --  DDL for Package TUDASBAZIS
 --------------------------------------------------------
