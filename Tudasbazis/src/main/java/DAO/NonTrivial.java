@@ -147,5 +147,50 @@ public class NonTrivial extends ConnectionProtocol{
         return ret;
     }
 
+    public ArrayList<Map<String,String>> Lektoralt(){
+        ArrayList<Map<String,String>> ret=new ArrayList<Map<String,String>>();
+        try{
+            Start();
+            stmt=super.getConn().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            String sql="select nev, count(lektor.id) from lektor inner join cikk on lektor.id = cikk.lektoralta group by lektor.nev";
+            rs= stmt.executeQuery(sql);
+            while (rs.next()){
+                Map a = new HashMap();
+                a.put("nev",rs.getString(1));
+                a.put("count",rs.getString(2));
+                ret.add(a);
+                //System.out.println(a);
+            }
+            Stop();
+        }catch (Exception e){
+            System.out.println("Lekérdezési hiba");
+            e.printStackTrace();
+        }
+        return ret;
+    }
 
+    /**
+     * Megállapítja mennyi hibát jelntettek egy-egy cikkhez
+     */
+    public ArrayList<Map<String,String>> Cikkhibai(){
+        ArrayList<Map<String,String>> ret=new ArrayList<Map<String,String>>();
+        try{
+            Start();
+            stmt=super.getConn().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            String sql="select CIKK.ID, COUNT(HIBA.ID) AS HIBA from CIKK inner join HIBA on CIKK.ID = HIBA.HIBASCIKKID WHERE HIBA.JAvitva = 0 group by CIKK.ID ORDER BY HIBA";
+            rs= stmt.executeQuery(sql);
+            while (rs.next()){
+                Map a = new HashMap();
+                a.put("ID",rs.getString(1));
+                a.put("hibak",rs.getString(2));
+                ret.add(a);
+                //System.out.println(a);
+            }
+            Stop();
+        }catch (Exception e){
+            System.out.println("Lekérdezési hiba");
+            e.printStackTrace();
+        }
+        return ret;
+    }
 }

@@ -15,38 +15,12 @@ public class Delete extends ConnectionProtocol {
         return rs;
     }
 
-    public Boolean FelhaszID(String ID) throws Exception{
-        Start();
-        PreparedStatement stmt=super.getConn().prepareStatement("delete felhasznalo where ID = ?");
-        stmt.setString(1,ID);
-        rs= stmt.executeUpdate();
-        Stop();
-        return rs>0;
-    }
-    
-      public Boolean LektorID(String ID) throws Exception{
-        Start();
-        PreparedStatement stmt=super.getConn().prepareStatement("delete lektor where ID = ?");
-        stmt.setString(1,ID);
-        rs= stmt.executeUpdate();
-        Stop();
-        return rs>0;
-    }
     
     public Boolean Nyelvtudas(String LektorID, String nyelv) throws Exception{
         Start();
         PreparedStatement stmt=super.getConn().prepareStatement("delete nyelvtudas where LektorID = ? and nyelv = ?");
         stmt.setString(1,LektorID);
         stmt.setString(2,nyelv);
-        rs= stmt.executeUpdate();
-        Stop();
-        return rs>0;
-    }
-    
-    public Boolean AdminID(String ID) throws Exception{
-        Start();
-        PreparedStatement stmt=super.getConn().prepareStatement("delete admin where ID = ?");
-        stmt.setString(1,ID);
         rs= stmt.executeUpdate();
         Stop();
         return rs>0;
@@ -126,5 +100,38 @@ public class Delete extends ConnectionProtocol {
         Stop();
         return rs>0;
     }
+
+    public Boolean Userid(String ID) throws Exception{
+        Start();
+        PreparedStatement stmt=super.getConn().prepareStatement("delete ALLUSERS where ID = ?");
+        stmt.setString(1,ID);
+        rs= stmt.executeUpdate();
+        Stop();
+        return rs>0;
+    }
+//    public Boolean FelhaszID(String ID) throws Exception{
+//        Start();
+//        PreparedStatement stmt=super.getConn().prepareStatement("delete felhasznalo where ID = ?");
+//        stmt.setString(1,ID);
+//        rs= stmt.executeUpdate();
+//        Stop();
+//        return rs>0;
+//    }
+//    public Boolean LektorID(String ID) throws Exception{
+//        Start();
+//        PreparedStatement stmt=super.getConn().prepareStatement("delete lektor where ID = ?");
+//        stmt.setString(1,ID);
+//        rs= stmt.executeUpdate();
+//        Stop();
+//        return rs>0;
+//    }
+//    public Boolean AdminID(String ID) throws Exception{
+//        Start();
+//        PreparedStatement stmt=super.getConn().prepareStatement("delete admin where ID = ?");
+//        stmt.setString(1,ID);
+//        rs= stmt.executeUpdate();
+//        Stop();
+//        return rs>0;
+//    }
     
 }

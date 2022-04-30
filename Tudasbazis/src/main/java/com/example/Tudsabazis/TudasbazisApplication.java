@@ -54,6 +54,10 @@ public class TudasbazisApplication {
 		return ok().body(new Gson().toJson(new NonTrivial().Hibajel()));
 	}
 
+	@GetMapping("/felhasznalo/Lektoralt")
+	public ResponseEntity<String> FelhLekt() {
+		return ok().body(new Gson().toJson(new NonTrivial().Lektoralt()));
+	}
 	@GetMapping("/felhasznalo/Cikkek")
 	public ResponseEntity<String> Cikketirt() {
 		return ok().body(new Gson().toJson(new NonTrivial().Cikknum()));
@@ -68,9 +72,15 @@ public class TudasbazisApplication {
 	public ResponseEntity<ArrayList<Cikk>> Cikkabc() {
 		return new ResponseEntity<>(a.ABCikkek(), HttpStatus.OK);
 	}
+
 	@GetMapping("/Cikk/mod")
 	public ResponseEntity<String> Modositott() {
 		return ok().body(new Gson().toJson(new NonTrivial().Cikkmod()));
+	}
+
+	@GetMapping("/Cikk/hibak")
+	public ResponseEntity<String> Hibak() {
+		return ok().body(new Gson().toJson(new NonTrivial().Cikkhibai()));
 	}
 
 	@GetMapping("/felhasznalo/Hibajav")
@@ -220,7 +230,7 @@ public class TudasbazisApplication {
 				n.setSzerzo(uja.getID());
 				new Update().UpdateSzerzo(n);
 			}
-			new Delete().FelhaszID(uj.get("felhID"));
+			new Delete().Userid(uj.get("felhID"));
 			if(!a) throw new Exception();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -254,7 +264,7 @@ public class TudasbazisApplication {
 				n.setSzerzo(ujl.getID());
 				new Update().UpdateSzerzo(n);
 			}
-			new Delete().FelhaszID(uj.get("felhID"));
+			new Delete().Userid(uj.get("felhID"));
 			if(!a) throw new Exception();
 		} catch (Exception e) {
 			e.printStackTrace();
