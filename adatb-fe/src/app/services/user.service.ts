@@ -87,8 +87,8 @@ export class UserService {
     return this.http.post<any>(environment.API_URL + "/felhasznalo/Nyelvek/del", body);
   }
 
-  public addModositas(CkkID: string, leiras: string): Observable<any>{
-    let body = {CkkID: CkkID, leiras: leiras};
+  public addModositas(CikkID: string, leiras: string): Observable<any>{
+    let body = {CikkID: CikkID, leiras: leiras};
     console.log(body)
     return this.http.post<any>(environment.API_URL + "/Cikk/mod", body);
   }

@@ -98,7 +98,7 @@ export class EditArticleComponent implements OnInit {
 
     if(szerzo && this.loggedInUser?.id.startsWith("U") && cim && tartalom && nyelv && kategoria && kulcsszavak && leiras){
       this.userService.changeCikk(this.cikk.id, cim, tartalom, "kezdeti", nyelv, kategoria, szerzo, kulcsszavak, null).subscribe(data =>{
-        console.log(data.kulcsszo[0].split(','));
+        //console.log(data.kulcsszo[0].split(','));
         this.userService.addModositas(this.cikk.id, leiras).subscribe(data =>{
           //console.log(data.kulcsszo[0].split(','));
   
@@ -118,14 +118,6 @@ export class EditArticleComponent implements OnInit {
     if(szerzo && this.loggedInUser?.id.startsWith("L") && cim && tartalom && nyelv && kategoria && kulcsszavak && leiras){
       this.userService.changeCikk(this.cikk.id, cim, tartalom, "kezdeti", nyelv, kategoria, szerzo, kulcsszavak, this.loggedInUser.id).subscribe(data =>{
         //console.log(data.kulcsszo[0].split(','));
-        this.userService.addModositas(this.cikk.id, leiras).subscribe(data =>{
-          //console.log(data.kulcsszo[0].split(','));
-  
-        },
-        error =>{
-          //console.log(error);
-          this.openDialog("Sikertelen cikkmódosítás!");
-        })
       },
       error =>{
         console.log(error);
