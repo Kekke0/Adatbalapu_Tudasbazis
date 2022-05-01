@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit, DoCheck {
 
   cikkek: any;
   bejelentkezett = false;
+  loggedInUser = {};
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
@@ -22,6 +23,10 @@ export class HomeComponent implements OnInit, DoCheck {
   ngDoCheck(): void {
     if(this.bejelentkezett !== this.userService.isLoggedIn){
       this.bejelentkezett = this.userService.isLoggedIn;
+    }
+    if(this.loggedInUser !== this.userService.loggedInUser){
+      this.loggedInUser = this.userService.loggedInUser;
+
     }
   }
 

@@ -58,7 +58,12 @@ export class UsersComponent implements OnInit {
       //this.animal = result;
       //console.log(result);
       //console.log(this.userService.loggedInUser.id)
-      this.userService.addBan(result.ID, this.userService.loggedInUser.id, result.indok, result.hossz)
+      this.userService.addBan(result.ID, this.userService.loggedInUser.id, result.indok, result.hossz).subscribe(data =>{
+        console.log("sikeres ban");
+      },
+      error =>{
+        console.log("sikertelen ban");
+      })
     });
   }
 
