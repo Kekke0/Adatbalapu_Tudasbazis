@@ -58,7 +58,7 @@ export class ArticleComponent implements OnInit, DoCheck {
         },
         error =>{
           console.log("sikertelen hibajelentés")
-        })
+        });
       }
     });
   }

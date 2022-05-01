@@ -44,6 +44,9 @@
     <mat-form-field appearance="outline">
         <mat-label for="tartalom"> Tartalom </mat-label><textarea matInput type="text" [formControl]="tartalom"></textarea>
     </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label for="leiras"> Módosítás leírása </mat-label><input matInput type="text" [formControl]="leiras">
+    </mat-form-field>
 
     <span>
         <span><button mat-raised-button color="primary" (click)="cikkSzerkesztes()">Cikk szerkesztése</button></span>

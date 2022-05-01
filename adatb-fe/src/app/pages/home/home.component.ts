@@ -26,7 +26,6 @@ export class HomeComponent implements OnInit, DoCheck {
     }
     if(this.loggedInUser !== this.userService.loggedInUser){
       this.loggedInUser = this.userService.loggedInUser;
-
     }
   }
 

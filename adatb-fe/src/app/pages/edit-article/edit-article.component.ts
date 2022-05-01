@@ -22,9 +22,12 @@ export class EditArticleComponent implements OnInit {
   kulcsszavak: any = [];
   date: any;
   datum: any;
+  isLoggedIn = false;
+  loggedInUser: any = {};
 
   cim = new FormControl('');
   tartalom = new FormControl('');
+  leiras = new FormControl('');
   // valasztottNyelv = new FormControl('');
   // valasztottKategoria = new FormControl('');
   valasztottNyelv = "";
@@ -45,6 +48,36 @@ export class EditArticleComponent implements OnInit {
     console.log(this.datum);
    }
 
+  // cikkSzerkesztes(): void{
+  //   let cim = this.cim.value;
+  //   let tartalom = this.tartalom.value;
+  //   let nyelv = this.valasztottNyelv;
+  //   let kategoria = this.valasztottKategoria;
+  //   let kulcsszavak = this.kulcsszavak.toString();
+  //   let szerzo = this.userService?.loggedInUser?.id;
+  //   // console.log(szerzo);
+  //   // console.log(tartalom);
+  //   // console.log(nyelv);
+  //   // console.log(kategoria);
+  //   // console.log("kulcsszavak: " + kulcsszavak);
+  //   // console.log(cim);
+  //   // console.log(this.cikk);
+
+  //   if(this.cikk.id && tartalom){
+  //     ///nem működő dátum
+  //     this.userService.addModositas(this.cikk.id, tartalom).subscribe(data =>{
+  //       console.log(data);
+  //       console.log(this.datum);
+  //     },
+  //       (      error: any) =>{
+  //       console.log(error);
+  //       console.log(this.datum);
+  //       this.openDialog("Sikertelen cikkmódosítás!");
+  //     })
+  //   } else{
+  //     this.openDialog("Az összes mezőt szükséges kitölteni!");
+  //   }
+  // }
   cikkSzerkesztes(): void{
     let cim = this.cim.value;
     let tartalom = this.tartalom.value;
@@ -52,23 +85,28 @@ export class EditArticleComponent implements OnInit {
     let kategoria = this.valasztottKategoria;
     let kulcsszavak = this.kulcsszavak.toString();
     let szerzo = this.userService?.loggedInUser?.id;
-    // console.log(szerzo);
-    // console.log(tartalom);
-    // console.log(nyelv);
-    // console.log(kategoria);
-    // console.log("kulcsszavak: " + kulcsszavak);
-    // console.log(cim);
-    // console.log(this.cikk);
+    let leiras = this.leiras.value
+    console.log(szerzo);
+    console.log(tartalom);
+    console.log(nyelv);
+    console.log(kategoria);
+    console.log("kulcsszavak: " + kulcsszavak);
+    console.log(cim);
 
-    if(this.cikk.id && tartalom){
-      ///nem működő dátum
-      this.userService.addModositas(this.cikk.id, tartalom).subscribe(data =>{
-        console.log(data);
-        console.log(this.datum);
+    if(szerzo && cim && tartalom && nyelv && kategoria && kulcsszavak && leiras){
+      this.userService.addCikk(cim, tartalom, "kezdeti", nyelv, kategoria, szerzo, kulcsszavak).subscribe(data =>{
+        console.log(data.kulcsszo[0].split(','));
+        this.userService.addModositas(this.cikk.id, leiras).subscribe(data =>{
+          console.log(data.kulcsszo[0].split(','));
+  
+        },
+        error =>{
+          console.log(error);
+          this.openDialog("Sikertelen cikkmódosítás!");
+        })
       },
-        (      error: any) =>{
+      error =>{
         console.log(error);
-        console.log(this.datum);
         this.openDialog("Sikertelen cikkmódosítás!");
       })
     } else{
@@ -118,6 +156,15 @@ export class EditArticleComponent implements OnInit {
 
     if (index >= 0) {
       this.kulcsszavak.splice(index, 1);
+    }
+  }
+
+  ngDoCheck(): void {
+    if(this.isLoggedIn !== this.userService.isLoggedIn){
+      this.isLoggedIn = this.userService.isLoggedIn;
+    }
+    if(this.loggedInUser !== this.userService.loggedInUser){
+      this.loggedInUser = this.userService.loggedInUser;
     }
   }
 }
