@@ -17,7 +17,7 @@ public class Hiba {
 
     public Hiba(String leiras, boolean javitva, String jelentoID, String hibasCikkID) {
         try {
-            this.ID = "H"+new Find().HibaCID()+1;
+            this.ID = "H"+(new Find().HibaCID()+1);
         } catch (Exception e) {
             e.printStackTrace();
             this.ID="H00";
