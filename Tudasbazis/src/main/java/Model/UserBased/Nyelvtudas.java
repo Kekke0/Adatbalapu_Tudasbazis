@@ -4,6 +4,7 @@ public class Nyelvtudas {
     private String Nyelv;
     private String LektorID;
     public Nyelvtudas(String Lektorid,String szint, String nyelv) {
+        this.LektorID= Lektorid;
         Szint = szint;
         Nyelv = nyelv;
     }
