@@ -37,6 +37,7 @@ export class ArticleComponent implements OnInit, DoCheck {
       if(this.loggedInUser?.id.startsWith("L")){
         this.isLektor = true;
       }
+      console.log(this.loggedInUser);
     }
   }
 
@@ -52,7 +53,7 @@ export class ArticleComponent implements OnInit, DoCheck {
       console.log('The dialog was closed');
       //this.animal = result;
       if(result && result?.ok != ""){
-        this.userService.addHiba(result.ok, "0", this.userService.loggedInUser.ID, cikk.id).subscribe(data =>{
+        this.userService.addHiba(result.ok, "0", this.userService.loggedInUser.id, cikk.id).subscribe(data =>{
           console.log("sikeres hibajelentés")
         },
         error =>{

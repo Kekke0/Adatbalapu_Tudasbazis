@@ -72,7 +72,8 @@ export class UserService {
   }
 
   public addHiba(leiras: string, javitva: string, jelentoId: string, cikkID:string): Observable<any>{
-    let body = {leiras: leiras, javitva: javitva, jelentoID: jelentoId, cikkID: cikkID};
+    let body = {leiras: leiras, javitva: false, jelentoID: jelentoId, cikkID: cikkID};
+    console.log(body);
     return this.http.post<any>(environment.API_URL + "/Hiba", body);
   }
 
