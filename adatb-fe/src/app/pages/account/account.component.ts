@@ -14,7 +14,23 @@ export class AccountComponent implements OnInit {
   isLektor= false;
   name = new FormControl(this.loggedInUser.nev);
   password = new FormControl(this.loggedInUser.jelszo);
-
+  valasztottNyelv = "";
+  valasztottSzint = "";
+  nyelvek = [
+    {value: 'Magyar'},
+    {value: 'Angol'},
+    {value: 'Francia'},
+    {value: 'Német'},
+    {value: 'Olasz'}
+  ];
+  szintek = [
+    {value: 'A1'},
+    {value: 'A2'},
+    {value: 'B1'},
+    {value: 'B2'},
+    {value: 'C1'},
+    {value: 'C2'}
+  ];
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
@@ -30,9 +46,6 @@ export class AccountComponent implements OnInit {
         this.isLektor = true;
       }
     }
-    // console.log(this.loggedInUser)
-    // console.log(this.loggedInUser.nev)
-    // console.log(this.loggedInUser.jelszo)
   }
   changePassword(){
     console.log(this.password.value);

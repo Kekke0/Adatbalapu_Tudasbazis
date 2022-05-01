@@ -113,7 +113,7 @@ export class EditArticleComponent implements OnInit {
         this.openDialog("Sikertelen cikkmódosítás!");
       })
     } else{
-      this.openDialog("Az összes mezőt szükséges kitölteni!");
+      //this.openDialog("Az összes mezőt szükséges kitölteni!");
     }
     if(szerzo && this.loggedInUser?.id.startsWith("L") && cim && tartalom && nyelv && kategoria && kulcsszavak && leiras){
       this.userService.changeCikk(this.cikk.id, cim, tartalom, "kezdeti", nyelv, kategoria, szerzo, kulcsszavak, this.loggedInUser.id).subscribe(data =>{
@@ -124,7 +124,7 @@ export class EditArticleComponent implements OnInit {
         this.openDialog("Sikertelen cikklektorálás!");
       })
     } else{
-      this.openDialog("Az összes mezőt szükséges kitölteni!");
+      //this.openDialog("Az összes mezőt szükséges kitölteni!");
     }
 
   }

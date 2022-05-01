@@ -138,7 +138,7 @@ public class Insert extends ConnectionProtocol{
         Start();
         PreparedStatement stmt=super.getConn().prepareStatement("Insert into MODOSITAS (CIKKID,LEIRAS,DATUM) values(?,?,to_date('22-JAN.  -01','RR-MON-DD'))");
         stmt.setString(1,uj.getCikkID());
-        stmt.setString(2, uj.getDatum());
+        stmt.setString(2, uj.getLeiras());
         rs= stmt.executeUpdate();
         Stop();
         return rs>0;

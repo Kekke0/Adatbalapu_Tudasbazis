@@ -1,6 +1,7 @@
 
 <div class="main_component">
-    <h3>Cikk szerkesztése</h3>
+    <h3 *ngIf="isUser">Cikk szerkesztése</h3>
+    <h3 *ngIf="isLektor">Cikk lektorálása</h3>
     <mat-form-field appearance="outline">
         <mat-label for="cim">Cím </mat-label><input matInput type="text" [formControl]="cim" />
     </mat-form-field>

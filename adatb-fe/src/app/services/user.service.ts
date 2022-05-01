@@ -67,7 +67,8 @@ export class UserService {
   }
 ////////////////////////////
   public addBan(felhasznaloId: string, adminId: string, indok: string, hossz: string): Observable<any>{
-    let body = {felhasznaloId : felhasznaloId, adminID: adminId , indok: indok,hossz: hossz};
+    let body = {felhasznaloID : felhasznaloId, adminID: adminId , indok: indok,hossz: hossz};
+    console.log(body)
     return this.http.post<any>(environment.API_URL + "/felhasznalo/Bann", body);
   }
 
