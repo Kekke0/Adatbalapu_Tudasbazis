@@ -313,8 +313,7 @@ public class TudasbazisApplication {
 	 */
 	@PostMapping(value = "/Hiba/jav") //ID,LEIRAS,JAVITVA,JELENTOID,HIBASCIKKID
 	public ResponseEntity<Javitas> Javadd (@RequestBody Map<String,String> uj){
-		//Javitas ujc= new Javitas(uj.get("adminID"), uj.get("hibaID"), uj.get("date"), uj.get("jegyzet"));
-		Javitas ujc= new Javitas(uj.get("adminID"), uj.get("hibaID"), null, uj.get("jegyzet"));
+		Javitas ujc= new Javitas(uj.get("adminID"), uj.get("hibaID"), "2002.1.15", uj.get("jegyzet"));
 		try {
 			Boolean a =new Insert().addJavitas(ujc);
 			if(!a) throw new Exception();
@@ -363,14 +362,12 @@ public class TudasbazisApplication {
 	 * @param uj:
 	 *             {
 	 *             "CikkID":"",
-	 *             "leiras":"",
-	 *             "date":""
+	 *             "leiras":""
 	 *          }
 	 */
 	@PostMapping("/Cikk/mod")
 	public ResponseEntity<Modositas> Modadd (@RequestBody Map<String,String> uj){
-		//Modositas ujm= new Modositas(uj.get("CkkID"),uj.get("leiras"),uj.get("date"));
-		Modositas ujm= new Modositas(uj.get("CkkID"),uj.get("leiras"),null);
+		Modositas ujm= new Modositas(uj.get("CikkID"),uj.get("leiras"),"2022.01.01");
 		try {
 			Boolean a =new Insert().addModositas(ujm);
 			if(!a) throw new Exception();
@@ -393,8 +390,7 @@ public class TudasbazisApplication {
 	 */
 	@PostMapping(value = "/felhasznalo/Bann")
 	public ResponseEntity<Ban> Bannadd (@RequestBody Map<String,String> uj){
-		//Ban ujc= new Ban(uj.get("felhasznaloID"),uj.get("adminID"),uj.get("date"),uj.get("indok"),uj.get("hossz"));
-		Ban ujc= new Ban(uj.get("felhasznaloID"),uj.get("adminID"),null,uj.get("indok"),uj.get("hossz"));
+		Ban ujc= new Ban(uj.get("felhasznaloID"),uj.get("adminID"),"2022.01.01",uj.get("indok"),uj.get("hossz"));
 		try {
 			Boolean a =new Insert().addBan(ujc);
 			if(!a) throw new Exception();

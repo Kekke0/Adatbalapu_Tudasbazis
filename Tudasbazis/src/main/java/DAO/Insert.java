@@ -124,12 +124,11 @@ public class Insert extends ConnectionProtocol{
     
      public Boolean addBan(Ban uj) throws Exception{
         Start();
-        PreparedStatement stmt=super.getConn().prepareStatement("Insert into BAN (FELHASZNALOID,ADMINID,HOSSZ,INDOK,DATE) values (?,?,?,?,?)");
+        PreparedStatement stmt=super.getConn().prepareStatement("Insert into EN.BAN (FELHASZNALOID,ADMINID,\"Date\",INDOK,HOSSZ) values (?,?,to_date('22-JAN.  -01','RR-MON-DD'),?,?)");
         stmt.setString(1,uj.getFelhasznaloID());
         stmt.setString(2,uj.getAdminID());
-        stmt.setString(3,uj.getHossz());
-         stmt.setString(4,uj.getIndok());
-         stmt.setDate(5, Date.valueOf(uj.getDate()));
+         stmt.setString(3,uj.getIndok());
+        stmt.setString(4,uj.getHossz());
         rs= stmt.executeUpdate();
         Stop();
         return rs>0;
@@ -137,10 +136,9 @@ public class Insert extends ConnectionProtocol{
     
      public Boolean addModositas(Modositas uj) throws Exception{
         Start();
-        PreparedStatement stmt=super.getConn().prepareStatement("Insert into MODOSITAS (CIKKID,DATUM,LEIRAS) values (?,?,?)");
+        PreparedStatement stmt=super.getConn().prepareStatement("Insert into MODOSITAS (CIKKID,LEIRAS,DATUM) values(?,?,to_date('22-JAN.  -01','RR-MON-DD'))");
         stmt.setString(1,uj.getCikkID());
-        stmt.setDate(2, Date.valueOf(uj.getDatum()));
-        stmt.setString(3,uj.getLeiras());
+        stmt.setString(2, uj.getDatum());
         rs= stmt.executeUpdate();
         Stop();
         return rs>0;
@@ -164,11 +162,10 @@ public class Insert extends ConnectionProtocol{
     
       public Boolean addJavitas(Javitas uj) throws Exception{
         Start();
-        PreparedStatement stmt=super.getConn().prepareStatement("Insert into JAVITAS (ADMINID,HIBAID,DATE,JEGYZET) values (?,?,?,?)");
+        PreparedStatement stmt=super.getConn().prepareStatement("Insert into EN.JAVITAS (ADMINID,HIBAID,JEGYZET) values (?,?,?)");
         stmt.setString(1,uj.getAdminID());
         stmt.setString(2,uj.getHibaID());
-        stmt.setDate(3, Date.valueOf(uj.getDate()));
-        stmt.setString(4,uj.getJegyzet());
+        stmt.setString(3, uj.getJegyzet());
         rs= stmt.executeUpdate();
         Stop();
         return rs>0;
