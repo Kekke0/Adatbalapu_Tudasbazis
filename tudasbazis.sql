@@ -195,7 +195,7 @@ SELECT ID FROM LEKTOR
 REM INSERTING into ADMIN
 SET DEFINE OFF;
 Insert into ADMIN (ID,NEV,JELSZO,EMAIL) values ('A6969','Gergõ','anyad','geri.t.0115@gmail.com');
-Insert into ADMIN (ID,NEV,JELSZO,EMAIL) values ('A111111','admin','admin','nincs');
+Insert into ADMIN (ID,NEV,JELSZO,EMAIL) values ('A111111','admin','jelszavai','nincs');
 Insert into ADMIN (ID,NEV,JELSZO,EMAIL) values ('A55555','Klau','jelszó','ja');
 Insert into ADMIN (ID,NEV,JELSZO,EMAIL) values ('A7777','Lela','majd-valami','ezis');
 Insert into ADMIN (ID,NEV,JELSZO,EMAIL) values ('A00001','Bodnar','chad','chad@férfi.com');
@@ -211,6 +211,7 @@ Insert into BAN (FELHASZNALOID,ADMINID,"Date",INDOK,HOSSZ) values ('U4','A6969',
 Insert into BAN (FELHASZNALOID,ADMINID,"Date",INDOK,HOSSZ) values ('U1','A55555',to_date('21-JÚN.  -08','RR-MON-DD'),'Trollkodás.','3');
 Insert into BAN (FELHASZNALOID,ADMINID,"Date",INDOK,HOSSZ) values ('U2','A7777',to_date('21-JÚL.  -18','RR-MON-DD'),'Trágár szóhasználat.','7');
 Insert into BAN (FELHASZNALOID,ADMINID,"Date",INDOK,HOSSZ) values ('U4','A55555',to_date('21-SZEPT.-09','RR-MON-DD'),'Oda nem illõ kifejezések használata.','6');
+Insert into BAN (FELHASZNALOID,ADMINID,"Date",INDOK,HOSSZ) values ('U10','A6969',to_date('22-MÁJ.  -01','RR-MON-DD'),'mer egy kurva','10');
 REM INSERTING into CIKK
 SET DEFINE OFF;
 Insert into CIKK (ID,CIM,TARTALOM,ALLAPOT,NYELV,FELHASZNALOID_SZERZO,KATEGORIA,LEKTORALTA,LEKTORALASDATUMA) values ('C7','Biochemistry',' Biochemistry or biological chemistry, is the study of chemical processes within and relating to living organisms.[1] A sub-discipline of both chemistry and biology, biochemistry may be divided into three fields: structural biology, enzymology and metabolism. Over the last decades of the 20th century, biochemistry has become successsful at explaining living processes through these three disciplines. Almost all areas of the life sciences are being uncovered and developed through biochemical methodology and research.. ','Lektorálásra vár','Angol','U7','Kémia',null,to_date('21-JAN.  -21','RR-MON-DD'));
@@ -229,7 +230,7 @@ Insert into FELHASZNALO (ID,NEV,JELSZO,EMAIL) values ('U20','ifj. Tetszt Elek','
 Insert into FELHASZNALO (ID,NEV,JELSZO,EMAIL) values ('U15','Kuruc Elek','jelsz1','kurucelek@mail.com');
 Insert into FELHASZNALO (ID,NEV,JELSZO,EMAIL) values ('U16','Kuruc Elek','jelsz1','kurucelek@mail.hu');
 Insert into FELHASZNALO (ID,NEV,JELSZO,EMAIL) values ('U6','Kovács Nyék','jelszo','kovacsnyek@mail.com');
-Insert into FELHASZNALO (ID,NEV,JELSZO,EMAIL) values ('U1','Markó Orbán','jelszo','markoorban@mail.com');
+Insert into FELHASZNALO (ID,NEV,JELSZO,EMAIL) values ('U1','Markó Orbán','jelszavai','markoorban@mail.com');
 Insert into FELHASZNALO (ID,NEV,JELSZO,EMAIL) values ('U2','Fazakas Borsala','jelszo','fazakasborsala@mail.com');
 Insert into FELHASZNALO (ID,NEV,JELSZO,EMAIL) values ('U3','Soltész Kaplony','jelszo','solteszkaplony@mail.com');
 Insert into FELHASZNALO (ID,NEV,JELSZO,EMAIL) values ('U4','Sallai Mara','jelszo','sallaimara@mail.com');
@@ -293,7 +294,7 @@ Insert into KULCSSZO (CIKKID,SZO) values ('C9','Tûzhányó');
 REM INSERTING into LEKTOR
 SET DEFINE OFF;
 Insert into LEKTOR (ID,NEV,JELSZO,EMAIL,SZAKTERULET,INTEZET,TUDOMANYOS_FOKOZAT) values ('L2','Kiss Béla','jelszo','kissbela@gmail.com','Biológia','SZTE','PhD');
-Insert into LEKTOR (ID,NEV,JELSZO,EMAIL,SZAKTERULET,INTEZET,TUDOMANYOS_FOKOZAT) values ('L1','Kiss István','jelszo','kissistvan@gmail.com','Jogtudomány','SZTE','PhD');
+Insert into LEKTOR (ID,NEV,JELSZO,EMAIL,SZAKTERULET,INTEZET,TUDOMANYOS_FOKOZAT) values ('L1','Kiss István','jelszavai','kissistvan@gmail.com','Jogtudomány','SZTE','PhD');
 Insert into LEKTOR (ID,NEV,JELSZO,EMAIL,SZAKTERULET,INTEZET,TUDOMANYOS_FOKOZAT) values ('L3','Kiss Anna','jelszo','kissanna@gmail.com','Matematika','SZTE','PhD');
 Insert into LEKTOR (ID,NEV,JELSZO,EMAIL,SZAKTERULET,INTEZET,TUDOMANYOS_FOKOZAT) values ('L4','Kovács József','jelszo','kovacsjozsef@gmail.com','Kémia','SZTE','Dr');
 Insert into LEKTOR (ID,NEV,JELSZO,EMAIL,SZAKTERULET,INTEZET,TUDOMANYOS_FOKOZAT) values ('L5','Kovács Mária','jelszo','kovacsmaria@gmail.com','Informatika','SZTE','PhD');
@@ -366,6 +367,7 @@ Insert into NYELVTUDAS (LEKTORID,NYELV,SZINT) values ('L19','angol','C2');
 Insert into NYELVTUDAS (LEKTORID,NYELV,SZINT) values ('L20','angol','C1');
 Insert into NYELVTUDAS (LEKTORID,NYELV,SZINT) values ('L20','spanyol','B2');
 Insert into NYELVTUDAS (LEKTORID,NYELV,SZINT) values ('L20','francia','B1');
+Insert into NYELVTUDAS (LEKTORID,NYELV,SZINT) values ('L4','Cigány','Nagy');
 --------------------------------------------------------
 --  DDL for Index KATEGORIA_PK
 --------------------------------------------------------
@@ -603,6 +605,54 @@ END IF;
 END;
 /
 ALTER TRIGGER "SZERZOCHECK" ENABLE;
+--------------------------------------------------------
+--  DDL for Procedure CIKK_KATEGORIA
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE NONEDITIONABLE PROCEDURE "CIKK_KATEGORIA" (c_cikk IN cikk.cim%TYPE)
+IS
+    v_kategoria cikk.kategoria%TYPE;
+BEGIN
+    SELECT cikk.kategoria into v_kategoria
+    FROM cikk
+    WHERE c_cikk = cikk.cim;
+    DBMS_OUTPUT.PUT_LINE(v_kategoria);
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Procedure FELHASZNALO_NEVE
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE NONEDITIONABLE PROCEDURE "FELHASZNALO_NEVE" (f_felhasznalo IN felhasznalo.email%TYPE)
+IS
+    v_nev felhasznalo.nev%TYPE;
+BEGIN
+    SELECT felhasznalo.nev into v_nev
+    FROM felhasznalo
+    WHERE f_felhasznalo = felhasznalo.email;
+    DBMS_OUTPUT.PUT_LINE(v_nev);
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Procedure HIBA_LEIRAS
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE NONEDITIONABLE PROCEDURE "HIBA_LEIRAS" (h_hiba IN hiba.jelentoid%TYPE)
+IS
+    v_leiras hiba.leiras%TYPE;
+BEGIN
+    SELECT hiba.leiras into v_leiras
+    FROM hiba
+    WHERE h_hiba = hiba.jelentoid;
+    DBMS_OUTPUT.PUT_LINE(v_leiras);
+END;
+
+/
 --------------------------------------------------------
 --  DDL for Package TUDASBAZIS
 --------------------------------------------------------
