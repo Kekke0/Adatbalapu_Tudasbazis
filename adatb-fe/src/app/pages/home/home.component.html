@@ -1,7 +1,7 @@
 <div class="div-flex">
     <div class="fejlec">
         <h2>Cikkek</h2>
-        <button *ngIf="bejelentkezett" mat-raised-button color="primary"(click)="cikkHozzaadas()" >Új cikk hozzáadása</button>
+        <button *ngIf="isUser" mat-raised-button color="primary"(click)="cikkHozzaadas()" >Új cikk hozzáadása</button>
     </div>
     <div *ngFor="let cikk of cikkek">
         <app-article [cikk]="cikk"></app-article>

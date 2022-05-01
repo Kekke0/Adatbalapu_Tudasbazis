@@ -34,5 +34,14 @@ export class AccountComponent implements OnInit {
     // console.log(this.loggedInUser.nev)
     // console.log(this.loggedInUser.jelszo)
   }
+  changePassword(){
+    console.log(this.password.value);
+      this.userService.changeJelszo(this.loggedInUser.id, this.loggedInUser.nev, this.loggedInUser.email, this.password.value).subscribe(data =>{
+        console.log("sikeres jelszóváltás")
+      },
+      error =>{
+        console.log("sikertelen jelszóváltás")
+      });
+  }
 
 }

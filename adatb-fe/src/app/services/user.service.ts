@@ -89,6 +89,18 @@ export class UserService {
 
   public addModositas(CkkID: string, leiras: string): Observable<any>{
     let body = {CkkID: CkkID, leiras: leiras};
+    console.log(body)
     return this.http.post<any>(environment.API_URL + "/Cikk/mod", body);
+  }
+
+  public changeJelszo(ID: string, Nev: string, Email: string, jelszo: string): Observable<any>{
+    let body = {ID: ID, Nev: Nev, Email:Email, jelszo:jelszo};
+    console.log(body)
+    return this.http.post<any>(environment.API_URL + "/felhasznalo/jelszo", body);
+  }
+  public changeCikk(ID: string, cim: string, tartalom: string, allapot: string, nyelv: string, kategoria: string, szerzo: string, kulcsszavak: string, lektor: string | null): Observable<any>{
+    let body = {ID: ID, cim: cim, tartalom: tartalom, allapot: allapot, nyelv: nyelv, kategoria: kategoria, szerzo: szerzo, kulcsszavak: kulcsszavak, lektor: lektor };
+    console.log(body)
+    return this.http.post<any>(environment.API_URL + "/Cikk/upd", body);
   }
 }
