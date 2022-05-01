@@ -631,6 +631,27 @@ FOR EACH ROW
 BEGIN
  :NEW.LEKTORALASDATUMA := SYSDATE;
 END;
+
+create or replace TRIGGER ModDate
+BEFORE INSERT ON MODOSITAS
+FOR EACH ROW
+BEGIN
+ :NEW.DATUM := SYSDATE;
+END;
+
+create or replace TRIGGER JAvDate
+BEFORE INSERT ON Javitas
+FOR EACH ROW
+BEGIN
+ :NEW."Date" := SYSDATE;
+END;
+
+create or replace TRIGGER BANDATE
+BEFORE INSERT ON BaN
+FOR EACH ROW
+BEGIN
+ :NEW."Date" := SYSDATE;
+END;
 --------------------------------------------------------
 --  DDL for Package TUDASBAZIS
 --------------------------------------------------------
