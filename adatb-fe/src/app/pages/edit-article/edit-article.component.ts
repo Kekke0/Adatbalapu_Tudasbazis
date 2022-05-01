@@ -20,7 +20,8 @@ export class EditArticleComponent implements OnInit {
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   kulcsszavak: any = [];
-
+  date: any;
+  datum: any;
 
   cim = new FormControl('');
   tartalom = new FormControl('');
@@ -38,7 +39,11 @@ export class EditArticleComponent implements OnInit {
   ];
   kategoriak: any;
 
-  constructor(private userService: UserService, public dialog: MatDialog, private route: ActivatedRoute) { }
+  constructor(private userService: UserService, public dialog: MatDialog, private route: ActivatedRoute) {
+    this.date = new Date();
+    this.datum = this.date.toLocaleDateString();
+    console.log(this.datum);
+   }
 
   cikkSzerkesztes(): void{
     let cim = this.cim.value;
@@ -47,21 +52,24 @@ export class EditArticleComponent implements OnInit {
     let kategoria = this.valasztottKategoria;
     let kulcsszavak = this.kulcsszavak.toString();
     let szerzo = this.userService?.loggedInUser?.id;
-    console.log(szerzo);
-    console.log(tartalom);
-    console.log(nyelv);
-    console.log(kategoria);
-    console.log("kulcsszavak: " + kulcsszavak);
-    console.log(cim);
+    // console.log(szerzo);
+    // console.log(tartalom);
+    // console.log(nyelv);
+    // console.log(kategoria);
+    // console.log("kulcsszavak: " + kulcsszavak);
+    // console.log(cim);
+    // console.log(this.cikk);
 
-    if(this.cikk.id && szerzo && cim && tartalom && nyelv && kategoria && kulcsszavak){
-      this.userService.addCikk(cim, tartalom, "kezdeti", nyelv, kategoria, szerzo, kulcsszavak).subscribe(data =>{
-        console.log(data.kulcsszo[0].split(','));
-
+    if(this.cikk.id && tartalom){
+      ///nem működő dátum
+      this.userService.addModositas(this.cikk.id, tartalom).subscribe(data =>{
+        console.log(data);
+        console.log(this.datum);
       },
         (      error: any) =>{
         console.log(error);
-        this.openDialog("Sikertelen cikklétrehozás!");
+        console.log(this.datum);
+        this.openDialog("Sikertelen cikkmódosítás!");
       })
     } else{
       this.openDialog("Az összes mezőt szükséges kitölteni!");

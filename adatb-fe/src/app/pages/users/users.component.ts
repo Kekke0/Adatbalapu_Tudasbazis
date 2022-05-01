@@ -54,9 +54,11 @@ export class UsersComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      //console.log('The dialog was closed');
       //this.animal = result;
-      console.log(result);
+      //console.log(result);
+      //console.log(this.userService.loggedInUser.id)
+      this.userService.addBan(result.ID, this.userService.loggedInUser.id, result.indok, result.hossz)
     });
   }
 

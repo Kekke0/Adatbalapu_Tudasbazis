@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -312,6 +313,7 @@ public class TudasbazisApplication {
 	 */
 	@PostMapping(value = "/Hiba/jav") //ID,LEIRAS,JAVITVA,JELENTOID,HIBASCIKKID
 	public ResponseEntity<Javitas> Javadd (@RequestBody Map<String,String> uj){
+		//Javitas ujc= new Javitas(uj.get("adminID"), uj.get("hibaID"), uj.get("date"), uj.get("jegyzet"));
 		Javitas ujc= new Javitas(uj.get("adminID"), uj.get("hibaID"), uj.get("date"), uj.get("jegyzet"));
 		try {
 			Boolean a =new Insert().addJavitas(ujc);
@@ -367,6 +369,7 @@ public class TudasbazisApplication {
 	 */
 	@PostMapping("/Cikk/mod")
 	public ResponseEntity<Modositas> Modadd (@RequestBody Map<String,String> uj){
+		//Modositas ujm= new Modositas(uj.get("CkkID"),uj.get("leiras"),uj.get("date"));
 		Modositas ujm= new Modositas(uj.get("CkkID"),uj.get("leiras"),uj.get("date"));
 		try {
 			Boolean a =new Insert().addModositas(ujm);
@@ -390,6 +393,7 @@ public class TudasbazisApplication {
 	 */
 	@PostMapping(value = "/felhasznalo/Bann")
 	public ResponseEntity<Ban> Bannadd (@RequestBody Map<String,String> uj){
+		//Ban ujc= new Ban(uj.get("felhasznaloID"),uj.get("adminID"),uj.get("date"),uj.get("indok"),uj.get("hossz"));
 		Ban ujc= new Ban(uj.get("felhasznaloID"),uj.get("adminID"),uj.get("date"),uj.get("indok"),uj.get("hossz"));
 		try {
 			Boolean a =new Insert().addBan(ujc);
