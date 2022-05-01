@@ -12,6 +12,7 @@ import Model.UserBased.Lektor;
 import Model.UserBased.Nyelvtudas;
 
 
+import javax.management.StringValueExp;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
@@ -150,7 +151,10 @@ public class Insert extends ConnectionProtocol{
         PreparedStatement stmt=super.getConn().prepareStatement("Insert into HIBA (ID,LEIRAS,JAVITVA,JELENTOID,HIBASCIKKID) values (?,?,?,?,?)");
         stmt.setString(1,uj.getID());
         stmt.setString(2,uj.getLeiras());
-        stmt.setString(3, String.valueOf(uj.isJavitva()));
+        int a=0;
+        if (uj.isJavitva())
+                a=1;
+        stmt.setInt(3, a);
         stmt.setString(4,uj.getJelentoID());
         stmt.setString(5,uj.getHibasCikkID());
         rs= stmt.executeUpdate();

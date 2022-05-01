@@ -19,36 +19,30 @@ public class Update extends ConnectionProtocol {
         return rs;
     }
 
-    public Boolean FelhaszID(Felhasznalo updated) throws Exception{
+    public Boolean FelhaszID(String ID, String Jelszo) throws Exception{
         Start();
-        PreparedStatement stmt=super.getConn().prepareStatement("UPDATE felhasznalo SET NEV = ?,JELSZO = ?,EMAIL = ? WHERE ID=?");
-        stmt.setString(1,updated.getNev());
-        stmt.setString(2,updated.getJelszo());
-        stmt.setString(3,updated.getEmail());
-        stmt.setString(4,updated.getID());
+        PreparedStatement stmt=super.getConn().prepareStatement("UPDATE felhasznalo SET JELSZO = ?,WHERE ID=?");
+        stmt.setString(1,Jelszo);
+        stmt.setString(2,ID);
         rs= stmt.executeUpdate();
         Stop();
         return rs>0;
     }
 
-    public Boolean LEKTORID(Felhasznalo updated) throws Exception{
+    public Boolean LEKTORID(String ID, String Jelszo) throws Exception{
         Start();
-        PreparedStatement stmt=super.getConn().prepareStatement("UPDATE LEKTOR SET NEV = ?,JELSZO = ?,EMAIL = ? WHERE ID=?");
-        stmt.setString(1,updated.getNev());
-        stmt.setString(2,updated.getJelszo());
-        stmt.setString(3,updated.getEmail());
-        stmt.setString(4,updated.getID());
+        PreparedStatement stmt=super.getConn().prepareStatement("UPDATE LEKTOR SET JELSZO = ?, WHERE ID=?");
+        stmt.setString(1,Jelszo);
+        stmt.setString(2,ID);
         rs= stmt.executeUpdate();
         Stop();
         return rs>0;
     }
-    public Boolean ADMINID(Felhasznalo updated) throws Exception{
+    public Boolean ADMINID(String ID, String Jelszo) throws Exception{
         Start();
-        PreparedStatement stmt=super.getConn().prepareStatement("UPDATE ADMIN SET NEV = ?,JELSZO = ?,EMAIL = ? WHERE ID=?");
-        stmt.setString(1,updated.getNev());
-        stmt.setString(2,updated.getJelszo());
-        stmt.setString(3,updated.getEmail());
-        stmt.setString(4,updated.getID());
+        PreparedStatement stmt=super.getConn().prepareStatement("UPDATE ADMIN SET JELSZO = ?, WHERE ID=?");
+        stmt.setString(1,Jelszo);
+        stmt.setString(2,ID);
         rs= stmt.executeUpdate();
         Stop();
         return rs>0;

@@ -498,17 +498,17 @@ public class TudasbazisApplication {
 	 *      "jelszo": "jelszava"
 	 * }
 	 */
-	@PostMapping(value = "/felhasznalo/upd")
+	@PostMapping(value = "/felhasznalo/jelszo")
 	public ResponseEntity<Boolean> Felhasznupdate (@RequestBody Map<String,String> up){
 		Felhasznalo Updated=new Felhasznalo(up.get("ID"),up.get("Nev"),up.get("Email"), up.get("jelszo"));
 		try {
 			Boolean a;
-			if (Updated.getID().contains("L"))
-				a = new Update().LEKTORID(Updated);
+			if (up.get("ID").contains("L"))
+				a = new Update().LEKTORID(up.get("ID"), up.get("jelszo"));
 			else if (Updated.getID().contains("A"))
-				a = new Update().ADMINID(Updated);
+				a = new Update().ADMINID(up.get("ID"), up.get("jelszo"));
 			else
-				a = new Update().FelhaszID(Updated);
+				a = new Update().FelhaszID(up.get("ID"), up.get("jelszo"));
 			return new ResponseEntity<>(a, HttpStatus.ACCEPTED);
 		}catch (Exception e) {
 			e.printStackTrace();
