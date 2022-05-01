@@ -1,41 +1,15 @@
 --------------------------------------------------------
---  File created - szerda-április-27-2022   
+--  File created - vasárnap-május-01-2022   
 --------------------------------------------------------
-DROP TABLE "ADMIN" cascade constraints;
-DROP TABLE "ALLUSERS" cascade constraints;
-DROP TABLE "BAN" cascade constraints;
-DROP TABLE "CIKK" cascade constraints;
-DROP TABLE "FELHASZNALO" cascade constraints;
-DROP TABLE "HIBA" cascade constraints;
-DROP TABLE "JAVITAS" cascade constraints;
-DROP TABLE "KATEGORIA" cascade constraints;
-DROP TABLE "KULCSSZO" cascade constraints;
-DROP TABLE "LEKTOR" cascade constraints;
-DROP TABLE "MODOSITAS" cascade constraints;
-DROP TABLE "NYELVTUDAS" cascade constraints;
-DROP PACKAGE "TUDASBAZIS";
 --------------------------------------------------------
 --  DDL for Table ADMIN
 --------------------------------------------------------
 
   CREATE TABLE "ADMIN" 
-   (	"ID" VARCHAR2(10), 
-	"NEV" VARCHAR2(60), 
-	"JELSZO" VARCHAR2(60), 
-	"EMAIL" VARCHAR2(60)
-   ) SEGMENT CREATION IMMEDIATE 
-  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
- NOCOMPRESS LOGGING
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
-  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
-  TABLESPACE "USERS" ;
---------------------------------------------------------
---  DDL for Table ALLUSERS
---------------------------------------------------------
-
-  CREATE TABLE "ALLUSERS" 
-   (	"ID" VARCHAR2(10)
+   (	"ID" VARCHAR2(10 BYTE), 
+	"NEV" VARCHAR2(60 BYTE), 
+	"JELSZO" VARCHAR2(60 BYTE), 
+	"EMAIL" VARCHAR2(60 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
@@ -48,10 +22,10 @@ DROP PACKAGE "TUDASBAZIS";
 --------------------------------------------------------
 
   CREATE TABLE "BAN" 
-   (	"FELHASZNALOID" VARCHAR2(10), 
-	"ADMINID" VARCHAR2(10), 
+   (	"FELHASZNALOID" VARCHAR2(10 BYTE), 
+	"ADMINID" VARCHAR2(10 BYTE), 
 	"Date" DATE, 
-	"INDOK" VARCHAR2(300), 
+	"INDOK" VARCHAR2(300 BYTE), 
 	"HOSSZ" NUMBER
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
@@ -65,14 +39,14 @@ DROP PACKAGE "TUDASBAZIS";
 --------------------------------------------------------
 
   CREATE TABLE "CIKK" 
-   (	"ID" VARCHAR2(10), 
-	"CIM" VARCHAR2(100), 
-	"TARTALOM" VARCHAR2(4000), 
-	"ALLAPOT" VARCHAR2(60), 
-	"NYELV" VARCHAR2(60), 
-	"FELHASZNALOID_SZERZO" VARCHAR2(10), 
-	"KATEGORIA" VARCHAR2(60), 
-	"LEKTORALTA" VARCHAR2(10), 
+   (	"ID" VARCHAR2(10 BYTE), 
+	"CIM" VARCHAR2(100 BYTE), 
+	"TARTALOM" VARCHAR2(4000 BYTE), 
+	"ALLAPOT" VARCHAR2(60 BYTE), 
+	"NYELV" VARCHAR2(60 BYTE), 
+	"FELHASZNALOID_SZERZO" VARCHAR2(10 BYTE), 
+	"KATEGORIA" VARCHAR2(60 BYTE), 
+	"LEKTORALTA" VARCHAR2(10 BYTE), 
 	"LEKTORALASDATUMA" DATE
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
@@ -86,10 +60,10 @@ DROP PACKAGE "TUDASBAZIS";
 --------------------------------------------------------
 
   CREATE TABLE "FELHASZNALO" 
-   (	"ID" VARCHAR2(10), 
-	"NEV" VARCHAR2(60), 
-	"JELSZO" VARCHAR2(60), 
-	"EMAIL" VARCHAR2(60)
+   (	"ID" VARCHAR2(10 BYTE), 
+	"NEV" VARCHAR2(60 BYTE), 
+	"JELSZO" VARCHAR2(60 BYTE), 
+	"EMAIL" VARCHAR2(60 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
@@ -102,11 +76,11 @@ DROP PACKAGE "TUDASBAZIS";
 --------------------------------------------------------
 
   CREATE TABLE "HIBA" 
-   (	"ID" VARCHAR2(10), 
-	"LEIRAS" VARCHAR2(500), 
+   (	"ID" VARCHAR2(10 BYTE), 
+	"LEIRAS" VARCHAR2(500 BYTE), 
 	"JAVITVA" NUMBER, 
-	"JELENTOID" VARCHAR2(10), 
-	"HIBASCIKKID" VARCHAR2(10)
+	"JELENTOID" VARCHAR2(10 BYTE), 
+	"HIBASCIKKID" VARCHAR2(10 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
@@ -119,10 +93,10 @@ DROP PACKAGE "TUDASBAZIS";
 --------------------------------------------------------
 
   CREATE TABLE "JAVITAS" 
-   (	"ADMINID" VARCHAR2(10), 
-	"HIBAID" VARCHAR2(10), 
+   (	"ADMINID" VARCHAR2(10 BYTE), 
+	"HIBAID" VARCHAR2(10 BYTE), 
 	"Date" DATE, 
-	"JEGYZET" VARCHAR2(300)
+	"JEGYZET" VARCHAR2(300 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
@@ -135,8 +109,8 @@ DROP PACKAGE "TUDASBAZIS";
 --------------------------------------------------------
 
   CREATE TABLE "KATEGORIA" 
-   (	"NEV" VARCHAR2(60), 
-	"BOVEBBEN" VARCHAR2(60)
+   (	"NEV" VARCHAR2(60 BYTE), 
+	"BOVEBBEN" VARCHAR2(60 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
@@ -149,8 +123,8 @@ DROP PACKAGE "TUDASBAZIS";
 --------------------------------------------------------
 
   CREATE TABLE "KULCSSZO" 
-   (	"CIKKID" VARCHAR2(60), 
-	"SZO" VARCHAR2(60)
+   (	"CIKKID" VARCHAR2(60 BYTE), 
+	"SZO" VARCHAR2(60 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
@@ -163,13 +137,13 @@ DROP PACKAGE "TUDASBAZIS";
 --------------------------------------------------------
 
   CREATE TABLE "LEKTOR" 
-   (	"ID" VARCHAR2(10), 
-	"NEV" VARCHAR2(60), 
-	"JELSZO" VARCHAR2(60), 
-	"EMAIL" VARCHAR2(60), 
-	"SZAKTERULET" VARCHAR2(60), 
-	"INTEZET" VARCHAR2(60), 
-	"TUDOMANYOS_FOKOZAT" VARCHAR2(60)
+   (	"ID" VARCHAR2(10 BYTE), 
+	"NEV" VARCHAR2(60 BYTE), 
+	"JELSZO" VARCHAR2(60 BYTE), 
+	"EMAIL" VARCHAR2(60 BYTE), 
+	"SZAKTERULET" VARCHAR2(60 BYTE), 
+	"INTEZET" VARCHAR2(60 BYTE), 
+	"TUDOMANYOS_FOKOZAT" VARCHAR2(60 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
@@ -182,8 +156,8 @@ DROP PACKAGE "TUDASBAZIS";
 --------------------------------------------------------
 
   CREATE TABLE "MODOSITAS" 
-   (	"CIKKID" VARCHAR2(60), 
-	"LEIRAS" VARCHAR2(100), 
+   (	"CIKKID" VARCHAR2(60 BYTE), 
+	"LEIRAS" VARCHAR2(100 BYTE), 
 	"DATUM" DATE
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
@@ -197,9 +171,9 @@ DROP PACKAGE "TUDASBAZIS";
 --------------------------------------------------------
 
   CREATE TABLE "NYELVTUDAS" 
-   (	"LEKTORID" VARCHAR2(10), 
-	"NYELV" VARCHAR2(60), 
-	"SZINT" VARCHAR2(60)
+   (	"LEKTORID" VARCHAR2(10 BYTE), 
+	"NYELV" VARCHAR2(60 BYTE), 
+	"SZINT" VARCHAR2(60 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
@@ -207,6 +181,17 @@ DROP PACKAGE "TUDASBAZIS";
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for View ALLUSERS
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "ALLUSERS" ("ID") AS 
+  SELECT ID FROM FELHASZNALO 
+UNION
+SELECT ID  FROM ADMIN
+UNION
+SELECT ID FROM LEKTOR
+;
 REM INSERTING into ADMIN
 SET DEFINE OFF;
 Insert into ADMIN (ID,NEV,JELSZO,EMAIL) values ('A6969','Gergõ','anyad','geri.t.0115@gmail.com');
@@ -214,58 +199,6 @@ Insert into ADMIN (ID,NEV,JELSZO,EMAIL) values ('A111111','admin','admin','nincs
 Insert into ADMIN (ID,NEV,JELSZO,EMAIL) values ('A55555','Klau','jelszó','ja');
 Insert into ADMIN (ID,NEV,JELSZO,EMAIL) values ('A7777','Lela','majd-valami','ezis');
 Insert into ADMIN (ID,NEV,JELSZO,EMAIL) values ('A00001','Bodnar','chad','chad@férfi.com');
-REM INSERTING into ALLUSERS
-SET DEFINE OFF;
-Insert into ALLUSERS (ID) values ('A00001');
-Insert into ALLUSERS (ID) values ('A111111');
-Insert into ALLUSERS (ID) values ('A55555');
-Insert into ALLUSERS (ID) values ('A6969');
-Insert into ALLUSERS (ID) values ('A7777');
-Insert into ALLUSERS (ID) values ('L1');
-Insert into ALLUSERS (ID) values ('L10');
-Insert into ALLUSERS (ID) values ('L11');
-Insert into ALLUSERS (ID) values ('L12');
-Insert into ALLUSERS (ID) values ('L13');
-Insert into ALLUSERS (ID) values ('L14');
-Insert into ALLUSERS (ID) values ('L15');
-Insert into ALLUSERS (ID) values ('L16');
-Insert into ALLUSERS (ID) values ('L17');
-Insert into ALLUSERS (ID) values ('L18');
-Insert into ALLUSERS (ID) values ('L19');
-Insert into ALLUSERS (ID) values ('L2');
-Insert into ALLUSERS (ID) values ('L20');
-Insert into ALLUSERS (ID) values ('L3');
-Insert into ALLUSERS (ID) values ('L4');
-Insert into ALLUSERS (ID) values ('L5');
-Insert into ALLUSERS (ID) values ('L6');
-Insert into ALLUSERS (ID) values ('L7');
-Insert into ALLUSERS (ID) values ('L8');
-Insert into ALLUSERS (ID) values ('L9');
-Insert into ALLUSERS (ID) values ('U001');
-Insert into ALLUSERS (ID) values ('U002');
-Insert into ALLUSERS (ID) values ('U003');
-Insert into ALLUSERS (ID) values ('U1');
-Insert into ALLUSERS (ID) values ('U10');
-Insert into ALLUSERS (ID) values ('U11');
-Insert into ALLUSERS (ID) values ('U12');
-Insert into ALLUSERS (ID) values ('U13');
-Insert into ALLUSERS (ID) values ('U14');
-Insert into ALLUSERS (ID) values ('U15');
-Insert into ALLUSERS (ID) values ('U16');
-Insert into ALLUSERS (ID) values ('U17');
-Insert into ALLUSERS (ID) values ('U18');
-Insert into ALLUSERS (ID) values ('U19');
-Insert into ALLUSERS (ID) values ('U2');
-Insert into ALLUSERS (ID) values ('U20');
-Insert into ALLUSERS (ID) values ('U21');
-Insert into ALLUSERS (ID) values ('U25');
-Insert into ALLUSERS (ID) values ('U3');
-Insert into ALLUSERS (ID) values ('U4');
-Insert into ALLUSERS (ID) values ('U5');
-Insert into ALLUSERS (ID) values ('U6');
-Insert into ALLUSERS (ID) values ('U7');
-Insert into ALLUSERS (ID) values ('U8');
-Insert into ALLUSERS (ID) values ('U9');
 REM INSERTING into BAN
 SET DEFINE OFF;
 Insert into BAN (FELHASZNALOID,ADMINID,"Date",INDOK,HOSSZ) values ('U2','A6969',to_date('21-MÁRC. -05','RR-MON-DD'),'Sértegetés','1');
@@ -281,7 +214,7 @@ Insert into BAN (FELHASZNALOID,ADMINID,"Date",INDOK,HOSSZ) values ('U4','A55555'
 REM INSERTING into CIKK
 SET DEFINE OFF;
 Insert into CIKK (ID,CIM,TARTALOM,ALLAPOT,NYELV,FELHASZNALOID_SZERZO,KATEGORIA,LEKTORALTA,LEKTORALASDATUMA) values ('C7','Biochemistry',' Biochemistry or biological chemistry, is the study of chemical processes within and relating to living organisms.[1] A sub-discipline of both chemistry and biology, biochemistry may be divided into three fields: structural biology, enzymology and metabolism. Over the last decades of the 20th century, biochemistry has become successsful at explaining living processes through these three disciplines. Almost all areas of the life sciences are being uncovered and developed through biochemical methodology and research.. ','Lektorálásra vár','Angol','U7','Kémia',null,to_date('21-JAN.  -21','RR-MON-DD'));
-Insert into CIKK (ID,CIM,TARTALOM,ALLAPOT,NYELV,FELHASZNALOID_SZERZO,KATEGORIA,LEKTORALTA,LEKTORALASDATUMA) values ('C10','Kendó',' A kendó (??), vagyis a kard útja a vívás japán harcmûvészete. A kendó a kendzsucuként ismert japán kardforgatás hagyományos technikáiból fejlõdött ki. A kendó egy fizikailag és szellemileg is erõt próbáló tevékenység, mely a kemény harcmûvészeteket ötvözi a sportos fizikai elemekkel. A kendót gyakorlók más néven a kendókák, vagyis „akik kendót gyakorolnak”, vagy kensik, vagyis „kardos emberek”.','Lektorálásra vár','Magyar','U10','Sport',null,to_date('21-MÁRC. -11','RR-MON-DD'));
+Insert into CIKK (ID,CIM,TARTALOM,ALLAPOT,NYELV,FELHASZNALOID_SZERZO,KATEGORIA,LEKTORALTA,LEKTORALASDATUMA) values ('C10','Kendó',' A kendó (??), vagyis a kard útja a vívás japán harcmûvészete. A kendó a kendzsucuként ismert japán kardforgatás hagyományos technikáiból fejlõdött ki. A kendó egy fizikailag és szellemileg is erõt próbáló tevékenység, mely a kemény harcmûvészeteket ötvözi a sportos fizikai elemekkel. A kendót gyakorlók más néven a kendókák, vagyis „akik kendót gyakorolnak”, vagy kensik, vagyis „kardos emberek”.','Lektorálásra vár','Magyar','U10','Sport','L6',to_date('22-MÁJ.  -01','RR-MON-DD'));
 Insert into CIKK (ID,CIM,TARTALOM,ALLAPOT,NYELV,FELHASZNALOID_SZERZO,KATEGORIA,LEKTORALTA,LEKTORALASDATUMA) values ('C2','Mégsem halt ki az ezüstfejû antechinus, túlélte a perzselõ ausztráliai tüzeket','A mindent felperzselõ tüzeket is túlélték. A fajgazdagság megõrzése szempontjából minden ilyen felfedezés jó hír, de ebben az esetben a kutatók azt is kiemelik, hogy a ritka erszényesnek sikerült túlélnie a térségben pusztító bozóttüzeket. 2020-ban és 2021-ben a tûz a Queensland keleti részén fekvõ Bulburin Nemzeti Park jelentõs részén hamuvá égette a faj élõhelyét, és a tudósok nagyon aggódtak, hogy a 2013-ban azonosított ezüstfejû antechinus populációja teljesen odaveszhetett a természeti katasztrófában.','Lektorálásra vár','Magyar','U2','Biológia',null,to_date('20-AUG.  -06','RR-MON-DD'));
 Insert into CIKK (ID,CIM,TARTALOM,ALLAPOT,NYELV,FELHASZNALOID_SZERZO,KATEGORIA,LEKTORALTA,LEKTORALASDATUMA) values ('C3','A kör érintõje','Egy kör érintõje olyan egyenes a síkon, amelynek egy adott körrel egy, és csak egy közös pontja van, az érintési pontba húzott sugár mindig merõleges az érintõ egyenesre. Érintõ hétköznapi nyelven olyan egyenes, amely valamely görbét vagy felületet egy pontban érint.','Lektorálásra vár','Magyar','U3','Matematika',null,to_date('18-JAN.  -20','RR-MON-DD'));
 Insert into CIKK (ID,CIM,TARTALOM,ALLAPOT,NYELV,FELHASZNALOID_SZERZO,KATEGORIA,LEKTORALTA,LEKTORALASDATUMA) values ('C5','Ion',' Az ion (vagy régies nevén meneny) olyan atom vagy molekula (atomcsoport), mely elektromos töltéssel rendelkezik. A negatív töltésû ion, más néven anion olyan atom vagy molekula, melynek egy vagy több elektrontöbblete van, a kation pedig pozitív töltésû ion, amiben egy vagy több elektronhiány van, mint az eredeti részecskében. A folyamat, mely során létrejönnek az ionok, az ionizáció. Az ionizált atomokat vagy atomcsoportokat úgy jelölik, hogy az atom vagy molekula fölött jelölik az elvesztett vagy szerzett elektronok számát (kivéve ha egy van, akkor nem jelölik), és a töltést (+ vagy ?). Példa: H+, O2?. Egyszerû atomok esetén a fémek legtöbbször kationokat hoznak létre, a nemfémek anionokat, például a nátrium Na+ kationt, míg a klór Cl? (klorid) aniont hoz létre. Bonyolultabb szerves molekulák ikerionos állapotba is kerülhetnek, ekkor egyszerre anionos és kationos tulajdonságúak.','Lektorálva','Magyar','U5','Kémia','L4',to_date('19-NOV.  -10','RR-MON-DD'));
@@ -290,11 +223,9 @@ Insert into CIKK (ID,CIM,TARTALOM,ALLAPOT,NYELV,FELHASZNALOID_SZERZO,KATEGORIA,L
 Insert into CIKK (ID,CIM,TARTALOM,ALLAPOT,NYELV,FELHASZNALOID_SZERZO,KATEGORIA,LEKTORALTA,LEKTORALASDATUMA) values ('C6','Számítógépes kémia',' A számítógépes kémia olyan ága a kémiának, amely számítógépes szimulációval segíti elõ a kémiai problémák megoldását. Hatékony számítógépes programokba ágyazva használja az elméleti kémia módszereit, hogy kiszámítsa és modellezze a molekulák, illetve az anyagok tulajdonságait. Ilyen tulajdonságok lehetnek pl. az anyagstruktúrával, abszolút és relatív energiával, elektromos töltéssûrûség eloszlásával, dipólusmomentummal, rezgési frekvenciával, reakcióképességgel és a részecskék ütközésével kapcsolatosak. ','Lektorálásra vár','Magyar','U6','Kémia',null,to_date('20-JAN.  -18','RR-MON-DD'));
 Insert into CIKK (ID,CIM,TARTALOM,ALLAPOT,NYELV,FELHASZNALOID_SZERZO,KATEGORIA,LEKTORALTA,LEKTORALASDATUMA) values ('C8','Central processing unit',' A central processing unit (CPU), also called a central processor, main processor or just processor, is the electronic circuitry that executes instructions comprising a computer program. The CPU performs basic arithmetic, logic, controlling, and input/output (I/O) operations specified by the instructions in the program. This contrasts with external components such as main memory and I/O circuitry,[1] and specialized processors such as graphics processing units (GPUs).','Lektorálásra vár','Angol','U8','Informatika',null,to_date('22-AUG.  -15','RR-MON-DD'));
 Insert into CIKK (ID,CIM,TARTALOM,ALLAPOT,NYELV,FELHASZNALOID_SZERZO,KATEGORIA,LEKTORALTA,LEKTORALASDATUMA) values ('C9','Vulkán',' A vulkánok vagy tûzhányók a Föld felszínének olyan hasadékai, amelyeken a felszínre jut a magma, az asztenoszféra izzó kõzetolvadéka. A Föld vulkánjait kialakulásuk oka szerint két csoportba soroljuk: többségük a távolodó és közeledõ kõzetlemezek határain (az aktív lemezhatárokon) alakul ki, kisebb részük az aktív peremszegélyektõl távol, a köpenyhöoszlopok (köpenycsóvák) fölötti forrópontokon jön létre.','Lektorálva','Magyar','U9','Informatika','L7',to_date('18-SZEPT.-19','RR-MON-DD'));
-Insert into CIKK (ID,CIM,TARTALOM,ALLAPOT,NYELV,FELHASZNALOID_SZERZO,KATEGORIA,LEKTORALTA,LEKTORALASDATUMA) values ('C11','Teszt','Tesztinfóóóóóóóóó','Kezdeti','magyar','U1','Informatika',null,null);
 REM INSERTING into FELHASZNALO
 SET DEFINE OFF;
 Insert into FELHASZNALO (ID,NEV,JELSZO,EMAIL) values ('U20','ifj. Tetszt Elek','jelszo','IElek@gmail.com');
-Insert into FELHASZNALO (ID,NEV,JELSZO,EMAIL) values ('U25','Ugyan Azok','jel','ugya@random.com');
 Insert into FELHASZNALO (ID,NEV,JELSZO,EMAIL) values ('U15','Kuruc Elek','jelsz1','kurucelek@mail.com');
 Insert into FELHASZNALO (ID,NEV,JELSZO,EMAIL) values ('U16','Kuruc Elek','jelsz1','kurucelek@mail.hu');
 Insert into FELHASZNALO (ID,NEV,JELSZO,EMAIL) values ('U6','Kovács Nyék','jelszo','kovacsnyek@mail.com');
@@ -312,7 +243,6 @@ Insert into FELHASZNALO (ID,NEV,JELSZO,EMAIL) values ('U12','Halász Zizi','jelsz
 Insert into FELHASZNALO (ID,NEV,JELSZO,EMAIL) values ('U13','Máthé Dzsenifer','jelsz2','mathedzsenifer@mail.com');
 Insert into FELHASZNALO (ID,NEV,JELSZO,EMAIL) values ('U14','Joó Keled','jelsz1','jookeled@mail.com');
 Insert into FELHASZNALO (ID,NEV,JELSZO,EMAIL) values ('U18','Teszt Elek','jelszava','Elek@gmail.com');
-Insert into FELHASZNALO (ID,NEV,JELSZO,EMAIL) values ('U21','Ugyan Azok','jel','ugyan@random.com');
 Insert into FELHASZNALO (ID,NEV,JELSZO,EMAIL) values ('U001','Kovács Ákos','jelszavam','kova@random.com');
 Insert into FELHASZNALO (ID,NEV,JELSZO,EMAIL) values ('U19','Tesztné Margit','jelszavcsi','Margo@gmail.com');
 Insert into FELHASZNALO (ID,NEV,JELSZO,EMAIL) values ('U003','Pós Lacika','12345','valami@random.szar');
@@ -352,13 +282,11 @@ Insert into KATEGORIA (NEV,BOVEBBEN) values ('Világûr','Bolygók, csillagok');
 Insert into KATEGORIA (NEV,BOVEBBEN) values ('Történelem','Háború');
 REM INSERTING into KULCSSZO
 SET DEFINE OFF;
-Insert into KULCSSZO (CIKKID,SZO) values ('C1','Hangya');
 Insert into KULCSSZO (CIKKID,SZO) values ('C10','Kendó');
 Insert into KULCSSZO (CIKKID,SZO) values ('C2','Denevér');
 Insert into KULCSSZO (CIKKID,SZO) values ('C3','Érintõ');
 Insert into KULCSSZO (CIKKID,SZO) values ('C4','GPU');
 Insert into KULCSSZO (CIKKID,SZO) values ('C5','Ion');
-Insert into KULCSSZO (CIKKID,SZO) values ('C6','Energia');
 Insert into KULCSSZO (CIKKID,SZO) values ('C7','Biochemistry');
 Insert into KULCSSZO (CIKKID,SZO) values ('C8','CPU');
 Insert into KULCSSZO (CIKKID,SZO) values ('C9','Tûzhányó');
@@ -559,16 +487,6 @@ Insert into NYELVTUDAS (LEKTORID,NYELV,SZINT) values ('L20','francia','B1');
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS" ;
 --------------------------------------------------------
---  DDL for Index ALLUSERS_PK
---------------------------------------------------------
-
-  CREATE UNIQUE INDEX "ALLUSERS_PK" ON "ALLUSERS" ("ID") 
-  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
-  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
-  TABLESPACE "USERS" ;
---------------------------------------------------------
 --  DDL for Index FELHASZNALO_PK
 --------------------------------------------------------
 
@@ -589,9 +507,22 @@ Insert into NYELVTUDAS (LEKTORID,NYELV,SZINT) values ('L20','francia','B1');
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS" ;
 --------------------------------------------------------
---  Triggers
+--  DDL for Trigger BANDATE
 --------------------------------------------------------
-create or replace TRIGGER CascadeUSERS
+
+  CREATE OR REPLACE EDITIONABLE TRIGGER "BANDATE" 
+BEFORE INSERT ON BaN
+FOR EACH ROW
+BEGIN
+ :NEW."Date" := SYSDATE;
+END;
+/
+ALTER TRIGGER "BANDATE" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger CASCADEUSERS
+--------------------------------------------------------
+
+  CREATE OR REPLACE EDITIONABLE TRIGGER "CASCADEUSERS" 
 INSTEAD OF DELETE ON ALLUSERS
 FOR EACH ROW
 BEGIN
@@ -600,20 +531,25 @@ DELETE felhasznalo WHERE felhasznalo.ID= :OLD.ID;
 DELETE ADMIN WHERE ADMIN.ID= :OLD.ID;
 DELETE LEKTOR WHERE LEKTOR.ID= :OLD.ID;
 END;
+/
+ALTER TRIGGER "CASCADEUSERS" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger CIKKDATE
+--------------------------------------------------------
 
-create or replace TRIGGER SZERZOCHECK
-AFTER INSERT OR UPDATE ON CIKK
+  CREATE OR REPLACE EDITIONABLE TRIGGER "CIKKDATE" 
+BEFORE UPDATE OF LEKTORALTA ON Cikk
 FOR EACH ROW
-DECLARE
-v_count ALLUSERS.ID%TYPE;
 BEGIN
-SELECT COUNT(ALLUSERS.ID) INTO v_count from ALLUSERS WHERE ALLUSERS.ID = :NEW.FELHASZNALOID_SZERZO;
-IF  v_count = 0 THEN
-RAISE_APPLICATION_ERROR(-20000, 'Nem létezõ felhasználóra hivatkozik');
-END IF;
+ :NEW.LEKTORALASDATUMA := SYSDATE;
 END;
+/
+ALTER TRIGGER "CIKKDATE" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger INVINCIBLE
+--------------------------------------------------------
 
-create or replace TRIGGER Invincible
+  CREATE OR REPLACE EDITIONABLE TRIGGER "INVINCIBLE" 
 BEFORE DELETE ON ADMIN
 FOR EACH ROW
 DECLARE
@@ -624,34 +560,49 @@ IF :OLD.ID = v_chosen THEN
 RAISE_APPLICATION_ERROR(-20000, 'Ezt az  accountot nem lehetséges törölni!');
 END IF;
 END;
+/
+ALTER TRIGGER "INVINCIBLE" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger JAVDATE
+--------------------------------------------------------
 
-create or replace TRIGGER CikkDate
-BEFORE UPDATE OF LEKTORALTA ON Cikk
-FOR EACH ROW
-BEGIN
- :NEW.LEKTORALASDATUMA := SYSDATE;
-END;
-
-create or replace TRIGGER ModDate
-BEFORE INSERT ON MODOSITAS
-FOR EACH ROW
-BEGIN
- :NEW.DATUM := SYSDATE;
-END;
-
-create or replace TRIGGER JAvDate
+  CREATE OR REPLACE EDITIONABLE TRIGGER "JAVDATE" 
 BEFORE INSERT ON Javitas
 FOR EACH ROW
 BEGIN
  :NEW."Date" := SYSDATE;
 END;
+/
+ALTER TRIGGER "JAVDATE" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger MODDATE
+--------------------------------------------------------
 
-create or replace TRIGGER BANDATE
-BEFORE INSERT ON BaN
+  CREATE OR REPLACE EDITIONABLE TRIGGER "MODDATE" 
+BEFORE INSERT ON MODOSITAS
 FOR EACH ROW
 BEGIN
- :NEW."Date" := SYSDATE;
+ :NEW.DATUM := SYSDATE;
 END;
+/
+ALTER TRIGGER "MODDATE" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger SZERZOCHECK
+--------------------------------------------------------
+
+  CREATE OR REPLACE EDITIONABLE TRIGGER "SZERZOCHECK" 
+AFTER INSERT OR UPDATE ON CIKK
+FOR EACH ROW
+DECLARE
+v_count ALLUSERS.ID%TYPE;
+BEGIN
+SELECT COUNT(ALLUSERS.ID) INTO v_count from ALLUSERS WHERE ALLUSERS.ID = :NEW.FELHASZNALOID_SZERZO;
+IF  v_count = 0 THEN
+RAISE_APPLICATION_ERROR(-20000, 'Nem létezõ felhasználóra hivatkozik');
+END IF;
+END;
+/
+ALTER TRIGGER "SZERZOCHECK" ENABLE;
 --------------------------------------------------------
 --  DDL for Package TUDASBAZIS
 --------------------------------------------------------
@@ -662,177 +613,167 @@ END;
 
 END TUDASBAZIS;
 
+
 /
 --------------------------------------------------------
 --  Constraints for Table KATEGORIA
 --------------------------------------------------------
 
+  ALTER TABLE "KATEGORIA" MODIFY ("NEV" NOT NULL ENABLE);
   ALTER TABLE "KATEGORIA" ADD CONSTRAINT "KATEGORIA_PK" PRIMARY KEY ("NEV")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS"  ENABLE;
-  ALTER TABLE "KATEGORIA" MODIFY ("NEV" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table MODOSITAS
 --------------------------------------------------------
 
+  ALTER TABLE "MODOSITAS" MODIFY ("CIKKID" NOT NULL ENABLE);
+  ALTER TABLE "MODOSITAS" MODIFY ("DATUM" NOT NULL ENABLE);
   ALTER TABLE "MODOSITAS" ADD CONSTRAINT "MOSDOSITAS_PK" PRIMARY KEY ("CIKKID", "DATUM")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS"  ENABLE;
-  ALTER TABLE "MODOSITAS" MODIFY ("DATUM" NOT NULL ENABLE);
-  ALTER TABLE "MODOSITAS" MODIFY ("CIKKID" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table KULCSSZO
 --------------------------------------------------------
 
+  ALTER TABLE "KULCSSZO" MODIFY ("CIKKID" NOT NULL ENABLE);
+  ALTER TABLE "KULCSSZO" MODIFY ("SZO" NOT NULL ENABLE);
   ALTER TABLE "KULCSSZO" ADD CONSTRAINT "KULCSSZO_PK" PRIMARY KEY ("CIKKID", "SZO")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS"  ENABLE;
-  ALTER TABLE "KULCSSZO" MODIFY ("SZO" NOT NULL ENABLE);
-  ALTER TABLE "KULCSSZO" MODIFY ("CIKKID" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table FELHASZNALO
 --------------------------------------------------------
 
-  ALTER TABLE "FELHASZNALO" ADD CONSTRAINT "FELHASZNALO_UK1" UNIQUE ("EMAIL")
-  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
-  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
-  TABLESPACE "USERS"  ENABLE;
+  ALTER TABLE "FELHASZNALO" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "FELHASZNALO" MODIFY ("NEV" NOT NULL ENABLE);
+  ALTER TABLE "FELHASZNALO" MODIFY ("JELSZO" NOT NULL ENABLE);
+  ALTER TABLE "FELHASZNALO" MODIFY ("EMAIL" NOT NULL ENABLE);
   ALTER TABLE "FELHASZNALO" ADD CONSTRAINT "FELHASZNALO_PK" PRIMARY KEY ("ID")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS"  ENABLE;
-  ALTER TABLE "FELHASZNALO" MODIFY ("EMAIL" NOT NULL ENABLE);
-  ALTER TABLE "FELHASZNALO" MODIFY ("JELSZO" NOT NULL ENABLE);
-  ALTER TABLE "FELHASZNALO" MODIFY ("NEV" NOT NULL ENABLE);
-  ALTER TABLE "FELHASZNALO" MODIFY ("ID" NOT NULL ENABLE);
---------------------------------------------------------
---  Constraints for Table ADMIN
---------------------------------------------------------
-
-  ALTER TABLE "ADMIN" ADD CONSTRAINT "ADMIN_UK1" UNIQUE ("EMAIL")
+  ALTER TABLE "FELHASZNALO" ADD CONSTRAINT "FELHASZNALO_UK1" UNIQUE ("EMAIL")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table ADMIN
+--------------------------------------------------------
+
+  ALTER TABLE "ADMIN" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "ADMIN" MODIFY ("NEV" NOT NULL ENABLE);
+  ALTER TABLE "ADMIN" MODIFY ("JELSZO" NOT NULL ENABLE);
+  ALTER TABLE "ADMIN" MODIFY ("EMAIL" NOT NULL ENABLE);
   ALTER TABLE "ADMIN" ADD CONSTRAINT "ADMIN_PK" PRIMARY KEY ("ID")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS"  ENABLE;
-  ALTER TABLE "ADMIN" MODIFY ("EMAIL" NOT NULL ENABLE);
-  ALTER TABLE "ADMIN" MODIFY ("JELSZO" NOT NULL ENABLE);
-  ALTER TABLE "ADMIN" MODIFY ("NEV" NOT NULL ENABLE);
-  ALTER TABLE "ADMIN" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "ADMIN" ADD CONSTRAINT "ADMIN_UK1" UNIQUE ("EMAIL")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS"  ENABLE;
 --------------------------------------------------------
 --  Constraints for Table JAVITAS
 --------------------------------------------------------
 
+  ALTER TABLE "JAVITAS" MODIFY ("ADMINID" NOT NULL ENABLE);
+  ALTER TABLE "JAVITAS" MODIFY ("HIBAID" NOT NULL ENABLE);
   ALTER TABLE "JAVITAS" ADD CONSTRAINT "JAVITAS_PK" PRIMARY KEY ("ADMINID", "HIBAID")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS"  ENABLE;
-  ALTER TABLE "JAVITAS" MODIFY ("HIBAID" NOT NULL ENABLE);
-  ALTER TABLE "JAVITAS" MODIFY ("ADMINID" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table CIKK
 --------------------------------------------------------
 
+  ALTER TABLE "CIKK" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "CIKK" MODIFY ("FELHASZNALOID_SZERZO" NOT NULL ENABLE);
   ALTER TABLE "CIKK" ADD CONSTRAINT "CIKK_PK" PRIMARY KEY ("ID")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS"  ENABLE;
-  ALTER TABLE "CIKK" MODIFY ("FELHASZNALOID_SZERZO" NOT NULL ENABLE);
-  ALTER TABLE "CIKK" MODIFY ("ID" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table HIBA
 --------------------------------------------------------
 
+  ALTER TABLE "HIBA" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "HIBA" MODIFY ("JELENTOID" NOT NULL ENABLE);
+  ALTER TABLE "HIBA" MODIFY ("HIBASCIKKID" NOT NULL ENABLE);
   ALTER TABLE "HIBA" ADD CONSTRAINT "HIBA_PK" PRIMARY KEY ("ID")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS"  ENABLE;
-  ALTER TABLE "HIBA" MODIFY ("HIBASCIKKID" NOT NULL ENABLE);
-  ALTER TABLE "HIBA" MODIFY ("JELENTOID" NOT NULL ENABLE);
-  ALTER TABLE "HIBA" MODIFY ("ID" NOT NULL ENABLE);
---------------------------------------------------------
---  Constraints for Table ALLUSERS
---------------------------------------------------------
-
-  ALTER TABLE "ALLUSERS" ADD CONSTRAINT "ALLUSERS_PK" PRIMARY KEY ("ID")
-  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
-  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
-  TABLESPACE "USERS"  ENABLE;
-  ALTER TABLE "ALLUSERS" MODIFY ("ID" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table BAN
 --------------------------------------------------------
 
+  ALTER TABLE "BAN" MODIFY ("FELHASZNALOID" NOT NULL ENABLE);
+  ALTER TABLE "BAN" MODIFY ("ADMINID" NOT NULL ENABLE);
+  ALTER TABLE "BAN" MODIFY ("Date" NOT NULL ENABLE);
+  ALTER TABLE "BAN" MODIFY ("HOSSZ" NOT NULL ENABLE);
   ALTER TABLE "BAN" ADD CONSTRAINT "BAN_PK" PRIMARY KEY ("FELHASZNALOID", "ADMINID", "Date", "HOSSZ")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS"  ENABLE;
-  ALTER TABLE "BAN" MODIFY ("HOSSZ" NOT NULL ENABLE);
-  ALTER TABLE "BAN" MODIFY ("Date" NOT NULL ENABLE);
-  ALTER TABLE "BAN" MODIFY ("ADMINID" NOT NULL ENABLE);
-  ALTER TABLE "BAN" MODIFY ("FELHASZNALOID" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table LEKTOR
 --------------------------------------------------------
 
-  ALTER TABLE "LEKTOR" ADD CONSTRAINT "LEKTOR_PK" PRIMARY KEY ("ID")
-  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
-  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
-  TABLESPACE "USERS"  ENABLE;
+  ALTER TABLE "LEKTOR" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "LEKTOR" MODIFY ("NEV" NOT NULL ENABLE);
+  ALTER TABLE "LEKTOR" MODIFY ("JELSZO" NOT NULL ENABLE);
+  ALTER TABLE "LEKTOR" MODIFY ("EMAIL" NOT NULL ENABLE);
   ALTER TABLE "LEKTOR" ADD CONSTRAINT "LEKTOR_UK1" UNIQUE ("EMAIL")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS"  ENABLE;
-  ALTER TABLE "LEKTOR" MODIFY ("EMAIL" NOT NULL ENABLE);
-  ALTER TABLE "LEKTOR" MODIFY ("JELSZO" NOT NULL ENABLE);
-  ALTER TABLE "LEKTOR" MODIFY ("NEV" NOT NULL ENABLE);
-  ALTER TABLE "LEKTOR" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "LEKTOR" ADD CONSTRAINT "LEKTOR_PK" PRIMARY KEY ("ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS"  ENABLE;
 --------------------------------------------------------
 --  Constraints for Table NYELVTUDAS
 --------------------------------------------------------
 
+  ALTER TABLE "NYELVTUDAS" MODIFY ("LEKTORID" NOT NULL ENABLE);
+  ALTER TABLE "NYELVTUDAS" MODIFY ("NYELV" NOT NULL ENABLE);
+  ALTER TABLE "NYELVTUDAS" MODIFY ("SZINT" NOT NULL ENABLE);
   ALTER TABLE "NYELVTUDAS" ADD CONSTRAINT "NYELVTUDAS_PK" PRIMARY KEY ("LEKTORID", "NYELV")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS"  ENABLE;
-  ALTER TABLE "NYELVTUDAS" MODIFY ("SZINT" NOT NULL ENABLE);
-  ALTER TABLE "NYELVTUDAS" MODIFY ("NYELV" NOT NULL ENABLE);
-  ALTER TABLE "NYELVTUDAS" MODIFY ("LEKTORID" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Ref Constraints for Table BAN
 --------------------------------------------------------
@@ -849,8 +790,6 @@ END TUDASBAZIS;
 	  REFERENCES "LEKTOR" ("ID") ON DELETE SET NULL ENABLE;
   ALTER TABLE "CIKK" ADD CONSTRAINT "CIKK_FK2" FOREIGN KEY ("KATEGORIA")
 	  REFERENCES "KATEGORIA" ("NEV") ON DELETE SET NULL ENABLE;
-  ALTER TABLE "CIKK" ADD CONSTRAINT "CIKK_USER" FOREIGN KEY ("FELHASZNALOID_SZERZO")
-	  REFERENCES "ALLUSERS" ("ID") ON DELETE CASCADE ENABLE;
 --------------------------------------------------------
 --  Ref Constraints for Table HIBA
 --------------------------------------------------------
