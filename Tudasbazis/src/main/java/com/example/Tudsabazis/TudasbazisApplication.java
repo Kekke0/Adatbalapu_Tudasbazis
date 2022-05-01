@@ -94,6 +94,11 @@ public class TudasbazisApplication {
 		return new ResponseEntity<>(a.Katall(), HttpStatus.OK);
 	}
 
+	@GetMapping("/Kat/cikkek")
+	public ResponseEntity<String> CatCikk() {
+		return ok().body(new Gson().toJson(new NonTrivial().Kategoriabancikk()));
+	}
+
 	/**
 	 *
 	 * @param keresoszo csak egy kereső szót vagy szó részletet kell átadni

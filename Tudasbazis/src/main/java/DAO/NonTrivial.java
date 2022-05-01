@@ -193,4 +193,26 @@ public class NonTrivial extends ConnectionProtocol{
         }
         return ret;
     }
+    public ArrayList<Map<String,String>> Kategoriabancikk(){
+        ArrayList<Map<String,String>> ret=new ArrayList<Map<String,String>>();
+        try{
+            Start();
+            stmt=super.getConn().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            String sql="select Kategoria.nev, COUNT (CIKK.ID)AS cikkek FROM Kategoria inner join Cikk on Kategoria.nev = cikk.kategoria group by  Kategoria.nev ORDER BY cikkek";
+            rs= stmt.executeQuery(sql);
+            while (rs.next()){
+                Map a = new HashMap();
+                a.put("Nev",rs.getString(1));
+                a.put("cikkek",rs.getString(2));
+                ret.add(a);
+                //System.out.println(a);
+            }
+            Stop();
+        }catch (Exception e){
+            System.out.println("Lekérdezési hiba");
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
 }
