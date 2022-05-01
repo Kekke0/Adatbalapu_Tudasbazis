@@ -12,7 +12,7 @@
       </p>
     </mat-card-content>
     <mat-card-actions align="end" *ngIf="isLoggedIn">
-      <button mat-raised-button color="primary" (click)="hibaJelentes(cikk)">Hiba jelentése</button>
+      <button *ngIf="isUser" mat-raised-button color="primary" (click)="hibaJelentes(cikk)">Hiba jelentése</button>
       <button *ngIf="this.cikk.szerzo === this.userId" mat-raised-button color="primary" (click)="szerkesztes()">Szerkesztés</button>
       <!-- <button mat-raised-button color="primary" (click)="torles()">Törlés</button> -->
       <div *ngIf="isLektor">

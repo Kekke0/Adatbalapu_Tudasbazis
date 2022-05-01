@@ -24,6 +24,8 @@ export class EditArticleComponent implements OnInit {
   datum: any;
   isLoggedIn = false;
   loggedInUser: any = {};
+  isLektor = false;
+  isUser = false;
 
   cim = new FormControl('');
   tartalom = new FormControl('');
@@ -84,20 +86,21 @@ export class EditArticleComponent implements OnInit {
     let nyelv = this.valasztottNyelv;
     let kategoria = this.valasztottKategoria;
     let kulcsszavak = this.kulcsszavak.toString();
-    let szerzo = this.userService?.loggedInUser?.id;
-    let leiras = this.leiras.value
-    console.log(szerzo);
-    console.log(tartalom);
-    console.log(nyelv);
-    console.log(kategoria);
-    console.log("kulcsszavak: " + kulcsszavak);
-    console.log(cim);
+    //let szerzo = this.userService?.loggedInUser?.id;
+    let szerzo = this.cikk.szerzo;
+    let leiras = this.leiras.value;
+    // console.log(szerzo);
+    // console.log(tartalom);
+     console.log(nyelv);
+     console.log(kategoria);
+    // console.log("kulcsszavak: " + kulcsszavak);
+    // console.log(cim);
 
-    if(szerzo && cim && tartalom && nyelv && kategoria && kulcsszavak && leiras){
-      this.userService.addCikk(cim, tartalom, "kezdeti", nyelv, kategoria, szerzo, kulcsszavak).subscribe(data =>{
+    if(szerzo && this.loggedInUser?.id.startsWith("U") && cim && tartalom && nyelv && kategoria && kulcsszavak && leiras){
+      this.userService.changeCikk(this.cikk.id, cim, tartalom, "kezdeti", nyelv, kategoria, szerzo, kulcsszavak, null).subscribe(data =>{
         console.log(data.kulcsszo[0].split(','));
         this.userService.addModositas(this.cikk.id, leiras).subscribe(data =>{
-          console.log(data.kulcsszo[0].split(','));
+          //console.log(data.kulcsszo[0].split(','));
   
         },
         error =>{
@@ -112,6 +115,26 @@ export class EditArticleComponent implements OnInit {
     } else{
       this.openDialog("Az összes mezőt szükséges kitölteni!");
     }
+    if(szerzo && this.loggedInUser?.id.startsWith("L") && cim && tartalom && nyelv && kategoria && kulcsszavak && leiras){
+      this.userService.changeCikk(this.cikk.id, cim, tartalom, "kezdeti", nyelv, kategoria, szerzo, kulcsszavak, this.loggedInUser.id).subscribe(data =>{
+        //console.log(data.kulcsszo[0].split(','));
+        this.userService.addModositas(this.cikk.id, leiras).subscribe(data =>{
+          //console.log(data.kulcsszo[0].split(','));
+  
+        },
+        error =>{
+          //console.log(error);
+          this.openDialog("Sikertelen cikkmódosítás!");
+        })
+      },
+      error =>{
+        console.log(error);
+        this.openDialog("Sikertelen cikklektorálás!");
+      })
+    } else{
+      this.openDialog("Az összes mezőt szükséges kitölteni!");
+    }
+
   }
 
   ngOnInit(): void {
@@ -165,6 +188,12 @@ export class EditArticleComponent implements OnInit {
     }
     if(this.loggedInUser !== this.userService.loggedInUser){
       this.loggedInUser = this.userService.loggedInUser;
+    }
+    if(this.loggedInUser?.id.startsWith("L")){
+      this.isLektor = true;
+    }
+    if(this.loggedInUser?.id.startsWith("U")){
+      this.isUser = true;
     }
   }
 }

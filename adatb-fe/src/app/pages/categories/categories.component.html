@@ -2,7 +2,7 @@
     <h2>Kategóriák</h2><br/>
 </div>
 
-<div class="main_component">
+<div *ngIf="this.isLoggedIn" class="main_component">
     <h3>Kategória hozzáadása</h3>
     <mat-form-field appearance="outline">
         <mat-label for="cim">Név </mat-label><input matInput type="text" [formControl]="nev" />

@@ -17,6 +17,7 @@ export class ArticleComponent implements OnInit, DoCheck {
   isLektor: boolean = false;
   loggedInUser: any = {};
   userId: string = "";
+  isUser = false;
 
   constructor(private userService: UserService, private router: Router, public dialog: MatDialog) { }
 
@@ -36,6 +37,9 @@ export class ArticleComponent implements OnInit, DoCheck {
       console.log(this.cikk.szerzo);
       if(this.loggedInUser?.id.startsWith("L")){
         this.isLektor = true;
+      }
+      if(this.loggedInUser?.id.startsWith("U")){
+        this.isUser = true;
       }
       console.log(this.loggedInUser);
     }
@@ -72,7 +76,7 @@ export class ArticleComponent implements OnInit, DoCheck {
   }
 
   lektoralas(){
-
+    this.router.navigate(['/edit-article', this.cikk.id]);
   }
 
 }
