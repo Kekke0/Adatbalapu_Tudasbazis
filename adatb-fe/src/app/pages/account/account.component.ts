@@ -55,6 +55,15 @@ export class AccountComponent implements OnInit {
       error =>{
         console.log("sikertelen jelszóváltás")
       });
+      if(this.valasztottNyelv && this.valasztottSzint){
+        this.userService.addNyelv(this.loggedInUser.id, this.valasztottSzint, this.valasztottNyelv).subscribe(data =>{
+          console.log("sikeres nyelvhozzáadás")
+        },
+        error=>{
+          console.log("sikertelen nyelvhozzáadás")
+        });
+      }
+
   }
 
 }

@@ -13,14 +13,24 @@
     <mat-form-field>
         <mat-label for="password">Jelszó megváltoztatása</mat-label><input matInput type="password" [formControl]="password" />
     </mat-form-field>
+    <div *ngIf="isLektor">
     <mat-form-field appearance="outline">
-      <mat-label>Nyelv</mat-label>
+      <mat-label>Nyelv hozzáadása</mat-label>
       <mat-select [(value)]="valasztottNyelv">
           <mat-option *ngFor="let nyelv of nyelvek" [value]="nyelv.value">
               {{nyelv.value}}
           </mat-option>
       </mat-select>
-  </mat-form-field>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Nyelv szint hozzáadása</mat-label>
+      <mat-select [(value)]="valasztottSzint">
+          <mat-option *ngFor="let szint of szintek" [value]="szint.value">
+              {{szint.value}}
+          </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
     </mat-card-content>
     <mat-card-actions align="end">
       <button mat-button (click)="changePassword()">Változtatások mentése</button>

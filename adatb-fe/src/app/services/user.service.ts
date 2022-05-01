@@ -85,7 +85,8 @@ export class UserService {
 
   public addNyelv(LektorID: string, szint: string, nyelv: string): Observable<any>{
     let body = {LektorID: LektorID, szint: szint, nyelv: nyelv};
-    return this.http.post<any>(environment.API_URL + "/felhasznalo/Nyelvek/del", body);
+    console.log(body)
+    return this.http.post<any>(environment.API_URL + "/felhasznalo/Nyelvek/add", body);
   }
 
   public addModositas(CikkID: string, leiras: string): Observable<any>{
