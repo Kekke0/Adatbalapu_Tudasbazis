@@ -624,6 +624,13 @@ IF :OLD.ID = v_chosen THEN
 RAISE_APPLICATION_ERROR(-20000, 'Ezt az  accountot nem lehetséges törölni!');
 END IF;
 END;
+
+create or replace TRIGGER CikkDate
+BEFORE UPDATE OF LEKTORALTA ON Cikk
+FOR EACH ROW
+BEGIN
+ :NEW.LEKTORALASDATUMA := SYSDATE;
+END;
 --------------------------------------------------------
 --  DDL for Package TUDASBAZIS
 --------------------------------------------------------
