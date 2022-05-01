@@ -489,21 +489,21 @@ public class TudasbazisApplication {
 	 * @param up
 	 * {
 	 *      "ID":"id",
-	 *      "Nev":"neve",
-	 *      "Email":"Emailcíme",
 	 *      "jelszo": "jelszava"
 	 * }
 	 */
 	@PostMapping(value = "/felhasznalo/jelszo")
 	public ResponseEntity<Boolean> Felhasznupdate (@RequestBody Map<String,String> up){
-		Felhasznalo Updated=new Felhasznalo(up.get("ID"),up.get("Nev"),up.get("Email"), up.get("jelszo"));
 		try {
 			Boolean a;
-			if (up.get("ID").contains("L"))
+			if (up.get("ID").contains("L")){
 				a = new Update().LEKTORID(up.get("ID"), up.get("jelszo"));
-			else if (Updated.getID().contains("A"))
+				return new ResponseEntity<>(a, HttpStatus.ACCEPTED);
+			}
+			else if (up.get("ID").contains("A")) {
 				a = new Update().ADMINID(up.get("ID"), up.get("jelszo"));
-			else
+				return new ResponseEntity<>(a, HttpStatus.ACCEPTED);
+			}
 				a = new Update().FelhaszID(up.get("ID"), up.get("jelszo"));
 			return new ResponseEntity<>(a, HttpStatus.ACCEPTED);
 		}catch (Exception e) {

@@ -21,7 +21,7 @@ public class Update extends ConnectionProtocol {
 
     public Boolean FelhaszID(String ID, String Jelszo) throws Exception{
         Start();
-        PreparedStatement stmt=super.getConn().prepareStatement("UPDATE felhasznalo SET JELSZO = ?,WHERE ID=?");
+        PreparedStatement stmt=super.getConn().prepareStatement("UPDATE Felhasznalo SET Felhasznalo.JELSZO = ? WHERE Felhasznalo.ID=?");
         stmt.setString(1,Jelszo);
         stmt.setString(2,ID);
         rs= stmt.executeUpdate();
@@ -31,7 +31,7 @@ public class Update extends ConnectionProtocol {
 
     public Boolean LEKTORID(String ID, String Jelszo) throws Exception{
         Start();
-        PreparedStatement stmt=super.getConn().prepareStatement("UPDATE LEKTOR SET JELSZO = ?, WHERE ID=?");
+        PreparedStatement stmt=super.getConn().prepareStatement("UPDATE LEKTOR SET LEKTOR.JELSZO = ? WHERE LEKTOR.ID=?");
         stmt.setString(1,Jelszo);
         stmt.setString(2,ID);
         rs= stmt.executeUpdate();
@@ -40,7 +40,7 @@ public class Update extends ConnectionProtocol {
     }
     public Boolean ADMINID(String ID, String Jelszo) throws Exception{
         Start();
-        PreparedStatement stmt=super.getConn().prepareStatement("UPDATE ADMIN SET JELSZO = ?, WHERE ID=?");
+        PreparedStatement stmt=super.getConn().prepareStatement("UPDATE ADMIN SET ADMIN.JELSZO = ? WHERE ADMIN.ID=?");
         stmt.setString(1,Jelszo);
         stmt.setString(2,ID);
         rs= stmt.executeUpdate();
