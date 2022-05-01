@@ -51,7 +51,14 @@ export class ArticleComponent implements OnInit, DoCheck {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       //this.animal = result;
-      console.log(result);
+      if(result && result?.ok != ""){
+        this.userService.addHiba(result.ok, "0", this.userService.loggedInUser.ID, cikk.id).subscribe(data =>{
+          console.log("sikeres hibajelentés")
+        },
+        error =>{
+          console.log("sikertelen hibajelentés")
+        })
+      }
     });
   }
 

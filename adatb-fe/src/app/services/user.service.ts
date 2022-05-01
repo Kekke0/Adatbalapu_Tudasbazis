@@ -66,18 +66,28 @@ export class UserService {
     return this.http.post<any>(environment.API_URL + "/addKategoria", body);
   }
 ////////////////////////////
-  public addBan(felhasznaloId: string, adminId: string, date: string, indok: string, hossz: string): Observable<any>{
-    let body = {felhasznaloId : felhasznaloId, adminID: adminId , date : date, indok: indok,hossz: hossz};
+  public addBan(felhasznaloId: string, adminId: string, indok: string, hossz: string): Observable<any>{
+    let body = {felhasznaloId : felhasznaloId, adminID: adminId , indok: indok,hossz: hossz};
     return this.http.post<any>(environment.API_URL + "/felhasznalo/Bann", body);
   }
 
   public addHiba(leiras: string, javitva: string, jelentoId: string, cikkID:string): Observable<any>{
-    let body = {leiras: leiras, javitva: javitva, jelentoId: jelentoId, cikkID: cikkID};
+    let body = {leiras: leiras, javitva: javitva, jelentoID: jelentoId, cikkID: cikkID};
     return this.http.post<any>(environment.API_URL + "/Hiba", body);
   }
 
-  public addJavitas(adminID: string, hibaID: string, date: string, jegyzet: string): Observable<any>{
-    let body = {adminID: adminID, hibaID: hibaID, date: date, jegyzet: jegyzet};
+  public addJavitas(adminID: string, hibaID: string, jegyzet: string): Observable<any>{
+    let body = {adminID: adminID, hibaID: hibaID, jegyzet: jegyzet};
     return this.http.post<any>(environment.API_URL + "/Hiba/jav", body);
+  }
+
+  public addNyelv(LektorID: string, szint: string, nyelv: string): Observable<any>{
+    let body = {LektorID: LektorID, szint: szint, nyelv: nyelv};
+    return this.http.post<any>(environment.API_URL + "/felhasznalo/Nyelvek/del", body);
+  }
+
+  public addModositas(CkkID: string, leiras: string): Observable<any>{
+    let body = {CkkID: CkkID, leiras: leiras};
+    return this.http.post<any>(environment.API_URL + "/Cikk/mod", body);
   }
 }
