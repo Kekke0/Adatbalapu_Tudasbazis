@@ -502,7 +502,13 @@ public class TudasbazisApplication {
 	public ResponseEntity<Boolean> Felhasznupdate (@RequestBody Map<String,String> up){
 		Felhasznalo Updated=new Felhasznalo(up.get("ID"),up.get("Nev"),up.get("Email"), up.get("jelszo"));
 		try {
-			Boolean a = new Update().FelhaszID(Updated);
+			Boolean a;
+			if (Updated.getID().contains("L"))
+				a = new Update().LEKTORID(Updated);
+			else if (Updated.getID().contains("A"))
+				a = new Update().ADMINID(Updated);
+			else
+				a = new Update().FelhaszID(Updated);
 			return new ResponseEntity<>(a, HttpStatus.ACCEPTED);
 		}catch (Exception e) {
 			e.printStackTrace();

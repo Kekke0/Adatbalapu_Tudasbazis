@@ -31,6 +31,29 @@ public class Update extends ConnectionProtocol {
         return rs>0;
     }
 
+    public Boolean LEKTORID(Felhasznalo updated) throws Exception{
+        Start();
+        PreparedStatement stmt=super.getConn().prepareStatement("UPDATE LEKTOR SET NEV = ?,JELSZO = ?,EMAIL = ? WHERE ID=?");
+        stmt.setString(1,updated.getNev());
+        stmt.setString(2,updated.getJelszo());
+        stmt.setString(3,updated.getEmail());
+        stmt.setString(4,updated.getID());
+        rs= stmt.executeUpdate();
+        Stop();
+        return rs>0;
+    }
+    public Boolean ADMINID(Felhasznalo updated) throws Exception{
+        Start();
+        PreparedStatement stmt=super.getConn().prepareStatement("UPDATE ADMIN SET NEV = ?,JELSZO = ?,EMAIL = ? WHERE ID=?");
+        stmt.setString(1,updated.getNev());
+        stmt.setString(2,updated.getJelszo());
+        stmt.setString(3,updated.getEmail());
+        stmt.setString(4,updated.getID());
+        rs= stmt.executeUpdate();
+        Stop();
+        return rs>0;
+    }
+
 
     public Boolean UpdateCikk(Cikk upd) throws Exception {
         Start();
